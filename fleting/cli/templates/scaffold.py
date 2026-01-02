@@ -219,9 +219,6 @@ class AppConfig:
 """)
 
     create_file(BASE / "configs/routes.py", """
-"""
-Configuração de rotas com lazy loading para evitar circular imports
-"""
 import importlib
 
 # Mapeamento rota -> módulo.classe
@@ -631,7 +628,7 @@ def create_page_view(name: str):
     controller_class = f"{name.capitalize()}Controller"
     model_class = f"{name.capitalize()}Model"
 
-    content = f"""import flet as ft
+    content = f\"\"\"import flet as ft
 from views.layouts.main_layout import MainLayout
 from controllers.{name}_controller import {controller_class}
 from models.{name}_model import {model_class}
@@ -657,7 +654,7 @@ class {class_name}:
             content=content,
             router=self.router,
         )
-"""
+\"\"\"
     path.write_text(content, encoding="utf-8")
     logger.info(f"Page criada: {path}")
     print(f"Page criada com sucesso: {name}")
