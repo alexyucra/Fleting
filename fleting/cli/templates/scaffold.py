@@ -229,7 +229,7 @@ ROUTE_MAP = {
 }
 
 def load_view(view_path: str):
-    """Carrega uma view dinamicamente"""
+    \"\"\"Carrega uma view dinamicamente\"\"\"
     module_name, class_name = view_path.rsplit(".", 1)
     
     try:
@@ -534,13 +534,13 @@ def create_controller(name: str):
 
     class_name = f"{name.capitalize()}Controller"
 
-    content = f"""class {class_name}:
+    content = f\"\"\"class {class_name}:
     def __init__(self, model=None):
         self.model = model
 
     def get_title(self):
         return "{name.capitalize()}"
-"""
+\"\"\"
     path.write_text(content, encoding="utf-8")
     logger.info(f"Controller criado: {path}")
     print(f"Controller criado com sucesso: {name}")
@@ -558,7 +558,7 @@ def create_view(name: str):
 
     class_name = f"{name.capitalize()}View"
 
-    content = f"""import flet as ft
+    content = f\"\"\"import flet as ft
 from views.layouts.main_layout import MainLayout
 
 class {class_name}:
@@ -579,7 +579,7 @@ class {class_name}:
             content=content,
             router=self.router,
         )
-"""
+\"\"\"
 
     path.write_text(content, encoding="utf-8")
     logger.info(f"View criada: {path}")
@@ -598,10 +598,10 @@ def create_model(name: str):
 
     class_name = f"{name.capitalize()}Model"
 
-    content = f"""class {class_name}:
+    content = f\"\"\"class {class_name}:
     def __init__(self):
         pass
-"""
+\"\"\"
 
     path.write_text(content, encoding="utf-8")
     logger.info(f"Model criado: {path}")
