@@ -1,0 +1,53 @@
+[project]
+name = "fleting"
+version = "1.0.0"
+description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+
+authors = [
+    { name = "Alex Yucra" }
+]
+
+keywords = [
+    "flet",
+    "framework",
+    "mvc",
+    "ui",
+    "desktop",
+    "mobile"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "flet"
+]
+
+# ------------------------
+# CLI ENTRY POINT
+# ------------------------
+[project.scripts]
+fleting = "fleting.cli.cli:main"
+
+# ------------------------
+# URLs (PyPI)
+# ------------------------
+[project.urls]
+Homepage = "https://github.com/alexyucra/fleting"
+Documentation = "https://github.com/alexyucra/fleting/tree/main/docs"
+Repository = "https://github.com/alexyucra/fleting"
+Issues = "https://github.com/alexyucra/fleting/issues"
+
+# ------------------------
+# BUILD SYSTEM (Poetry)
+# ------------------------
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
