@@ -1,5 +1,7 @@
 # ⚡ Fleting Framework
 
+![](docs/img/fleting.png)
+
 Fleting é um micro-framework opinativo construído sobre **Flet**, focado em:
 - simplicidade
 - organização clara

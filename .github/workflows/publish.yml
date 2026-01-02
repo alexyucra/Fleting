@@ -1,0 +1,42 @@
+name: Publish Python Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Executa somente quando houver tag de versão, ex: v1.0.0
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout do código
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Configura Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # 3️⃣ Instalar dependências para build
+      - run: pip install --upgrade build twine
+
+      # 4️⃣ Build do pacote
+      - run: python -m build
+
+      # 5️⃣ Publicar no TestPyPI (opcional)
+      # Se quiser publicar direto no PyPI oficial, altere 'testpypi' para 'pypi'
+      - name: Publish to TestPyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TESTPYPI_TOKEN }}
+        run: |
+          twine upload --repository testpypi dist/*
+
+      # 6️⃣ Publicar no PyPI oficial (quando estiver pronto)
+      # - name: Publish to PyPI
+      #   env:
+      #     TWINE_USERNAME: __token__
+      #     TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      #   run: |
+      #     twine upload dist/*
