@@ -1,7 +1,7 @@
 import sys
-from core.logger import get_logger
-from cli.commands.create import handle_create
-from cli.commands.delete import handle_delete
+from fleting.core.logger import get_logger
+from fleting.cli.commands.create import handle_create
+from fleting.cli.commands.delete import handle_delete
 
 logger = get_logger("CLI")
 

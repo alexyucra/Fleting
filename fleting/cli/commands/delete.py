@@ -1,5 +1,5 @@
 from pathlib import Path
-from core.logger import get_logger
+from fleting.core.logger import get_logger
 
 logger = get_logger("CLI.Delete")
 
