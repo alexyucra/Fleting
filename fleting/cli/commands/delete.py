@@ -1,7 +1,4 @@
 from pathlib import Path
-from fleting.core.logger import get_logger
-
-logger = get_logger("CLI.Delete")
 
 BASE = Path.cwd()
 
@@ -29,7 +26,6 @@ def handle_delete(args):
             print(f"Tipo não suportado: {kind}")
 
     except Exception:
-        logger.exception(f"Erro ao deletar {kind}: {name}")
         print(f"Erro ao deletar {kind} {name}")
 
 # -----------------
@@ -43,7 +39,6 @@ def delete_controller(name: str):
         return
 
     path.unlink()
-    logger.info(f"Controller removido: {path}")
     print(f"Controller removido com sucesso: {name}")
 
 # -----------------
@@ -57,7 +52,6 @@ def delete_view(name: str):
         return
 
     path.unlink()
-    logger.info(f"View removida: {path}")
     print(f"View removida com sucesso: {name}")
 
 # -----------------
@@ -71,7 +65,6 @@ def delete_model(name: str):
         return
 
     path.unlink()
-    logger.info(f"Model removido: {path}")
     print(f"Model removido com sucesso: {name}")
 
 # -----------------

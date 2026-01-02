@@ -1,7 +1,4 @@
 from pathlib import Path
-from fleting.core.logger import get_logger
-
-logger = get_logger("CLI.Create")
 
 BASE = Path.cwd()
 
@@ -23,11 +20,9 @@ def handle_create(args):
         elif kind == "page":
             create_page(name)
         else:
-            logger.warning(f"Tipo de criação não suportado: {kind}")
             print(f"Tipo não suportado: {kind}")
 
     except Exception:
-        logger.exception(f"Erro ao criar {kind}: {name}")
         print(f"Erro ao criar {kind} {name}")
 
 # --------------
@@ -50,7 +45,6 @@ def create_controller(name: str):
         return "{name.capitalize()}"
 """
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Controller criado: {path}")
     print(f"Controller criado com sucesso: {name}")
 
 
@@ -90,7 +84,6 @@ class {class_name}:
 """
 
     path.write_text(content, encoding="utf-8")
-    logger.info(f"View criada: {path}")
     print(f"View criada com sucesso: {name}")
 
 
@@ -112,14 +105,13 @@ def create_model(name: str):
 """
 
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Model criado: {path}")
     print(f"Model criado com sucesso: {name}")
 
 # --------------
 # create page
 # --------------
 def create_page(name: str):
-    logger.info(f"Criando page completa: {name}")
+    print(f"Criando page completa: {name}")
 
     create_model(name)
     create_controller(name)
@@ -164,5 +156,4 @@ class {class_name}:
         )
 """
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Page criada: {path}")
     print(f"Page criada com sucesso: {name}")
