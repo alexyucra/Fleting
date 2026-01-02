@@ -245,7 +245,7 @@ def get_routes():
 
     for route_path, view_path in ROUTE_MAP.items():
         def create_view_lambda(path=view_path):
-            # 🚨 lambda aceita page e router
+            # lambda aceita page e router
             return lambda page, router: load_view(path)(page, router).render()
 
         routes[route_path] = create_view_lambda()
@@ -292,8 +292,13 @@ routes = get_routes()
     }
     }
 
-    (BASE / "configs/languages/pt.json").write_text(json.dumps(pt, indent=2, ensure_ascii=False))
-    (BASE / "configs/languages/es.json").write_text(json.dumps(es, indent=2, ensure_ascii=False))
+    pt_file = f"{BASE}/configs/languages/pt.json"
+    es_file = f"{BASE}/configs/languages/es.json"
+    with open(pt_file, 'w', encoding='utf-8') as f:
+        json.dump(pt, f, indent=2, ensure_ascii=False)
+    
+    with open(es_file, 'w', encoding='utf-8') as f:
+        json.dump(es, f, indent=2, ensure_ascii=False)
 
     # =========================
     # LAYOUT
