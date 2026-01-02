@@ -1,6 +1,6 @@
 [project]
 name = "fleting"
-version = "1.0.9"
+version = "1.1.0"
 description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
 readme = "README.md"
 license = { text = "MIT" }

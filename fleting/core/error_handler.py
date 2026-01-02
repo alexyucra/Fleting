@@ -20,7 +20,6 @@ class GlobalErrorHandler:
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
                 expand=True,
-                alignment=ft.alignment.center,
             )
         )
         page.update()

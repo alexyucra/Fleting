@@ -10,7 +10,9 @@ class I18n:
 
     @classmethod
     def load(cls, lang):
-        path = Path("configs/languages") / f"{lang}.json"
+        current_file = Path(__file__).resolve()
+        base_path = current_file.parent.parent
+        path = base_path / "configs" / "languages" / f"{lang}.json"
         cls.translations = json.loads(path.read_text(encoding="utf-8"))
         logger.info(f"Idioma carregado: {lang}")
         AppState.language = lang
