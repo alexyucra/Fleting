@@ -12,6 +12,10 @@ Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteame
 
 ## 🚀 Quick Start
 
+### 1. crie um ambiente virtual isolado
+
+- [env com poetry](docs/enviroment.md)
+
 ```bash
 python app.py
 ```
