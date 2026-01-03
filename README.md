@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="README.md">🇧🇷 Português</a> |
+  <a href="docs/readme-es.md">🇪🇸 Español</a> |
+</p>
+
+---
+
 # ⚡ Fleting Framework
 
 ![](docs/img/fleting.png)
@@ -14,23 +21,28 @@ Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteame
 
 ### 1. crie um ambiente virtual isolado
 
-- [env com poetry](docs/enviroment.md)
+- [Recomendado: env com poetry](docs/pt/enviroment.md)
 
-```bash
-python app.py
-```
 
 ## 🛠️ CLI
 
 ```shell
+pip install flet
+pip install fleting
+
+fleting init
+fleting run
+
+# para desenvolvimento
 fleting create page home
+flet run fleting/app.py
 ```
 
 ## 📚 Documentação
 
 A documentação completa está disponível em:
 
-👉 [documentação completa](docs/index.md)
+👉 [documentação completa](docs/pt/index.md)
 
 ---
 
