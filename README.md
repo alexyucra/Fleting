@@ -73,3 +73,6 @@ O Fleting foi criado com alguns princípios claros:
 ## 📄 Licença
 
 MIT
+
+## Como contribuir
+- [Para quem quiser contribuir com o Fleting no GitHub.](CONTRIBUTING.md)

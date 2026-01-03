@@ -517,7 +517,7 @@ def main():
             print_help()
 
     except Exception as e:
-        print("Erro ao executar comando CLI: {e}")
+        print("Erro ao executar comando CLI:", str(e))
 
 if __name__ == "__main__":
     main()
