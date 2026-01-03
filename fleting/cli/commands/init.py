@@ -1,4 +1,4 @@
-from fleting.cli.templates.scaffold import init_project
+from fleting.cli.templates.index import init_project
 
 def handle_init():
     init_project()

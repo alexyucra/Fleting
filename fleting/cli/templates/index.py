@@ -464,36 +464,131 @@ ft.run(main)
     # =========================
     create_file(BASE / "cli/cli.py", """
 import sys
-from core.logger import get_logger
-from cli.commands.create import handle_create
-from cli.commands.delete import handle_delete
+from fleting.cli.commands.init import handle_init
+from fleting.cli.commands.run import handle_run
+from fleting.cli.commands.info import handle_info
+from fleting.cli.commands.create import handle_create
+from fleting.cli.commands.delete import handle_delete
 
-logger = get_logger("CLI")
+def print_help():
+    print(\"\"\"
+Fleting CLI
+
+Uso:
+  fleting init
+      Inicializa um novo projeto Fleting
+
+  fleting create page <nome>
+      Cria uma nova página (model + controller + view)
+
+  fleting create view <nome>
+  fleting create model <nome>
+  fleting create controller <nome>
+
+  fleting delete page <nome>
+  fleting delete view <nome>
+  fleting delete model <nome>
+  fleting delete controller <nome>
+\"\"\")
 
 def main():
+    
+    args = sys.argv[1:]
+
+    if not args or args[0] in ("-h", "--help"):
+        print_help()
+        return
+
+    command = args[0]
+    
     try:
-        args = sys.argv[1:]
-
-        if not args:
-            print("Uso: fleting create <controller|view|model|page> <nome>")
-            return
-
-        command = args[0]
-
-        if command == "create":
+        if command == "init":
+            handle_init()
+        elif command == "run":
+            handle_run()
+        elif command == "info":
+            handle_info()
+        elif command == "create":
             handle_create(args[1:])
         elif command == "delete":
             handle_delete(args[1:])
         else:
-            logger.warning(f"Comando desconhecido: {command}")
             print(f"Comando desconhecido: {command}")
+            print_help()
 
     except Exception as e:
-        logger.exception("Erro no CLI")
-        print("Erro ao executar comando CLI")
+        print("Erro ao executar comando CLI: {e}")
 
 if __name__ == "__main__":
     main()
+""")
+
+    create_file(BASE / "cli/commands/info.py", """
+import platform
+import sys
+from importlib import metadata
+
+BANNER = r\"\"\"
+ ______ _      _   _             
+|  ____| |    | | (_)            
+| |__  | | ___| |_ _ _ __   __ _ 
+|  __| | |/ _ \ __| | '_ \ / _` |
+| |    | |  __/ |_| | | | | (_| |
+|_|    |_|\___|\__|_|_| |_|\__, |
+                            __/ |
+                           |___/
+\"\"\"
+
+def _get_version(pkg_name: str):
+    try:
+        return metadata.version(pkg_name)
+    except metadata.PackageNotFoundError:
+        return "não instalado"
+
+def handle_info():
+    python_version = sys.version.split()[0]
+    system = f"{platform.system()} {platform.release()}"
+
+    flet_version = _get_version("flet")
+    fleting_version = _get_version("fleting")
+
+    print(BANNER)
+    print("🚀 Fleting Framework\n")
+
+    print("📦 Ambiente\n")
+    print(f"🧠 Python        : {python_version}")
+    print(f"🖥️  Sistema      : {system}")
+    print(f"🧩 Flet          : {flet_version}")
+    print(f"🚀 Fleting       : {fleting_version}")
+
+    print("\n📚 Bibliotecas instaladas:")
+    for dist in sorted(metadata.distributions(), key=lambda d: d.metadata["Name"].lower()):
+        name = dist.metadata["Name"]
+        version = dist.version
+        print(f"  - {name}=={version}")
+
+    print("\n✅ Ambiente pronto para uso.\n")
+""")
+
+    create_file(BASE / "cli/commands/run.py", """
+import subprocess
+import sys
+from pathlib import Path
+
+def handle_run():
+    app_path = Path.cwd() / "fleting" / "app.py"
+
+    if not shutil.which("flet"):
+        print("❌ Flet não está instalado")
+        print("👉 pip install flet")
+        return
+
+    if not app_path.exists():
+        print("❌ app.py não encontrado. Execute 'fleting init' primeiro.")
+        return
+
+    print("🚀 Iniciando aplicação Fleting...\n")
+    subprocess.run([sys.executable, str(app_path)])
 """)
 
     create_file(BASE / "cli/commands/create.py", """

@@ -1,5 +1,7 @@
 import sys
 from fleting.cli.commands.init import handle_init
+from fleting.cli.commands.run import handle_run
+from fleting.cli.commands.info import handle_info
 from fleting.cli.commands.create import handle_create
 from fleting.cli.commands.delete import handle_delete
 
@@ -37,6 +39,10 @@ def main():
     try:
         if command == "init":
             handle_init()
+        elif command == "run":
+            handle_run()
+        elif command == "info":
+            handle_info()
         elif command == "create":
             handle_create(args[1:])
         elif command == "delete":
