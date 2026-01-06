@@ -6,14 +6,14 @@ class Router:
     def __init__(self, page):
         self.page = page
         self.current_route = "/"
+        self.routes = self._load_routes()
 
     def _load_routes(self):
-        # Import tardio para evitar circular import
         from configs.routes import routes
         return routes
 
     def navigate(self, route):
-        routes = self._load_routes()
+        routes = self.routes
 
         if route not in routes:
             logger.warning(f"Rota não encontrada: {route}")

@@ -4,3 +4,4 @@ class AppState:
     initial_device = "mobile"
     language = "pt"
     initialized = False
+    current_route = "/"

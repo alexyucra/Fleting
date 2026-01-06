@@ -1,14 +1,32 @@
-"""
-Configuração de rotas com lazy loading para evitar circular imports
-"""
+import flet as ft
 import importlib
 
-# Mapeamento rota -> módulo.classe
-ROUTE_MAP = {
-    "/": "views.pages.home_view.HomeView",
-    # "/login": "views.pages.login_view.LoginView",
-    # "/dashboard": "views.pages.dashboard_view.DashboardView",
-}
+ROUTES = [
+    {
+        "path": "/",
+        "view": "views.pages.home_view.HomeView",
+        "label": "menu.home",
+        "icon": ft.Icons.HOME,
+        "show_in_top": True,
+        "show_in_bottom": True,
+    },
+    {
+        "path": "/settings",
+        "view": "views.pages.settings_view.SettingsView",
+        "label": "Settings",
+        "icon": ft.Icons.SETTINGS,
+        "show_in_top": True,
+        "show_in_bottom": False,
+    },
+    {
+        "path": "/help",
+        "view": "views.pages.help_view.HelpView",
+        "label": "Help",
+        "icon": ft.Icons.HELP,
+        "show_in_top": True,
+        "show_in_bottom": True,
+    }
+]
 
 def load_view(view_path: str):
     """Carrega uma view dinamicamente"""
@@ -25,12 +43,11 @@ def load_view(view_path: str):
 def get_routes():
     routes = {}
 
-    for route_path, view_path in ROUTE_MAP.items():
-        def create_view_lambda(path=view_path):
-            # 🚨 lambda aceita page e router
+    for r in ROUTES:
+        def create_view_lambda(path=r["view"]):
             return lambda page, router: load_view(path)(page, router).render()
 
-        routes[route_path] = create_view_lambda()
+        routes[r["path"]] = create_view_lambda()
 
     return routes
 

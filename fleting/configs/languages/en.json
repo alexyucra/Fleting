@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Fleting"
+  },
+  "menu": {
+    "home": "Home",
+    "settings": "Configs"
+  },
+  "home": {
+    "title": "Wellcome to Fleting"
+  },
+  "settings": {
+    "title": "Configs",
+    "language": "Language"
+  }
+}

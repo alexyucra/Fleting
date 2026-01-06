@@ -1,6 +1,7 @@
 import flet as ft
 from core.state import AppState
 from core.i18n import I18n
+from configs.routes import ROUTES
 
 class MainLayout(ft.Column):
     def __init__(self, page, content, router):
@@ -32,51 +33,73 @@ class MainLayout(ft.Column):
 
     # ---------- TOP BAR ----------
     def _top_bar(self):
+        items = []
+
+        for r in ROUTES:
+            if not r.get("show_in_top"):
+                continue
+
+            items.append(
+                ft.PopupMenuItem(
+                    content=ft.Row(
+                        controls=[
+                            ft.Icon(r["icon"]),
+                            ft.Text(
+                                I18n.t(r["label"]) if "." in r["label"] else r["label"]
+                            ),
+                        ],
+                        spacing=10,
+                    ),
+                    on_click=lambda e, p=r["path"]: self.router.navigate(p),
+                )
+            )
+
         return ft.AppBar(
             title=ft.Text(I18n.t("app.name")),
             actions=[
                 ft.PopupMenuButton(
-                    items=[
-                        ft.PopupMenuItem(
-                            content=ft.Text("Português"),
-                            on_click=lambda e: self._change_language("pt"),
-                        ),
-                        ft.PopupMenuItem(
-                            content=ft.Text("Español"),
-                            on_click=lambda e: self._change_language("es"),
-                        ),
-                    ]
+                    icon=ft.Icons.MENU,
+                    items=items,
                 )
             ],
         )
 
     # ---------- BOTTOM BAR ----------
     def _bottom_bar(self):
+        destinations = []
+        paths = []
+
+        for r in ROUTES:
+            if r.get("show_in_bottom"):
+                destinations.append(
+                    ft.NavigationBarDestination(
+                        icon=r["icon"],
+                        label=I18n.t(r["label"]),
+                    )
+                )
+                paths.append(r["path"])
+
+        def on_change(e):
+            self.router.navigate(paths[e.control.selected_index])
+
         return ft.NavigationBar(
-            destinations=[
-                ft.NavigationBarDestination(
-                    icon=ft.Icons.HOME,
-                    label=I18n.t("menu.home"),
-                ),
-                ft.NavigationBarDestination(
-                    icon=ft.Icons.SETTINGS,
-                    label=I18n.t("menu.settings"),
-                ),
-            ],
-            on_change=self._on_nav_change,
+            destinations=destinations,
+            selected_index=paths.index(AppState.current_route)
+            if AppState.current_route in paths else 0,
+            on_change=on_change,
         )
 
-    def _on_nav_change(self, e):
-        if not self.router:
-            return
+    # def _on_nav_change(self, e):
+    #     if not self.router:
+    #         return
 
-        if e.control.selected_index == 0:
-            self.router.navigate("/")
-        elif e.control.selected_index == 1:
-            self.router.navigate("/settings")
+    #     if e.control.selected_index == 0:
+    #         self.router.navigate("/")
+    #     elif e.control.selected_index == 1:
+    #         self.router.navigate("/settings")
 
     # ---------- LANGUAGE ----------
-    def _change_language(self, lang):
-        I18n.load(lang)
-        if self.router:
-            self.router.navigate(self.router.current_route)
+    # def _change_language(self, lang):
+    #     I18n.load(lang)
+    #     if self.router:
+    #         self.router.navigate(self.router.current_route)

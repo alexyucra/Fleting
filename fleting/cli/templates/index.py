@@ -28,6 +28,7 @@ def init_project(base: Path | None = None):
         "views/pages",
         "cli/commands",
         "cli/templates",
+        "data",
     ]
 
     for folder in folders:
@@ -42,6 +43,7 @@ class AppState:
     initial_device = "mobile"
     language = "pt"
     initialized = False
+    current_route = "/"
 """)
 
     create_file(BASE / "core/responsive.py", """
@@ -62,14 +64,14 @@ class Router:
     def __init__(self, page):
         self.page = page
         self.current_route = "/"
+        self.routes = self._load_routes()
 
     def _load_routes(self):
-        # Import tardio para evitar circular import
         from configs.routes import routes
         return routes
 
     def navigate(self, route):
-        routes = self._load_routes()
+        routes = self.routes
 
         if route not in routes:
             logger.warning(f"Rota não encontrada: {route}")
@@ -99,6 +101,29 @@ class FletingApp:
         self.page = page
         AppState.device = AppState.initial_device
         self.page.on_resize = self.on_resize
+        I18n.load(AppState.language)
+        self.page.appbar = self.build_topbar()
+        self.router.navigate("/")
+    
+    def build_topbar(self):
+        menu_items = []
+
+        menu = I18n.translations.get("menu", {})
+
+        for route, label in menu.items():
+            menu_items.append(
+                ft.TextButton(
+                    text=label,
+                    icon=ft.icons.CIRCLE,
+                    on_click=lambda e, r=f"/{route}": self.router.navigate(r),
+                )
+            )
+
+        return ft.AppBar(
+            title=ft.Text(I18n.t("app.name")),
+            actions=menu_items,
+            center_title=False,
+        )
 
     def on_resize(self, e):
         real_device = get_device_type(self.page.width)
@@ -188,6 +213,44 @@ class GlobalErrorHandler:
         page.update()
 """)
 
+    create_file(BASE / "core/database.py", """
+import sqlite3
+# import mysql.connector  # opcional
+from configs.database import DATABASE
+from pathlib import Path
+
+_connection = None
+
+def get_connection():
+    global _connection
+
+    if _connection:
+        return _connection
+
+    engine = DATABASE["ENGINE"]
+
+    if engine == "sqlite":
+        db_path = DATABASE["SQLITE"]["PATH"]
+        db_path.parent.mkdir(parents=True, exist_ok=True)
+
+        _connection = sqlite3.connect(db_path)
+        return _connection
+
+    # elif engine == "mysql":
+    #     cfg = DATABASE["MYSQL"]
+    #     _connection = mysql.connector.connect(
+    #         host=cfg["HOST"],
+    #         port=cfg["PORT"],
+    #         user=cfg["USER"],
+    #         password=cfg["PASSWORD"],
+    #         database=cfg["DATABASE"],
+    #     )
+    #     return _connection
+
+    raise ValueError(f"Database engine não suportado: {engine}")
+
+""")
+
     # =========================
     # CONFIGS
     # =========================
@@ -221,17 +284,38 @@ class AppConfig:
 """)
 
     create_file(BASE / "configs/routes.py", """
+import flet as ft
 import importlib
 
-# Mapeamento rota -> módulo.classe
-ROUTE_MAP = {
-    "/": "views.pages.home_view.HomeView",
-    # "/login": "views.pages.login_view.LoginView",
-    # "/dashboard": "views.pages.dashboard_view.DashboardView",
-}
+ROUTES = [
+    {
+        "path": "/",
+        "view": "views.pages.home_view.HomeView",
+        "label": "menu.home",
+        "icon": ft.Icons.HOME,
+        "show_in_top": True,
+        "show_in_bottom": True,
+    },
+    {
+        "path": "/settings",
+        "view": "views.pages.settings_view.SettingsView",
+        "label": "Settings",
+        "icon": ft.Icons.SETTINGS,
+        "show_in_top": True,
+        "show_in_bottom": False,
+    },
+    {
+        "path": "/help",
+        "view": "views.pages.help_view.HelpView",
+        "label": "Help",
+        "icon": ft.Icons.HELP,
+        "show_in_top": True,
+        "show_in_bottom": True,
+    }
+]
 
 def load_view(view_path: str):
-    \"\"\"Carrega uma view dinamicamente\"\"\"
+    /"/"/"Carrega uma view dinamicamente/"/"/"
     module_name, class_name = view_path.rsplit(".", 1)
     
     try:
@@ -245,12 +329,11 @@ def load_view(view_path: str):
 def get_routes():
     routes = {}
 
-    for route_path, view_path in ROUTE_MAP.items():
-        def create_view_lambda(path=view_path):
-            # lambda aceita page e router
+    for r in ROUTES:
+        def create_view_lambda(path=r["view"]):
             return lambda page, router: load_view(path)(page, router).render()
 
-        routes[route_path] = create_view_lambda()
+        routes[r["path"]] = create_view_lambda()
 
     return routes
 
@@ -260,6 +343,23 @@ routes = get_routes()
     # =========================
     # LANGUAGES
     # =========================
+    {
+    "app": {
+        "name": "Fleting"
+    },
+    "menu": {
+        "home": "Home",
+        "settings": "Configs"
+    },
+    "home": {
+        "title": "Wellcome to Fleting"
+    },
+    "settings": {
+        "title": "Configs",
+        "language": "Language"
+    }
+    }
+
     pt = {
     "app": {
         "name": "Fleting"
@@ -403,20 +503,185 @@ class HomeView:
         self.router = router
     
     def render(self):
-        # CONTEÚDO DA VIEW (puro)
         content = ft.Column(
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=24,
             controls=[
-                ft.Text("Home Page", size=30, weight=ft.FontWeight.BOLD),
-                ft.Text("Bem-vindo ao Fleting Framework!"),
-                ft.Button(
-                    "Ir para Configurações",
-                    on_click=lambda e: self.router.navigate("/settings"),
+                ft.Text(
+                    "Fleting",
+                    size=36,
+                    weight=ft.FontWeight.BOLD,
+                ),
+
+                ft.Text(
+                    "Micro Framework MVC para Flet",
+                    size=16,
+                    color=ft.Colors.GREY_600,
+                ),
+
+                ft.Text(
+                    "Construa aplicações modernas com arquitetura clara, "
+                    "roteamento dinâmico e CLI produtivo.",
+                    size=14,
+                    text_align=ft.TextAlign.CENTER,
+                    width=420,
+                ),
+
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    spacing=16,
+                    controls=[
+                        ft.FilledButton(
+                            "Configurações",
+                            icon=ft.Icons.SETTINGS,
+                            on_click=lambda e: self.router.navigate("/settings"),
+                        ),
+                        ft.OutlinedButton(
+                            "Criar nova página",
+                            icon=ft.Icons.ADD,
+                        ),
+                    ],
                 ),
             ],
-            spacing=20,
         )
 
-        # LAYOUT ENVOLVE O CONTEÚDO
+        # LAYOUT
+        return MainLayout(
+            page=self.page,
+            content=content,
+            router=self.router,
+        )
+""")
+
+    create_file(BASE / "views/pages/settings_view.py", """
+import flet as ft
+from core.state import AppState
+from core.i18n import I18n
+from views.layouts.main_layout import MainLayout
+from controllers.settings_controller import SettingsController
+from models.settings_model import SettingsModel
+
+class SettingsView:
+    def __init__(self, page, router):
+        self.page = page
+        self.router = router
+
+        self.model = SettingsModel()
+        self.controller = SettingsController(self.model)
+    
+    def _change_language(self, lang: str):
+        I18n.load(lang)
+        self.page.update()
+
+    def render(self):
+        content = ft.Column(
+            spacing=24,
+            controls=[
+                ft.Text(
+                    self.controller.get_title(),
+                    size=28,
+                    weight=ft.FontWeight.BOLD,
+                ),
+
+                ft.Text(
+                    I18n.t("settings.language"),
+                    size=16,
+                    color=ft.Colors.GREY_600,
+                ),
+
+                ft.RadioGroup(
+                    value=AppState.language,
+                    on_change=lambda e: self._change_language(e.control.value),
+                    content=ft.Column(
+                        controls=[
+                            ft.Radio(value="pt", label="Português 🇧🇷"),
+                            ft.Radio(value="en", label="English 🇺🇸"),
+                            ft.Radio(value="es", label="Español 🇪🇸"),
+                        ]
+                    ),
+                ),
+            ],
+        )
+
+        return MainLayout(
+            page=self.page,
+            content=content,
+            router=self.router,
+        )
+""")
+
+    create_file(BASE / "views/pages/help_view.py", """
+import flet as ft
+from views.layouts.main_layout import MainLayout
+from controllers.help_controller import HelpController
+from models.help_model import HelpModel
+from flet import UrlLauncher
+
+class HelpView:
+    def __init__(self, page, router):
+        self.page = page
+        self.router = router
+
+        self.model = HelpModel()
+        self.controller = HelpController(self.model)
+        self.url_launcher = UrlLauncher()
+    
+    async def open_docs(self, e):
+        await self.url_launcher.launch_url("https://github.com/alexyucra/Fleting")
+
+    async def open_issues(self, e):
+        await self.url_launcher.launch_url("https://github.com/alexyucra/fleting/issues")
+
+    async def open_support(self, e):
+        await self.url_launcher.launch_url("https://alexyucra.github.io/#contato")
+
+    def render(self):
+        
+
+        content = ft.Column(
+            spacing=24,
+            controls=[
+                ft.Text(
+                    self.controller.get_title(),
+                    size=28,
+                    weight=ft.FontWeight.BOLD,
+                ),
+
+                ft.Text(
+                    "Precisa de ajuda com o Fleting?",
+                    size=18,
+                    weight=ft.FontWeight.W_500,
+                ),
+
+                ft.Text(
+                    "Aqui você encontra links úteis para documentação, "
+                    "suporte e contribuição com o projeto.",
+                    color=ft.Colors.GREY_600,
+                ),
+
+                ft.Divider(),
+
+                ft.Button(
+                    "📘 Documentação Oficial",
+                    icon=ft.Icons.MENU_BOOK,
+                    on_click=self.open_docs,
+                ),
+
+                ft.Button(
+                    "🐛 Reportar um problema",
+                    icon=ft.Icons.BUG_REPORT,
+                    on_click=self.open_issues,
+                ),
+
+                ft.Button(
+                    "💬 Precisa de uma automação ou Sistema?",
+                    icon=ft.Icons.BUG_REPORT,
+                    on_click=self.open_support,
+                ),
+            ],
+        )
+
         return MainLayout(
             page=self.page,
             content=content,
@@ -457,6 +722,54 @@ def main(page: ft.Page):
 
 ft.run(main)
 
+""")
+
+    # =========================
+    # BASIC CONTROLLERS
+    # =========================
+    create_file(BASE / "controllers/settings_controller.py", """
+from models.settings_model import SettingsModel
+
+class SettingsController:
+    /"/"/"
+    Controller for settings page
+    /"/"/"
+
+    def __init__(self, model=None):
+        self.model = model or SettingsModel()
+
+    def get_title(self):
+        return "Settings"
+""")
+
+    create_file(BASE / "controllers/help_controller.py", """
+from models.help_model import HelpModel
+
+class HelpController:
+    /"/"/"
+    Controller for help page
+    /"/"/"
+
+    def __init__(self, model=None):
+        self.model = model or HelpModel()
+
+    def get_title(self):
+        return "Help"
+""")
+
+    # =========================
+    # BASIC models
+    # =========================
+    create_file(BASE / "model/help_model.py", """
+class HelpModel:
+    def __init__(self):
+        pass
+""")
+
+    create_file(BASE / "model/settings_model.py", """
+class SettingsModel:
+    def __init__(self):
+        pass
 """)
 
     # =========================
@@ -603,11 +916,18 @@ def handle_run():
 
     create_file(BASE / "cli/commands/create.py", """
 from pathlib import Path
-from core.logger import get_logger
 
-logger = get_logger("CLI.Create")
+def get_project_root() -> Path:
+    /"/"/"
+    Diretório onde o usuário executou o comando fleting
+    /"/"/"
+    return Path.cwd()
 
-BASE = Path.cwd()
+def get_fleting_base() -> Path:
+    /"/"/"
+    Pasta base do framework dentro do projeto
+    /"/"/"
+    return get_project_root() / "fleting"
 
 def handle_create(args):
     if len(args) < 2:
@@ -627,41 +947,49 @@ def handle_create(args):
         elif kind == "page":
             create_page(name)
         else:
-            logger.warning(f"Tipo de criação não suportado: {kind}")
             print(f"Tipo não suportado: {kind}")
 
-    except Exception:
-        logger.exception(f"Erro ao criar {kind}: {name}")
-        print(f"Erro ao criar {kind} {name}")
+    except Exception as e:
+        print(f"Erro ao criar {kind} {name}: {e}")
 
 # --------------
 # create controller
 # --------------
+def to_pascal_case(text: str) -> str:
+    return "".join(word.capitalize() for word in text.split("_"))
+
 def create_controller(name: str):
+    BASE = get_fleting_base()
     path = BASE / "controllers" / f"{name}_controller.py"
 
     if path.exists():
         print(f"Controller '{name}' já existe")
         return
 
-    class_name = f"{name.capitalize()}Controller"
+    class_name = f"{to_pascal_case(name)}Controller"
+    model_class = f"{to_pascal_case(name)}Model"
 
-    content = f\"\"\"class {class_name}:
+    content = f'''from models.{name}_model import {model_class}
+
+class {class_name}:
+    /"/"/"
+    Controller for {name} page
+    /"/"/"
+
     def __init__(self, model=None):
-        self.model = model
+        self.model = model or {model_class}()
 
     def get_title(self):
-        return "{name.capitalize()}"
-\"\"\"
+        return "{to_pascal_case(name)}"
+'''
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Controller criado: {path}")
     print(f"Controller criado com sucesso: {name}")
-
 
 # --------------
 # create view
 # --------------
 def create_view(name: str):
+    BASE = get_fleting_base()
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
@@ -670,7 +998,7 @@ def create_view(name: str):
 
     class_name = f"{name.capitalize()}View"
 
-    content = f\"\"\"import flet as ft
+    content = f/"/"/"import flet as ft
 from views.layouts.main_layout import MainLayout
 
 class {class_name}:
@@ -691,10 +1019,9 @@ class {class_name}:
             content=content,
             router=self.router,
         )
-\"\"\"
+/"/"/"
 
     path.write_text(content, encoding="utf-8")
-    logger.info(f"View criada: {path}")
     print(f"View criada com sucesso: {name}")
 
 
@@ -702,6 +1029,7 @@ class {class_name}:
 # create model
 # --------------
 def create_model(name: str):
+    BASE = get_fleting_base()
     path = BASE / "models" / f"{name}_model.py"
 
     if path.exists():
@@ -710,26 +1038,68 @@ def create_model(name: str):
 
     class_name = f"{name.capitalize()}Model"
 
-    content = f\"\"\"class {class_name}:
+    content = f/"/"/"class {class_name}:
     def __init__(self):
         pass
-\"\"\"
+/"/"/"
 
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Model criado: {path}")
     print(f"Model criado com sucesso: {name}")
 
 # --------------
 # create page
 # --------------
 def create_page(name: str):
-    logger.info(f"Criando page completa: {name}")
+    print(f"Criando page completa: {name}")
+    try:
+        create_model(name)
+        create_controller(name)
+        create_page_view(name)
+        register_route(name)
+    except Exception as e:
+        print("Erro ao crear page: ", str(e))
 
-    create_model(name)
-    create_controller(name)
-    create_page_view(name)
+def register_route(name: str):
+    BASE = get_fleting_base()
+    routes_file = BASE / "configs" / "routes.py"
+
+    if not routes_file.exists():
+        print("❌ routes.py não encontrado")
+        return
+
+    route_block = f/"/"/"
+    {{
+        "path": "/{name}",
+        "view": "views.pages.{name}_view.{name.capitalize()}View",
+        "label": "{name.capitalize()}",
+        "icon": ft.Icons.CHEVRON_RIGHT,
+        "show_in_top": True,
+        "show_in_bottom": False,
+    }},
+/"/"/"
+
+    content = routes_file.read_text(encoding="utf-8")
+
+    # evita duplicar
+    if f'"path": "/{name}"' in content:
+        print(f"⚠️ Rota '/{name}' já existe")
+        return
+
+    if "ROUTES = [" not in content:
+        print("❌ Estrutura ROUTES não encontrada")
+        return
+
+    content = content.replace(
+        "ROUTES = [",
+        "ROUTES = [" + route_block,
+        1,
+    )
+
+    routes_file.write_text(content, encoding="utf-8")
+    print(f"✅ Rota '/{name}' registrada com sucesso")
 
 def create_page_view(name: str):
+    BASE = get_fleting_base()
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
@@ -740,7 +1110,7 @@ def create_page_view(name: str):
     controller_class = f"{name.capitalize()}Controller"
     model_class = f"{name.capitalize()}Model"
 
-    content = f\"\"\"import flet as ft
+    content = f/"/"/"import flet as ft
 from views.layouts.main_layout import MainLayout
 from controllers.{name}_controller import {controller_class}
 from models.{name}_model import {model_class}
@@ -766,11 +1136,11 @@ class {class_name}:
             content=content,
             router=self.router,
         )
-\"\"\"
+/"/"/"
     path.write_text(content, encoding="utf-8")
-    logger.info(f"Page criada: {path}")
     print(f"Page criada com sucesso: {name}")
-""")
+
+"""
 
     create_file(BASE / "cli/commands/delete.py", """
 from pathlib import Path
@@ -778,7 +1148,7 @@ from core.logger import get_logger
 
 logger = get_logger("CLI.Delete")
 
-BASE = Path.cwd()
+BASE = Path.cwd() / "fleting"
 
 def handle_delete(args):
     if len(args) < 2:

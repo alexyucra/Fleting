@@ -7,20 +7,50 @@ class HomeView:
         self.router = router
     
     def render(self):
-        # CONTEÚDO DA VIEW (puro)
         content = ft.Column(
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=24,
             controls=[
-                ft.Text("Home Page", size=30, weight=ft.FontWeight.BOLD),
-                ft.Text("Bem-vindo ao Fleting Framework!"),
-                ft.Button(
-                    "Ir para Configurações",
-                    on_click=lambda e: self.router.navigate("/settings"),
+                ft.Text(
+                    "Fleting",
+                    size=36,
+                    weight=ft.FontWeight.BOLD,
+                ),
+
+                ft.Text(
+                    "Micro Framework MVC para Flet",
+                    size=16,
+                    color=ft.Colors.GREY_600,
+                ),
+
+                ft.Text(
+                    "Construa aplicações modernas com arquitetura clara, "
+                    "roteamento dinâmico e CLI produtivo.",
+                    size=14,
+                    text_align=ft.TextAlign.CENTER,
+                    width=420,
+                ),
+
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    spacing=16,
+                    controls=[
+                        ft.FilledButton(
+                            "Configurações",
+                            icon=ft.Icons.SETTINGS,
+                            on_click=lambda e: self.router.navigate("/settings"),
+                        ),
+                        ft.OutlinedButton(
+                            "Criar nova página",
+                            icon=ft.Icons.ADD,
+                        ),
+                    ],
                 ),
             ],
-            spacing=20,
         )
 
-        # LAYOUT ENVOLVE O CONTEÚDO
+        # LAYOUT
         return MainLayout(
             page=self.page,
             content=content,
