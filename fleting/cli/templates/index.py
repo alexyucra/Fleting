@@ -767,13 +767,13 @@ class HelpController:
     # =========================
     # BASIC models
     # =========================
-    create_file(BASE / "model/help_model.py", """
+    create_file(BASE / "models/help_model.py", """
 class HelpModel:
     def __init__(self):
         pass
 """)
 
-    create_file(BASE / "model/settings_model.py", """
+    create_file(BASE / "models/settings_model.py", """
 class SettingsModel:
     def __init__(self):
         pass
