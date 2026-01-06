@@ -88,18 +88,3 @@ class MainLayout(ft.Column):
             if AppState.current_route in paths else 0,
             on_change=on_change,
         )
-
-    # def _on_nav_change(self, e):
-    #     if not self.router:
-    #         return
-
-    #     if e.control.selected_index == 0:
-    #         self.router.navigate("/")
-    #     elif e.control.selected_index == 1:
-    #         self.router.navigate("/settings")
-
-    # ---------- LANGUAGE ----------
-    # def _change_language(self, lang):
-    #     I18n.load(lang)
-    #     if self.router:
-    #         self.router.navigate(self.router.current_route)
