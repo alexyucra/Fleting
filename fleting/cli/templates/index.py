@@ -314,7 +314,6 @@ ROUTES = [
 ]
 
 def load_view(view_path: str):
-    """Carrega uma view dinamicamente"""
     module_name, class_name = view_path.rsplit(".", 1)
     
     try:
@@ -337,6 +336,7 @@ def get_routes():
     return routes
 
 routes = get_routes()
+
 """)
 
     # =========================
