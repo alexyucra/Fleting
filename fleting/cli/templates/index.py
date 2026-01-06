@@ -200,14 +200,13 @@ class GlobalErrorHandler:
             ft.Container(
                 content=ft.Column(
                     controls=[
-                        ft.Text("Ocorreu um erro", size=24, weight=ft.FontWeight.BOLD),
+                        ft.Text("⚠️ Ocorreu um erro", size=24, weight=ft.FontWeight.BOLD),
                         ft.Text("Algo deu errado. Tente novamente."),
                     ],
                     alignment=ft.MainAxisAlignment.CENTER,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
                 expand=True,
-                alignment=ft.alignment.center,
             )
         )
         page.update()
