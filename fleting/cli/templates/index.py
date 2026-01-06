@@ -1140,7 +1140,7 @@ class {class_name}:
     path.write_text(content, encoding="utf-8")
     print(f"Page criada com sucesso: {name}")
 
-"""
+""")
 
     create_file(BASE / "cli/commands/delete.py", """
 from pathlib import Path
