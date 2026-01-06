@@ -738,9 +738,9 @@ ft.run(main)
 from models.settings_model import SettingsModel
 
 class SettingsController:
-    """
+    '''
     Controller for settings page
-    """
+    '''
 
     def __init__(self, model=None):
         self.model = model or SettingsModel()
@@ -753,9 +753,9 @@ class SettingsController:
 from models.help_model import HelpModel
 
 class HelpController:
-    """
+    '''
     Controller for help page
-    """
+    '''
 
     def __init__(self, model=None):
         self.model = model or HelpModel()
