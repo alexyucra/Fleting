@@ -7,8 +7,6 @@
 
 # ⚡ Fleting Framework
 
-![](docs/img/fleting.png)
-
 Fleting é um micro-framework opinativo construído sobre **Flet**, focado em:
 - simplicidade
 - organização clara
@@ -16,6 +14,10 @@ Fleting é um micro-framework opinativo construído sobre **Flet**, focado em:
 - aplicações multiplataforma (mobile, tablet e desktop)
 
 Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteamento simples**, **i18n**, **responsividade automática** e um **CLI para geração de código**.
+
+<p align="center">
+  <img src="docs/img/fleting.gif" width="260" />
+</p>
 
 ## 🚀 Quick Start
 
