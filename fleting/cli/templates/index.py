@@ -6,7 +6,7 @@ def init_project(project_root: Path):
     Inicializa um projeto Fleting no diretório atual
     """
 
-    BASE = project_root / "fleting"
+    BASE = project_root
 
     # =========================
     # UTIL
@@ -94,6 +94,7 @@ class Router:
 import flet as ft
 from core.responsive import get_device_type
 from core.state import AppState
+from core.i18n import I18n
 
 class FletingApp:
     def __init__(self, page):
@@ -102,6 +103,8 @@ class FletingApp:
         self.page.on_resize = self.on_resize
         I18n.load(AppState.language)
         self.page.appbar = self.build_topbar()
+        from core.router import Router
+        self.router = Router(page)
         self.router.navigate("/")
     
     def build_topbar(self):
@@ -336,6 +339,15 @@ def get_routes():
 
 routes = get_routes()
 
+""")
+    
+    create_file(BASE / "configs/database.py", """
+DATABASE = {
+    "ENGINE": "sqlite",
+    "SQLITE": {
+        "PATH": "data/app.db"
+    }
+}
 """)
 
     # =========================
@@ -726,7 +738,7 @@ def main(page: ft.Page):
     except Exception as e:
         GlobalErrorHandler.handle(page, e)
 
-ft.run(main)
+ft.app(main)
 
 """)
 
