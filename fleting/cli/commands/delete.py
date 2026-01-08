@@ -1,6 +1,6 @@
 from pathlib import Path
 
-BASE = Path.cwd() / "fleting"
+BASE = Path.cwd()
 
 def handle_delete(args):
     if len(args) < 2:

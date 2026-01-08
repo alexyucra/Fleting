@@ -1,18 +1,23 @@
 from pathlib import Path
 
+def is_fleting_project(path: Path) -> bool:
+    return (path / "app.py").exists() and (path / "views").exists()
+
 def get_project_root() -> Path:
     """
-    Diretório onde o usuário executou o comando fleting
+    Diretório raiz do projeto (onde o usuário executou o comando)
     """
     return Path.cwd()
 
-def get_fleting_base() -> Path:
-    """
-    Pasta base do framework dentro do projeto
-    """
-    return get_project_root() / "fleting"
-
 def handle_create(args):
+    
+    root = get_project_root()
+
+    if not is_fleting_project(root):
+        print("❌ Este diretório não é um projeto Fleting.")
+        print("👉 Execute este comando dentro da pasta do projeto.")
+        return
+    
     if len(args) < 2:
         print("Uso: fleting create <controller|view|model|page> <nome>")
         return
@@ -42,7 +47,7 @@ def to_pascal_case(text: str) -> str:
     return "".join(word.capitalize() for word in text.split("_"))
 
 def create_controller(name: str):
-    BASE = get_fleting_base()
+    BASE = get_project_root()
     path = BASE / "controllers" / f"{name}_controller.py"
 
     if path.exists():
@@ -72,7 +77,7 @@ class {class_name}:
 # create view
 # --------------
 def create_view(name: str):
-    BASE = get_fleting_base()
+    BASE = get_project_root()
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
@@ -112,7 +117,7 @@ class {class_name}:
 # create model
 # --------------
 def create_model(name: str):
-    BASE = get_fleting_base()
+    BASE = get_project_root()
     path = BASE / "models" / f"{name}_model.py"
 
     if path.exists():
@@ -143,7 +148,7 @@ def create_page(name: str):
         print("Erro ao crear page: ", str(e))
 
 def register_route(name: str):
-    BASE = get_fleting_base()
+    BASE = get_project_root()
     routes_file = BASE / "configs" / "routes.py"
 
     if not routes_file.exists():
@@ -182,7 +187,7 @@ def register_route(name: str):
     print(f"✅ Rota '/{name}' registrada com sucesso")
 
 def create_page_view(name: str):
-    BASE = get_fleting_base()
+    BASE = get_project_root()
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():

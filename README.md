@@ -1,19 +1,23 @@
 <p align="center">
-  <a href="README.md">🇧🇷 Português</a> |
+| <a href="README.md">🇺🇸 English</a> |
+  <a href="docs/readme-pt.md">🇧🇷 Português</a> |
   <a href="docs/readme-es.md">🇪🇸 Español</a> |
 </p>
 
 ---
 
-# ⚡ Fleting Framework
+#  ![](./docs/img/fleting%20logo.png) Fleting Framework
 
-Fleting é um micro-framework opinativo construído sobre **Flet**, focado em:
-- simplicidade
-- organização clara
-- produtividade
-- aplicações multiplataforma (mobile, tablet e desktop)
+Fleting is an opinionated micro-framework built on top of Flet, focused on:
+
+- Simplicity
+- Clear organization
+- Productivity
+- Cross-platform applications (mobile, tablet, and desktop)
 
 Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteamento simples**, **i18n**, **responsividade automática** e um **CLI para geração de código**.
+
+It brings an MVC-inspired architecture with **decoupled layout**, **simple routing**, **i18n**, **automatic responsiveness**, and a **CLI for code generation**.
 
 <p align="center">
   <img src="docs/img/fleting.gif" width="260" />
@@ -21,9 +25,9 @@ Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteame
 
 ## 🚀 Quick Start
 
-### 1. crie um ambiente virtual isolado
+### 1. Create an isolated virtual environment
 
-- [Recomendado: env com poetry](docs/pt/enviroment.md)
+- [Recommended: environment with poetry](docs/pt/enviroment.md)
 
 
 ## 🛠️ CLI
@@ -35,58 +39,58 @@ pip install fleting
 fleting init
 fleting run
 
-# para desenvolvimento
+# for development
 fleting create page home
 flet run fleting/app.py
 ```
 
-## 📚 Documentação
+## 📚 Documentation
 
-A documentação completa está disponível em:
+Complete documentation is available at:
 
-👉 [documentação completa](docs/pt/index.md)
+👉 [Full documentation](docs/pt/index.md)
 
 ---
 
-## 🎯 Filosofia
+## 🎯 Philosophy
 
 O Fleting foi criado com alguns princípios claros:
 
-### 1️⃣ Simplicidade acima de tudo
-- Nada de abstrações desnecessárias
-- Código explícito e fácil de entender
-- Arquitetura previsível
+### 1️⃣ Simplicity above all
+- No unnecessary abstractions
+- Explicit and easy-to-understand code
+- Predictable architecture
 
-### 2️⃣ Separação de responsabilidades
-- **View** → UI pura (Flet)
-- **Layout** → Estrutura visual reutilizável
-- **Controller** → Regras de negócio
-- **Model** → Dados
+### 2️⃣ Separation of responsibilities
+- **View** → Pure UI (Flet)
+- **Layout** → Reusable visual structure
+- **Controller** → Business rules
+- **Model** → Data
 - **Router** → Navegação
-- **Core** → Infraestrutura do framework
+- **Core** → Framework infrastructure
 
 ### 3️⃣ Mobile-first
-- O estado global da aplicação identifica automaticamente:
+- The global application state automatically identifies:
   - `mobile`
   - `tablet`
   - `desktop`
-- Layouts podem reagir dinamicamente ao tipo de dispositivo
+- Layouts can dynamically react to device type
 
-### 4️⃣ Internacionalização nativa
-- Sistema de tradução simples baseado em JSON
-- Mudança de idioma em tempo real
-- Traduções acessíveis em qualquer parte da app
+### 4️⃣ Native internationalization
+- Simple JSON-based translation system
+- Real-time language switching
+- Translations accessible anywhere in the app
 
-### 5️⃣ CLI como cidadão de primeira classe
-- Criação e remoção de arquivos padronizados
-- Redução de boilerplate
-- Convenção > Configuração
+### 5️⃣ CLI as a first-class citizen
+- Standardized file creation and removal
+- Reduced boilerplate
+- Convention > Configuration
 
 ---
 
-## 📄 Licença
+## 📄 License
 
 MIT
 
-## Como contribuir
-- [Para quem quiser contribuir com o Fleting no GitHub.](CONTRIBUTING.md)
+## How to contribute
+- [For those who want to contribute to Fleting on GitHub.](CONTRIBUTING.md)

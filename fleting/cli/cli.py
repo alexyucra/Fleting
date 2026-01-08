@@ -38,7 +38,7 @@ def main():
     
     try:
         if command == "init":
-            handle_init()
+            handle_init(args[1:])
         elif command == "run":
             handle_run()
         elif command == "info":
