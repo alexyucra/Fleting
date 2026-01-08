@@ -737,11 +737,12 @@ class HelpView:
     # =========================
     # APP ENTRY
     # =========================
-    create_file(BASE / "app.py", """
+    create_file(BASE / "main.py", """
 import flet as ft
 from configs.app_config import AppConfig
 from core.logger import get_logger
 from core.error_handler import GlobalErrorHandler
+import runtime_imports 
 
 logger = get_logger("App")
 
@@ -768,6 +769,11 @@ def main(page: ft.Page):
 
 ft.app(main)
 
+""")
+    create_file(BASE / "runtime_imports.py", """
+from views.pages.home_view import HomeView
+from views.pages.settings_view import SettingsView
+from views.pages.help_view import HelpView
 """)
 
     # =========================
