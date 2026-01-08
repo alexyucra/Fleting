@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-def init_project(project_root: Path):
+def init_project(project_root: Path, project_name: str = "Fleting"):
     """
     Inicializa um projeto Fleting no diretório atual
     """
@@ -279,7 +279,7 @@ class ScreenConfig:
     }
 
 class AppConfig:
-    APP_NAME = "Fleting"
+    APP_NAME = "{project_name}"
     DEFAULT_SCREEN = ScreenConfig.MOBILE
     THEME_MODE = ft.ThemeMode.LIGHT
 """)
@@ -353,16 +353,16 @@ DATABASE = {
     # =========================
     # LANGUAGES
     # =========================
-    {
+    us = {
     "app": {
-        "name": "Fleting"
+        "name": project_name
     },
     "menu": {
         "home": "Home",
         "settings": "Configs"
     },
     "home": {
-        "title": "Wellcome to Fleting"
+        "title": f"Wellcome to {project_name}"
     },
     "settings": {
         "title": "Configs",
@@ -372,14 +372,14 @@ DATABASE = {
 
     pt = {
     "app": {
-        "name": "Fleting"
+        "name": project_name
     },
     "menu": {
         "home": "Inicio",
         "settings": "Configurações"
     },
     "home": {
-        "title": "Bem-vindo ao Fleting"
+        "title": f"Bem-vindo ao {project_name}"
     },
     "settings": {
         "title": "Configurações",
@@ -389,14 +389,14 @@ DATABASE = {
 
     es = {
     "app": {
-        "name": "Fleting"
+        "name": project_name
     },
     "menu": {
         "home": "Inicio",
         "settings": "Configuración"
     },
     "home": {
-        "title": "Bienvenido a Fleting"
+        "title": f"Bienvenido a {project_name}"
     },
     "settings": {
         "title": "Configuración",
@@ -406,10 +406,14 @@ DATABASE = {
 
     pt_file = f"{BASE}/configs/languages/pt.json"
     es_file = f"{BASE}/configs/languages/es.json"
+    us_file = f"{BASE}/configs/languages/us.json"
     with open(pt_file, 'w', encoding='utf-8') as f:
         json.dump(pt, f, indent=2, ensure_ascii=False)
     
     with open(es_file, 'w', encoding='utf-8') as f:
+        json.dump(es, f, indent=2, ensure_ascii=False)
+
+    with open(us_file, 'w', encoding='utf-8') as f:
         json.dump(es, f, indent=2, ensure_ascii=False)
 
     # =========================
@@ -614,7 +618,7 @@ class SettingsView:
                     content=ft.Column(
                         controls=[
                             ft.Radio(value="pt", label="Português 🇧🇷"),
-                            ft.Radio(value="en", label="English 🇺🇸"),
+                            ft.Radio(value="us", label="English 🇺🇸"),
                             ft.Radio(value="es", label="Español 🇪🇸"),
                         ]
                     ),
@@ -720,9 +724,10 @@ logger = get_logger("App")
 
 def main(page: ft.Page):
     try:
-        from core.app import FletingApp
-        page.window.width = AppConfig.DEFAULT_SCREEN["width"]
-        page.window.height = AppConfig.DEFAULT_SCREEN["height"]
+        if page.platform in ("windows", "linux", "darwin"):
+            from core.app import FletingApp
+            page.window.width = AppConfig.DEFAULT_SCREEN["width"]
+            page.window.height = AppConfig.DEFAULT_SCREEN["height"]
 
         from core.i18n import I18n
         I18n.load("pt")
