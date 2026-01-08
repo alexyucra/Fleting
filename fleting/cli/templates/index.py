@@ -166,12 +166,35 @@ class I18n:
 
     create_file(BASE / "core/logger.py", """
 import logging
+import sys
+import os
 from pathlib import Path
 
-LOG_DIR = Path(__file__).resolve().parents[1] / "logs"
-LOG_DIR.mkdir(exist_ok=True)
+APP_NAME = "fleting"
 
-LOG_FILE = LOG_DIR / "fleting.log"
+def is_frozen():
+    return getattr(sys, "frozen", False)
+
+def is_android():
+    return sys.platform == "android"
+
+def get_log_dir():
+    # ANDROID (APK)
+    if is_android():
+        return Path(os.getcwd()) / "files" / "logs"
+
+    # EXECUTÁVEL (PyInstaller)
+    if is_frozen():
+        base = Path(os.getenv("LOCALAPPDATA", Path.home()))
+        return base / APP_NAME / "logs"
+
+    # DESENVOLVIMENTO
+    return Path.cwd() / "logs"
+
+LOG_DIR = get_log_dir()
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+LOG_FILE = LOG_DIR / "app.log"
 
 logging.basicConfig(
     level=logging.INFO,
