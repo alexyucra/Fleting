@@ -32,6 +32,12 @@ Usages:
     fleting delete view <name>
     fleting delete model <name>
     fleting delete controller <name>
+    
+    fleting list pages
+    fleting list controllers
+    fleting list views
+    fleting list models
+    fleting list routes
 """)
 
 def main():
