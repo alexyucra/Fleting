@@ -4,6 +4,7 @@ from fleting.cli.commands.run import handle_run
 from fleting.cli.commands.info import handle_info
 from fleting.cli.commands.create import handle_create
 from fleting.cli.commands.delete import handle_delete
+from fleting.cli.commands.list import handle_list
 
 def print_help():
     print("""
@@ -54,6 +55,8 @@ def main():
             handle_create(args[1:])
         elif command == "delete":
             handle_delete(args[1:])
+        elif command == "list":
+            handle_list(args[1:])
         else:
             print(f"Unknown command: {command}")
             print_help()

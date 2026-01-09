@@ -1,7 +1,7 @@
 from pathlib import Path
 
 def is_fleting_project(path: Path) -> bool:
-    return (path / "app.py").exists() and (path / "views").exists()
+    return (path / "main.py").exists() and (path / "views").exists()
 
 def get_project_root() -> Path:
     return Path.cwd()
