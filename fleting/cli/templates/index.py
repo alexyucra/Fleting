@@ -565,18 +565,22 @@ class HomeView:
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=24,
             controls=[
+                ft.Image(
+                    src="icon.png",
+                    width=96,
+                    height=96,
+                    fit="contain",
+                ),
                 ft.Text(
                     "Fleting Framework",
                     size=36,
                     weight=ft.FontWeight.BOLD,
                 ),
-
                 ft.Text(
                     "Micro Framework MVC for Flet",
                     size=16,
                     color=ft.Colors.GREY_600,
                 ),
-
                 ft.Text(
                     "Build modern applications with a clear architecture, "
                     "Dynamic routing and productive CLI.",
@@ -760,6 +764,8 @@ logger = get_logger("App")
 
 def main(page: ft.Page):
     try:
+        page.assets_dir = "assets"
+
         if page.platform in ("windows", "linux", "darwin"):
             from core.app import FletingApp
             page.window.width = AppConfig.DEFAULT_SCREEN["width"]
