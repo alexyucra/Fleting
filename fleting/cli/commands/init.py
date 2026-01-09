@@ -23,3 +23,4 @@ def handle_init(args=None):
         project_root.mkdir(parents=True, exist_ok=True)
 
     init_project(project_root, project_name)
+    print("✅ Project Fleting successfully initiated!")

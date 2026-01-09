@@ -34,7 +34,8 @@ fleting/
 │   └── templates/
 │
 ├── app.py              # Entry point da aplicação
-└── fleting.bat         # Runner do CLI (Windows)
+└── runtime_imports.py  # importação de views para build (Windows)
+
 ```
 
 ## 🧭 Arquitetura de Views

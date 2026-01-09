@@ -10,13 +10,37 @@ O CLI do Fleting automatiza a criação e remoção de arquivos seguindo o padr�
 
 Para criar a estrutura inicial de um novo projeto Fleting, execute:
 
-> fleting init
+```bash 
+fleting init <nome_projeto>
+cd <nome_projeto>
+fleting run
+```
+
+### 📌 Comportamento:
+
+Cria automaticamente a pasta <nome_projeto>/
+
+Estrutura compatível com Flet Build (APK / Web / Desktop)
+
+Nome padrão do projeto: Fleting
+
+Estrutura gerada:
+
+```bash
+<nome_projeto>/
+ ├─ assets/
+ ├─ configs/
+ ├─ controllers/
+ ├─ core/
+ ├─ models/
+ ├─ views/
+ └─ main.py
+```
 
 Saída esperada:
 
-```shell
-✅ Framework Fleting criado com sucesso!
-```
+> ✅ Framework Fleting criado com sucesso!
+
 
 Esse comando cria automaticamente a estrutura básica de pastas e arquivos necessários para iniciar um app Fleting.
 
@@ -31,12 +55,19 @@ ou
 > fleting --help
 
 saida:
+
 ```shell
 Fleting CLI
 
 Uso:
-  fleting init
+  fleting init <nome_projeto>
       Inicializa um novo projeto Fleting
+  
+  fleting info 
+      Informações de versões e librerias
+
+  fleting run
+      Executa o app 
 
   fleting create page <nome>
       Cria uma nova página (model + controller + view)
@@ -102,17 +133,16 @@ Exemplo de saída:
 
 Após inicializar o projeto, execute o app com:
 
-> fletting run
+```bash 
+fletting run
+# ou
+bash flet run fleting/main.py
 
-ou
+# ou, alternativamente:
+python fleting/main.py
+```
 
-> flet run fleting/app.py
-
-ou, alternativamente:
-
-python fleting/app.py
-
-        💡 Recomendado: usar `flet run` para melhor integração com o runtime do Flet.
+        💡 Recomendado: usar `fleting run` para melhor integração com o runtime do Flet.
 
 
 ## ✅ Fluxo Básico de Uso
@@ -121,33 +151,35 @@ python fleting/app.py
 pip install flet
 pip install fleting
 
-fleting init
-fleting run
+fleting init app
+cd app
+app> fleting run
 
 # para desenvolvimento
-fleting create page home
-flet run fleting/app.py
+app> fleting create page home
+app> flet run main.py
+app> python main.py
 ```
 
 ## ▶️ Executando  o CLI para desenvolvimento
 
 ### Windows
 
-
-> fleting create view home
-
-ou
-
-> python -m cli.cli create view home
+```bash
+fleting create view home
+# ou
+python -m cli.cli create view home
+```
 
 ## 📦 Comandos Disponíveis
-🔹 create
+
+### 🔹 create
 
 Cria arquivos padronizados.
 
 > fleting create <tipo> <nome>
 
-🔹 delete
+### 🔹 delete
 
 Remove arquivos existentes.
 
@@ -166,8 +198,9 @@ Remove arquivos existentes.
 
 #### Criar uma View
 
-> fleting create view home
-
+```bash 
+fleting create view home
+```
 
 Cria:
 
@@ -175,7 +208,9 @@ views/pages/home_view.py
 
 #### Criar um Controller
 
-> fleting create controller user
+```bash
+fleting create controller user
+```
 
 Cria:
 
@@ -183,22 +218,26 @@ controllers/user_controller.py
 
 #### Criar um Model
 
-> fleting create model product
+```bash 
+fleting create model product
+```
 
 Cria:
 
 models/product_model.py
 
-#### Criar uma Page Completa
+### Criar uma Page Completa
 
-> fleting create page dashboard
+```bash
+fleting create page dashboard
+```
 
 Cria automaticamente:
 
 - models/dashboard_model.py
 - controllers/dashboard_controller.py
 - views/pages/dashboard_view.py
-
+- adiciona una rota en configs/routes.py
 
 Tudo já conectado (MVC).
 
@@ -206,19 +245,27 @@ Tudo já conectado (MVC).
 
 ### Remover View
 
-> fleting delete view home
+```bash
+fleting delete view home
+```
 
 ### Remover Controller
 
-> fleting delete controller user
+```bash
+fleting delete controller user
+```
 
 ### Remover Model
 
-> fleting delete model product
+```bash
+fleting delete model product
+```
 
 ### Remover Page Completa
 
-> fleting delete page dashboard
+```bash
+fleting delete page dashboard
+```
 
 Remove:
 
@@ -226,11 +273,11 @@ Remove:
 - controller
 - model
 
-        ⚠️ Observações Importantes
+### ⚠️ Observações Importantes
 
-        O CLI não remove rotas automaticamente
-        Não sobrescreve arquivos existentes
-        Todos os comandos geram logs em logs/fleting.log
+- O CLI não remove rotas automaticamente
+- Não sobrescreve arquivos existentes
+- Todos os comandos geram logs em logs/fleting.log
 
 ## 🎯 Filosofia do CLI
 

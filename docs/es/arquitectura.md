@@ -33,8 +33,8 @@ fleting/
 │   ├── commands/
 │   └── templates/
 │
-├── app.py              # Punto de entrada de la aplicación
-└── fleting.bat         # Runner del CLI (Windows)
+├── main.py              # Punto de entrada de la aplicación
+└── runtime_imports.py   # importacion de views para build (Windows)
 ```
 
 ## 🧭 Arquitectura de Views

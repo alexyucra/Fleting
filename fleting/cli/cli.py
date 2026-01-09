@@ -9,21 +9,28 @@ def print_help():
     print("""
 Fleting CLI
 
-Uso:
-  fleting init
-      Inicializa um novo projeto Fleting
+Usages:
 
-  fleting create page <nome>
-      Cria uma nova página (model + controller + view)
+    fleting init
+            Initializes a new Fleting project
+          
+    fleting info 
+            Version and library information
+          
+    fleting run 
+            Runs the app
 
-  fleting create view <nome>
-  fleting create model <nome>
-  fleting create controller <nome>
+    fleting create page <name> 
+          Creates a new page (model + controller + view)
+    
+    fleting create view <name>
+    fleting create model <name>
+    fleting create controller <name>
 
-  fleting delete page <nome>
-  fleting delete view <nome>
-  fleting delete model <nome>
-  fleting delete controller <nome>
+    fleting delete page <name>
+    fleting delete view <name>
+    fleting delete model <name>
+    fleting delete controller <name>
 """)
 
 def main():
@@ -48,11 +55,11 @@ def main():
         elif command == "delete":
             handle_delete(args[1:])
         else:
-            print(f"Comando desconhecido: {command}")
+            print(f"Unknown command: {command}")
             print_help()
 
     except Exception as e:
-         print("Erro ao executar comando CLI:", str(e))
+         print("Error executing CLI command:", str(e))
 
 if __name__ == "__main__":
     main()

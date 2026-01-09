@@ -4,9 +4,6 @@ def is_fleting_project(path: Path) -> bool:
     return (path / "app.py").exists() and (path / "views").exists()
 
 def get_project_root() -> Path:
-    """
-    Diretório raiz do projeto (onde o usuário executou o comando)
-    """
     return Path.cwd()
 
 def handle_create(args):
@@ -14,12 +11,12 @@ def handle_create(args):
     root = get_project_root()
 
     if not is_fleting_project(root):
-        print("❌ Este diretório não é um projeto Fleting.")
-        print("👉 Execute este comando dentro da pasta do projeto.")
+        print("❌ This directory is not a Fleting project.")
+        print("👉 Execute this command within the project folder.")
         return
     
     if len(args) < 2:
-        print("Uso: fleting create <controller|view|model|page> <nome>")
+        print("Use: fleting create <controller|view|model|page> <nome>")
         return
 
     kind, name = args[0], args[1]
@@ -35,10 +32,10 @@ def handle_create(args):
         elif kind == "page":
             create_page(name)
         else:
-            print(f"Tipo não suportado: {kind}")
+            print(f"Unsupported Type: {kind}")
 
     except Exception as e:
-        print(f"Erro ao criar {kind} {name}: {e}")
+        print(f"Error creating {kind} {name}: {e}")
 
 # --------------
 # create controller
@@ -51,7 +48,7 @@ def create_controller(name: str):
     path = BASE / "controllers" / f"{name}_controller.py"
 
     if path.exists():
-        print(f"Controller '{name}' já existe")
+        print(f"Controller '{name}' already exists.")
         return
 
     class_name = f"{to_pascal_case(name)}Controller"
@@ -71,7 +68,7 @@ class {class_name}:
         return "{to_pascal_case(name)}"
 '''
     path.write_text(content, encoding="utf-8")
-    print(f"Controller criado com sucesso: {name}")
+    print(f"Controller successfully created: {name}")
 
 # --------------
 # create view
@@ -81,7 +78,7 @@ def create_view(name: str):
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
-        print(f"View '{name}' já existe")
+        print(f"View '{name}' already exists.")
         return
 
     class_name = f"{name.capitalize()}View"
@@ -110,7 +107,7 @@ class {class_name}:
 """
 
     path.write_text(content, encoding="utf-8")
-    print(f"View criada com sucesso: {name}")
+    print(f"View successfully created: {name}")
 
 
 # --------------
@@ -121,7 +118,7 @@ def create_model(name: str):
     path = BASE / "models" / f"{name}_model.py"
 
     if path.exists():
-        print(f"Model '{name}' já existe")
+        print(f"Model '{name}' already exists.")
         return
 
     class_name = f"{name.capitalize()}Model"
@@ -132,27 +129,27 @@ def create_model(name: str):
 """
 
     path.write_text(content, encoding="utf-8")
-    print(f"Model criado com sucesso: {name}")
+    print(f"Model successfully created: {name}")
 
 # --------------
 # create page
 # --------------
 def create_page(name: str):
-    print(f"Criando page completa: {name}")
+    print(f"Creating a complete page: {name}")
     try:
         create_model(name)
         create_controller(name)
         create_page_view(name)
         register_route(name)
     except Exception as e:
-        print("Erro ao crear page: ", str(e))
+        print("Error creating page: ", str(e))
 
 def register_route(name: str):
     BASE = get_project_root()
     routes_file = BASE / "configs" / "routes.py"
 
     if not routes_file.exists():
-        print("❌ routes.py não encontrado")
+        print("❌ configs/routes.py não not found")
         return
 
     route_block = f"""
@@ -170,11 +167,11 @@ def register_route(name: str):
 
     # evita duplicar
     if f'"path": "/{name}"' in content:
-        print(f"⚠️ Rota '/{name}' já existe")
+        print(f"⚠️ Route '/{name}' already exists.")
         return
 
     if "ROUTES = [" not in content:
-        print("❌ Estrutura ROUTES não encontrada")
+        print("❌ ROUTES structure not found")
         return
 
     content = content.replace(
@@ -184,14 +181,14 @@ def register_route(name: str):
     )
 
     routes_file.write_text(content, encoding="utf-8")
-    print(f"✅ Rota '/{name}' registrada com sucesso")
+    print(f"✅ Route '/{name}' successfully registered")
 
 def create_page_view(name: str):
     BASE = get_project_root()
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
-        print(f"View '{name}' já existe")
+        print(f"View '{name}' already exists.")
         return
 
     class_name = f"{name.capitalize()}View"
@@ -226,4 +223,4 @@ class {class_name}:
         )
 """
     path.write_text(content, encoding="utf-8")
-    print(f"Page criada com sucesso: {name}")
+    print(f"Page created successfully: {name}")

@@ -23,10 +23,10 @@ def handle_delete(args):
             delete_page(name)
 
         else:
-            print(f"Tipo não suportado: {kind}")
+            print(f"Unsupported Type: {kind}")
 
     except Exception:
-        print(f"Erro ao deletar {kind} {name}")
+        print(f"Error when deleting {kind} {name}")
 
 # -----------------
 # delete controller
@@ -35,11 +35,11 @@ def delete_controller(name: str):
     path = BASE / "controllers" / f"{name}_controller.py"
 
     if not path.exists():
-        print(f"Controller '{name}' não existe")
+        print(f"Controller '{name}' does not exist.")
         return
 
     path.unlink()
-    print(f"Controller removido com sucesso: {name}")
+    print(f"Controller successfully removed: {name}")
 
 # -----------------
 # delete view
@@ -48,11 +48,11 @@ def delete_view(name: str):
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if not path.exists():
-        print(f"View '{name}' não existe")
+        print(f"View '{name}' does not exist.")
         return
 
     path.unlink()
-    print(f"View removida com sucesso: {name}")
+    print(f"View successfully removed: {name}")
 
 # -----------------
 # delete model
@@ -61,11 +61,11 @@ def delete_model(name: str):
     path = BASE / "models" / f"{name}_model.py"
 
     if not path.exists():
-        print(f"Model '{name}' não existe")
+        print(f"Model '{name}' does not exist.")
         return
 
     path.unlink()
-    print(f"Model removido com sucesso: {name}")
+    print(f"Model successfully removed: {name}")
 
 # -----------------
 # delete page

@@ -10,7 +10,32 @@ El CLI de Fleting automatiza la creación y eliminación de archivos siguiendo e
 
 Para crear la estructura inicial de un nuevo proyecto Fleting, ejecuta:
 
-> fleting init
+```bash 
+fleting init <nombre_proyecto>
+cd <nombre_proyecto>
+fleting run
+```
+
+### 📌 Comportamento:
+
+Cria automaticamente a pasta <nombre_proyecto>/
+
+Estrutura compatível com Flet Build (APK / Web / Desktop)
+
+Nome padrão do projeto: Fleting
+
+Estrutura gerada:
+
+```bash
+<nombre_proyecto>/
+ ├─ assets/
+ ├─ configs/
+ ├─ controllers/
+ ├─ core/
+ ├─ models/
+ ├─ views/
+ └─ main.py
+```
 
 Salida esperada:
 
@@ -37,6 +62,12 @@ Fleting CLI
 Uso:
   fleting init
       Inicializa un nuevo proyecto Fleting
+  
+  fleting info 
+      Informações de versões e librerias
+
+  fleting run
+      Executa o app 
 
   fleting create page <nombre>
       Crea una nueva página (model + controller + view)
@@ -102,17 +133,16 @@ Ejemplo de salida:
 
 Después de inicializar el proyecto, ejecuta la app con:
 
-> fleting run
+```bash 
+fleting run
+# o
+flet run fleting/main.py
+# o, alternativamente:
 
-o
+python fleting/main.py
+```
 
-> flet run fleting/app.py
-
-o, alternativamente:
-
-> python fleting/app.py
-
-💡 Recomendado: usar `flet run` para una mejor integración con el runtime de Flet.
+    💡 Recomendado: usar `fleting run` para una mejor integración con el runtime de Flet.
 
 ## ✅ Flujo Básico de Uso
 
@@ -120,32 +150,34 @@ o, alternativamente:
 pip install flet
 pip install fleting
 
-fleting init
-fleting run
+fleting init app
+cd app
+app> fleting run
 
 # para desarrollo
-fleting create page home
-flet run fleting/app.py
+app> fleting create page home
+app> flet run main.py
+app> python main.py
 ```
 
 ## ▶️ Ejecutando el CLI para desarrollo
 
 ### Windows
 
-> fleting create view home
-
-o
-
-> python -m cli.cli create view home
+```bash
+fleting create view home
+# o
+python -m cli.cli create view home
+```
 
 ## 📦 Comandos Disponibles
 
-🔹 create  
+### 🔹 create  
 Crea archivos estandarizados.
 
 > fleting create <tipo> <nombre>
 
-🔹 delete  
+### 🔹 delete  
 Elimina archivos existentes.
 
 > fleting delete <tipo> <nombre>
@@ -163,7 +195,9 @@ Elimina archivos existentes.
 
 #### Crear una View
 
-> fleting create view home
+```bash
+fleting create view home
+```
 
 Crea:
 
@@ -171,7 +205,9 @@ views/pages/home_view.py
 
 #### Crear un Controller
 
-> fleting create controller user
+```bash
+fleting create controller user
+```
 
 Crea:
 
@@ -179,44 +215,57 @@ controllers/user_controller.py
 
 #### Crear un Model
 
-> fleting create model product
+```bash
+fleting create model product
+```
 
 Crea:
 
 models/product_model.py
 
-#### Crear una Page Completa
+### Crear una Page Completa
 
-> fleting create page dashboard
+```bash
+fleting create page dashboard
+```
 
 Crea automáticamente:
 
 - models/dashboard_model.py
 - controllers/dashboard_controller.py
 - views/pages/dashboard_view.py
+- registra una ruta en configs/routes.py
 
 Todo ya conectado (MVC).
 
 ## 🗑️ Eliminación de Archivos
 
 ### Eliminar View
-> fleting delete view home
+```bash
+fleting delete view home
+```
 
 ### Eliminar Controller
-> fleting delete controller user
+```bash
+fleting delete controller user
+```
 
 ### Eliminar Model
-> fleting delete model product
+```bash
+fleting delete model product
+```
 
 ### Eliminar Page Completa
-> fleting delete page dashboard
+```bash
+fleting delete page dashboard
+```
 
 Elimina:
 - view
 - controller
 - model
 
-⚠️ Observaciones Importantes
+### ⚠️ Observaciones Importantes
 
 - El CLI no elimina rutas automáticamente
 - No sobrescribe archivos existentes

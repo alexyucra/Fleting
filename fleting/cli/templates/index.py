@@ -3,7 +3,7 @@ import json
 
 def init_project(project_root: Path, project_name: str = "Fleting"):
     """
-    Inicializa um projeto Fleting no diretório atual
+    Initializes a Fleting project in the current directory.
     """
 
     BASE = project_root
@@ -73,10 +73,10 @@ class Router:
         routes = self.routes
 
         if route not in routes:
-            logger.warning(f"Rota não encontrada: {route}")
+            logger.warning(f"Route not found: {route}")
             route = "/"
 
-        logger.info(f"Navegando para: {route}")
+        logger.info(f"Navigating to: {route}")
         self.current_route = route
         self.page.controls.clear()
 
@@ -84,8 +84,8 @@ class Router:
             view = routes[route](self.page, self)
             self.page.add(view)
         except Exception as e:
-            logger.exception("Erro ao renderizar view")
-            self.page.add(ft.Text("Erro interno da aplicação"))
+            logger.exception("Error rendering view")
+            self.page.add(ft.Text("Internal application error"))
 
         self.page.update()
 """)
@@ -130,7 +130,7 @@ class FletingApp:
     def on_resize(self, e):
         real_device = get_device_type(self.page.width)
 
-        # Evita sobrescrever no primeiro frame falso
+        # Avoid overwriting on the first fake frame
         if not AppState.initialized:
             AppState.initialized = True
 
@@ -183,7 +183,7 @@ def get_log_dir():
     if is_android():
         return Path(os.getcwd()) / "files" / "logs"
 
-    # EXECUTÁVEL (PyInstaller)
+    # EXECUTABLE (PyInstaller)
     if is_frozen():
         base = Path(os.getenv("LOCALAPPDATA", Path.home()))
         return base / APP_NAME / "logs"
@@ -194,7 +194,7 @@ def get_log_dir():
 LOG_DIR = get_log_dir()
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-LOG_FILE = LOG_DIR / "app.log"
+LOG_FILE = LOG_DIR / "fleting.log"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -218,15 +218,15 @@ logger = get_logger("ErrorHandler")
 class GlobalErrorHandler:
     @staticmethod
     def handle(page: ft.Page, error: Exception):
-        logger.exception("Erro global capturado")
+        logger.exception("Global error caught")
 
         page.controls.clear()
         page.add(
             ft.Container(
                 content=ft.Column(
                     controls=[
-                        ft.Text("⚠️ Ocorreu um erro", size=24, weight=ft.FontWeight.BOLD),
-                        ft.Text("Algo deu errado. Tente novamente."),
+                        ft.Text("⚠️ An error occurred.", size=24, weight=ft.FontWeight.BOLD),
+                        ft.Text("Something went wrong. Please try again."),
                     ],
                     alignment=ft.MainAxisAlignment.CENTER,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -239,7 +239,7 @@ class GlobalErrorHandler:
 
     create_file(BASE / "core/database.py", """
 import sqlite3
-# import mysql.connector  # opcional
+# import mysql.connector  # optional
 from configs.database import DATABASE
 from pathlib import Path
 
@@ -271,7 +271,7 @@ def get_connection():
     #     )
     #     return _connection
 
-    raise ValueError(f"Database engine não suportado: {engine}")
+    raise ValueError(f"Database engine not supported: {engine}")
 
 """)
 
@@ -298,7 +298,7 @@ class ScreenConfig:
     DESKTOP = {
         "width": 1280,
         "height": 800,
-        "max_content_width": None,  # sem limite
+        "max_content_width": None,  # no limit
     }
 
 class AppConfig:
@@ -554,20 +554,20 @@ class HomeView:
             spacing=24,
             controls=[
                 ft.Text(
-                    "Fleting",
+                    "Fleting Framework",
                     size=36,
                     weight=ft.FontWeight.BOLD,
                 ),
 
                 ft.Text(
-                    "Micro Framework MVC para Flet",
+                    "Micro Framework MVC for Flet",
                     size=16,
                     color=ft.Colors.GREY_600,
                 ),
 
                 ft.Text(
-                    "Construa aplicações modernas com arquitetura clara, "
-                    "roteamento dinâmico e CLI produtivo.",
+                    "Build modern applications with a clear architecture, "
+                    "Dynamic routing and productive CLI.",
                     size=14,
                     text_align=ft.TextAlign.CENTER,
                     width=420,
@@ -578,12 +578,12 @@ class HomeView:
                     spacing=16,
                     controls=[
                         ft.FilledButton(
-                            "Configurações",
+                            "Settings",
                             icon=ft.Icons.SETTINGS,
                             on_click=lambda e: self.router.navigate("/settings"),
                         ),
                         ft.OutlinedButton(
-                            "Criar nova página",
+                            "Create new page",
                             icon=ft.Icons.ADD,
                         ),
                     ],

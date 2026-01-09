@@ -48,3 +48,4 @@ Thumbs.db
 .python-version
 dist/
 app/
+fleting/cli/helpers

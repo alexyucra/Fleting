@@ -5,19 +5,19 @@ from pathlib import Path
 
 def handle_run():
     project_root = Path.cwd()
-    app_path = project_root / "app.py"
+    app_path = project_root / "main.py"
 
     if not app_path.exists():
-        print("❌ app.py não encontrado.")
-        print("👉 Execute este comando dentro de um projeto Fleting.")
+        print("❌ main.py not found.")
+        print("👉 Execute this command within a Fleting project.")
         return
 
     if not shutil.which("flet"):
-        print("❌ Flet não está instalado no ambiente")
+        print("❌ Flet is not installed in the environment.")
         print("👉 pip install flet")
         return
 
-    print("🚀 Iniciando aplicação Fleting...\n")
+    print("🚀 Starting Fleting application..\n")
 
     try:
         subprocess.run(
@@ -25,4 +25,4 @@ def handle_run():
             check=True
         )
     except subprocess.CalledProcessError:
-        print("❌ Erro ao executar o app com Flet")
+        print("❌ Error running the app with Flat")

@@ -17,7 +17,7 @@ def _get_version(pkg_name: str):
     try:
         return metadata.version(pkg_name)
     except metadata.PackageNotFoundError:
-        return "não instalado"
+        return "not installed"
 
 def handle_info():
     python_version = sys.version.split()[0]
@@ -29,16 +29,16 @@ def handle_info():
     print(BANNER)
     print("🚀 Fleting Framework\n")
 
-    print("📦 Ambiente\n")
+    print("📦 Environment\n")
     print(f"🧠 Python        : {python_version}")
-    print(f"🖥️  Sistema      : {system}")
+    print(f"🖥️  Sistem      : {system}")
     print(f"🧩 Flet          : {flet_version}")
     print(f"🚀 Fleting       : {fleting_version}")
 
-    print("\n📚 Bibliotecas instaladas:")
+    print("\n📚 Installed libraries:")
     for dist in sorted(metadata.distributions(), key=lambda d: d.metadata["Name"].lower()):
         name = dist.metadata["Name"]
         version = dist.version
         print(f"  - {name}=={version}")
 
-    print("\n✅ Ambiente pronto para uso.\n")
+    print("\n✅ Ready-to-use environment.\n")
