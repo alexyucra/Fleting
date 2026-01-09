@@ -1,4 +1,4 @@
-from rich_console import console
+from .rich_console import console
 from pathlib import Path
 
 def is_fleting_project(path: Path) -> bool:
