@@ -1,10 +1,11 @@
+from rich_console import console
 from pathlib import Path
 
 BASE = Path.cwd()
 
 def handle_delete(args):
     if len(args) < 2:
-        print("Uso: fleting delete <controller|view|model|page> <nome>")
+        console.print("Uso: fleting delete <controller|view|model|page> <nome>", style="suggestion")
         return
 
     kind, name = args[0], args[1].lower()
@@ -23,10 +24,10 @@ def handle_delete(args):
             delete_page(name)
 
         else:
-            print(f"Tipo não suportado: {kind}")
+            console.print(f"Tipo não suportado: {kind}", style="error")
 
     except Exception:
-        print(f"Erro ao deletar {kind} {name}")
+        console.print(f"Erro ao deletar {kind} {name}", style="error")
 
 # -----------------
 # delete controller
@@ -35,11 +36,11 @@ def delete_controller(name: str):
     path = BASE / "controllers" / f"{name}_controller.py"
 
     if not path.exists():
-        print(f"Controller '{name}' não existe")
+        console.print(f"Controller '{name}' não existe", style="warning")
         return
 
     path.unlink()
-    print(f"Controller removido com sucesso: {name}")
+    console.print(f"Controller removido com sucesso: {name}", style="success")
 
 # -----------------
 # delete view
@@ -48,11 +49,11 @@ def delete_view(name: str):
     path = BASE / "views" / "pages" / f"{name}_view.py"
 
     if not path.exists():
-        print(f"View '{name}' não existe")
+        console.print(f"View '{name}' não existe", style="warning")
         return
 
     path.unlink()
-    print(f"View removida com sucesso: {name}")
+    console.print(f"View removida com sucesso: {name}", style="success")
 
 # -----------------
 # delete model
@@ -61,11 +62,11 @@ def delete_model(name: str):
     path = BASE / "models" / f"{name}_model.py"
 
     if not path.exists():
-        print(f"Model '{name}' não existe")
+        console.print(f"Model '{name}' não existe", style="warning")
         return
 
     path.unlink()
-    print(f"Model removido com sucesso: {name}")
+    console.print(f"Model removido com sucesso: {name}", style="success")
 
 # -----------------
 # delete page
