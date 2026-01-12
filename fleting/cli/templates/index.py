@@ -251,40 +251,67 @@ class GlobalErrorHandler:
 """)
 
     create_file(BASE / "core/database.py", """
+
 import sqlite3
-# import mysql.connector  # optional
+# import mysql.connector  
 from configs.database import DATABASE
 from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 _connection = None
 
 def get_connection():
     global _connection
 
-    if _connection:
+    if _connection is not None:
         return _connection
 
-    engine = DATABASE["ENGINE"]
+    engine = DATABASE.get("ENGINE", "sqlite").lower()
 
     if engine == "sqlite":
-        db_path = DATABASE["SQLITE"]["PATH"]
-        db_path.parent.mkdir(parents=True, exist_ok=True)
+        _connection = _connect_sqlite()
+    elif engine == "mysql":
+        _connection = _connect_mysql()
+    else:
+        raise RuntimeError(f"Unsupported database engine: {engine}")
 
-        _connection = sqlite3.connect(db_path)
-        return _connection
+    return _connection
 
-    # elif engine == "mysql":
-    #     cfg = DATABASE["MYSQL"]
-    #     _connection = mysql.connector.connect(
-    #         host=cfg["HOST"],
-    #         port=cfg["PORT"],
-    #         user=cfg["USER"],
-    #         password=cfg["PASSWORD"],
-    #         database=cfg["DATABASE"],
+# =========================
+# SQLITE
+# =========================
+def _connect_sqlite():
+    cfg = DATABASE.get("SQLITE", {})
+    path_cfg = cfg.get("PATH", "data/fleting.db")
+
+    db_path = BASE_DIR / Path(path_cfg)
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    return sqlite3.connect(db_path)
+
+# =========================
+# MYSQL
+# =========================
+def _connect_mysql():
+    pass
+    # try:
+    #     import mysql.connector
+    # except ImportError:
+    #     raise RuntimeError(
+    #         "MySQL support requires `mysql-connector-python`\n"
+    #         "pip install mysql-connector-python"
     #     )
-    #     return _connection
 
-    raise ValueError(f"Database engine not supported: {engine}")
+    # cfg = DATABASE.get("MYSQL", {})
+
+    # return mysql.connector.connect(
+    #     host=cfg.get("HOST", "localhost"),
+    #     port=cfg.get("PORT", 3306),
+    #     user=cfg.get("USER"),
+    #     password=cfg.get("PASSWORD"),
+    #     database=cfg.get("NAME"),
+    #     charset=cfg.get("OPTIONS", {}).get("charset", "utf8mb4"),
+    # )
 
 """)
 
@@ -379,9 +406,21 @@ routes = get_routes()
     
     create_file(BASE / "configs/database.py", """
 DATABASE = {
-    "ENGINE": "sqlite",
+    "ENGINE": "sqlite",  # sqlite | mysql
+
     "SQLITE": {
-        "PATH": "data/app.db"
+        "PATH": "data/fleting.db"
+    },
+
+    "MYSQL": {
+        "HOST": "localhost",
+        "PORT": 3306,
+        "USER": "root",
+        "PASSWORD": "",
+        "NAME": "fleting",
+        "OPTIONS": {
+            "charset": "utf8mb4"
+        }
     }
 }
 """)
@@ -755,7 +794,7 @@ class HelpView:
     # APP ENTRY
     # =========================
     (BASE / ".fleting").write_text("fleting-project", encoding="utf-8")
-    
+
     create_file(BASE / "main.py", """
 import flet as ft
 from configs.app_config import AppConfig
