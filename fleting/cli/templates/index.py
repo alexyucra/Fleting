@@ -298,7 +298,7 @@ def _connect_mysql():
     #     import mysql.connector
     # except ImportError:
     #     raise RuntimeError(
-    #         "MySQL support requires `mysql-connector-python`\n"
+    #         "MySQL support requires `mysql-connector-python` :"
     #         "pip install mysql-connector-python"
     #     )
 
