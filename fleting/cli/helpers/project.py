@@ -2,14 +2,7 @@ from pathlib import Path
 import sys
 
 def is_fleting_project(path: Path) -> bool:
-    return (
-        (path / "configs").exists()
-        and (path / "controllers").exists()
-        and (path / "models").exists()
-        and (path / "views").exists()
-        and (path / "migrations").exists()
-        and (path / "seeds").exists()
-    )
+    return (path / ".fleting").exists()
 
 def find_project_root(start=None) -> Path | None:
     if start is None:

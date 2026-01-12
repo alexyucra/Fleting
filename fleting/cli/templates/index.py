@@ -34,9 +34,11 @@ def init_project(project_root: Path, project_name: str = "Fleting"):
 
     for folder in folders:
         (BASE / folder).mkdir(parents=True, exist_ok=True)
+    
+    
 
     # =========================
-    # ARQUIVOS CORE
+    # ICON FLETING
     # =========================
     try:
         with open(BASE / "assets/icon.png", "wb") as f:
@@ -752,6 +754,8 @@ class HelpView:
     # =========================
     # APP ENTRY
     # =========================
+    (BASE / ".fleting").write_text("fleting-project", encoding="utf-8")
+    
     create_file(BASE / "main.py", """
 import flet as ft
 from configs.app_config import AppConfig

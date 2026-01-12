@@ -50,3 +50,4 @@ dist/
 app/
 sources/
 fleting.bat
+fleting/cli/helpers/project.py
