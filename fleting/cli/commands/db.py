@@ -1,10 +1,10 @@
 from pathlib import Path
 import importlib.util
 from fleting.cli.templates.database import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
-# from fleting.cli.helpers.project import get_project_root
+from fleting.cli.helpers.project import get_project_root
 
-def get_project_root() -> Path:
-    return Path.cwd()
+# def get_project_root() -> Path:
+#     return Path.cwd()
 
 def is_fleting_project(path: Path):
     return (path / "main.py").exists()
@@ -17,7 +17,8 @@ def handle_db(args):
     root = get_project_root()
 
     if not is_fleting_project(root):
-        print("❌ Not a Fleting project.")
+        print("❌ This directory is not a Fleting project.")
+        print("👉 Execute this command within the project folder.")
         return
 
     cmd = args[0]
