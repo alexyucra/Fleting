@@ -3,7 +3,7 @@ import importlib.util
 from fleting.cli.templates.database import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
 # from fleting.cli.helpers.project import get_project_root
 
-def get_project_root():
+def get_project_root() -> Path:
     return Path.cwd()
 
 def is_fleting_project(path: Path):
