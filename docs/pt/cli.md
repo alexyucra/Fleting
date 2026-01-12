@@ -57,29 +57,44 @@ ou
 saida:
 
 ```shell
-Fleting CLI
+🚀 Fleting CLI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Uso:
-  fleting init <nome_projeto>
-      Inicializa um novo projeto Fleting
-  
-  fleting info 
-      Informações de versões e librerias
+📌 Uso:
+  fleting <comando> [opções]
 
-  fleting run
-      Executa o app 
 
-  fleting create page <nome>
-      Cria uma nova página (model + controller + view)
-
-  fleting create view <nome>
-  fleting create model <nome>
-  fleting create controller <nome>
-
-  fleting delete page <nome>
-  fleting delete view <nome>
-  fleting delete model <nome>
-  fleting delete controller <nome>
+📖 Comandos Disponíveis
+┌──────────────────────────────────────┬────────────────────────────────────────────────────────┐
+│ Comando                              │ Descrição                                              │
+├──────────────────────────────────────┼────────────────────────────────────────────────────────┤
+│ fleting init  <app_name>             │ Inicializa um novo projeto Fleting                     │
+│ fleting info                         │ Exibe informações de versão e do sistema               │
+│ fleting run                          │ Executa a aplicação                                    │
+|--------------------------------------|--------------------------------------------------------|
+│ fleting create page <nome>           │ Cria uma página (model + controller + view)            │
+│ fleting create view <nome>           │ Cria uma nova view                                     │
+│ fleting create model <nome>          │ Cria um novo model                                     │
+│ fleting create controller <nome>     │ Cria um novo controller                                │
+|--------------------------------------|--------------------------------------------------------|
+│ fleting delete page <nome>           │ Remove uma página existente                            │
+│ fleting delete view <nome>           │ Remove uma view                                        │
+│ fleting delete model <nome>          │ Remove um model                                        │
+│ fleting delete controller <nome>     │ Remove um controller                                   │
+|--------------------------------------|--------------------------------------------------------|
+│ fleting list pages                   │ Lista todas as páginas                                 │
+│ fleting list controllers             │ Lista todos os controllers                             │
+│ fleting list views                   │ Lista todas as views                                   │
+│ fleting list models                  │ Lista todos os models                                  │
+│ fleting list routes                  │ Lista todas as rotas                                   │
+|--------------------------------------|--------------------------------------------------------|
+│ fleting db init                      │ Inicializa a estrutura do banco de dados               │
+│ fleting db migrate                   │ Executa as migrations do banco de dados                │
+│ fleting db seed                      │ Popula o banco de dados com dados iniciais             │
+│ fleting db make <nome>               │ Cria uma nova migration                                │
+│ fleting db rollback                  │ Reverte a última migration aplicada                    │
+│ fleting db status                    │ Exibe o status atual das migrations do banco de dados  │
+└──────────────────────────────────────┴────────────────────────────────────────────────────────┘
 ```
 
 ## ℹ️ Informações do Ambiente
@@ -279,7 +294,204 @@ Remove:
 - Não sobrescreve arquivos existentes
 - Todos os comandos geram logs em logs/fleting.log
 
-## 🎯 Filosofia do CLI
+# 🗄️ Gerenciamento de Banco de Dados — Fleting CLI
+
+O Fleting Framework inclui um sistema de gerenciamento de banco de dados simples, seguro e orientado a migrações, inspirado em frameworks modernos como Django e Alembic.
+
+Esta seção descreve em detalhes todos os comandos disponíveis em `fleting db`.
+
+---
+
+## 📌 `fleting db init`
+
+### Descrição
+Inicializa a estrutura básica do sistema de banco de dados do projeto.
+
+Este comando:
+- Cria as pastas necessárias para trabalhar com o banco de dados
+- Prepara o projeto para receber migrações e seeds
+- **Não cria tabelas ou dados**
+- **Não executa migrações**
+
+### O que ele cria
+
+```text
+app/
+├── migrations/
+│ ├── __init__.py
+│ └── 001_initial.py
+├── seeds/
+│ └── initial.py
+└── data/
+```
+
+Exemplo de uso:
+
+```bash
+fletting db init
+```
+Saída esperada
+
+> ✅ Estrutura do banco de dados inicializada
+
+## 📌 fleting db migrate
+
+Descrição: Executa todas as migrações pendentes do projeto.
+
+Este comando:
+
+- Cria o arquivo de banco de dados (SQLite) se ele não existir
+- Executa as funções `up(db)` para migrações não aplicadas
+- Registra cada migração aplicada na tabela `_fleting_migrations`
+- Nunca executa uma migração duas vezes
+
+Regras importantes:
+
+- Somente migrações não aplicadas são executadas
+- A ordem de execução é numérica (001, 002, 003, ...)
+- Se uma migração falhar, o processo é interrompido
+
+Exemplo de uso:
+```bash
+fleting db migrate
+```
+Saída esperada:
+
+> ✅ Migração aplicada 001_initial.py
+
+## 📌 fleting db seed
+
+**Descrição**
+Insere dados iniciais ou de teste no banco de dados.
+
+Este comando:
+
+- Executa todos os arquivos dentro de app/seeds
+- Busca pela função `run(db)` em cada seed
+- Ideal para criar usuários iniciais, dados de demonstração, etc.
+
+### ⚠️ Aviso
+
+⚠️ Este comando pode ser executado mais de uma vez, portanto, as seeds devem ser idempotentes (use INSERT ou IGNORE, por exemplo).
+
+Exemplo de uso
+```bash
+fletting db seed
+```
+Saída esperada
+> 🌱 Seed executada: initial.py
+
+## 📌 fleting db make <nome>
+
+**Descrição**
+Cria uma nova migração de banco de dados.
+
+Este comando:
+
+- Gera automaticamente o próximo número de migração
+- Cria um arquivo com as funções `up(db)` e `down(db)`
+- Não executa a migração automaticamente
+
+Convenção de nomenclatura
+
+```texto
+001_initial.py
+002_create_users_table.py
+003_add_email_to_users.py
+```
+Exemplo de uso
+
+```bash
+fleting db make add_email_to_users
+```
+Arquivo gerado
+
+```python
+def up(db):
+db.execute("""
+ALTER TABLE users ADD COLUMN email TEXT;
+
+""")
+
+def down(db):
+# Código para reverter a alteração
+pass
+```
+## 📌 fleting db rollback
+
+**Descrição**
+Reverte a última migração aplicada.
+
+Este comando:
+
+- Identifica a última migração registrada
+- Executa sua função `down(db)`
+- Remove a migração do log `_fleting_migrations`
+
+### ⚠️ Limitação do SQLite
+
+O SQLite não suporta todas as operações de rollback (por exemplo, `DROP COLUMN`), portanto, a implementação de `down()` deve ser feita com cuidado.
+
+Exemplo de uso
+```bash
+fleting db rollback
+```
+Saída esperada
+
+> ↩️ Migração 002_add_email_to_users.py revertida
+
+## 📌 fleting db status
+**Descrição**
+Exibe o status atual das migrações do projeto.
+
+Este comando:
+
+- Lista as migrações aplicadas
+- Lista as migrações pendentes
+- Detecta inconsistências (migrações aplicadas sem um arquivo)
+
+Exemplo de uso
+
+```bash
+fletting db status
+```
+Exemplo de saída:
+
+```text
+📦 Status do banco de dados
+
+Migrações aplicadas:
+✔ 001_initial.py
+
+Migrações pendentes:
+
+⏳ 002_add_email_to_users.py
+```
+Banco de dados atualizado
+
+> ✅ Banco de dados atualizado.
+
+## 🧠 Melhores Práticas
+
+- Nunca edite uma migração existente
+- Sempre crie uma nova migração para alterações de esquema
+- Implemente `down()` sempre que possível
+- Use SQL explícito para maior controle
+- Versionar as migrações juntamente com o código
+
+## 🚀 Fluxo Recomendado
+```bash
+fletting db init
+fletting db make create_users_table
+fletting db migrate
+fletting db seed
+```
+
+Este fluxo garante um ambiente de banco de dados consistente, reproduzível e seguro.
+
+---
+
+# 🎯 Filosofia do CLI
 
 Convenção > Configuração
 

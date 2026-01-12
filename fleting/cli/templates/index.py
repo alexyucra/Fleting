@@ -30,7 +30,6 @@ def init_project(project_root: Path, project_name: str = "Fleting"):
         "models",
         "views/layouts",
         "views/pages",
-        "data",
     ]
 
     for folder in folders:
