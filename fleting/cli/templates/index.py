@@ -808,7 +808,7 @@ def main(page: ft.Page):
     try:
         page.assets_dir = "assets"
 
-        if page.platform in ("windows", "linux", "darwin"):
+        if page.platform in (ft.PagePlatform.WINDOWS, ft.PagePlatform.LINUX, ft.PagePlatform.MACOS):
             from core.app import FletingApp
             page.window.width = AppConfig.DEFAULT_SCREEN["width"]
             page.window.height = AppConfig.DEFAULT_SCREEN["height"]
