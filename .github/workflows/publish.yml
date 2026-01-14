@@ -26,17 +26,17 @@ jobs:
 
       # 5️⃣ Publicar no TestPyPI (opcional)
       # Se quiser publicar direto no PyPI oficial, altere 'testpypi' para 'pypi'
-      - name: Publish to TestPyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.TESTPYPI_TOKEN }}
-        run: |
-          twine upload --repository testpypi dist/*
-
-      # 6️⃣ Publicar no PyPI oficial (quando estiver pronto)
-      # - name: Publish to PyPI
+      # - name: Publish to TestPyPI
       #   env:
       #     TWINE_USERNAME: __token__
-      #     TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      #     TWINE_PASSWORD: ${{ secrets.TESTPYPI_TOKEN }}
       #   run: |
-      #     twine upload dist/*
+      #     twine upload --repository testpypi dist/*
+
+      # 6️⃣ Publicar no PyPI oficial (quando estiver pronto)
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          twine upload dist/*
