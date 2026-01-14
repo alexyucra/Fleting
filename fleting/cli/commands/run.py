@@ -2,22 +2,23 @@ import subprocess
 import sys
 import shutil
 from pathlib import Path
+from .rich_console import console
 
 def handle_run():
     project_root = Path.cwd()
     app_path = project_root / "main.py"
 
     if not app_path.exists():
-        print("❌ main.py not found.")
-        print("👉 Execute this command within a Fleting project.")
+        console.print("❌ main.py not found.", style="error")
+        console.print("👉 Execute this command within a Fleting project.", style="suggestion")
         return
 
     if not shutil.which("flet"):
-        print("❌ Flet is not installed in the environment.")
-        print("👉 pip install flet")
+        console.print("❌ Flet is not installed in the environment.", style="error")
+        console.print("👉 pip install flet", style="suggestion")
         return
 
-    print("🚀 Starting Fleting application..\n")
+    console.print("🚀 Starting Fleting application..\n", style="info")
 
     try:
         subprocess.run(
@@ -25,4 +26,4 @@ def handle_run():
             check=True
         )
     except subprocess.CalledProcessError:
-        print("❌ Error running the app with Flat")
+        console.print("❌ Error running the app with Flet", style="error")

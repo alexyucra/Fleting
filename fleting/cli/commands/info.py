@@ -1,6 +1,7 @@
 import platform
 import sys
 from importlib import metadata
+from .rich_console import console
 
 BANNER = r"""
  ______ _      _   _             
@@ -26,19 +27,19 @@ def handle_info():
     flet_version = _get_version("flet")
     fleting_version = _get_version("fleting")
 
-    print(BANNER)
-    print("🚀 Fleting Framework\n")
+    console.print(BANNER)
+    console.print("🚀 Fleting Framework\n", style="header")
 
-    print("📦 Environment\n")
-    print(f"🧠 Python        : {python_version}")
-    print(f"🖥️  Sistem      : {system}")
-    print(f"🧩 Flet          : {flet_version}")
-    print(f"🚀 Fleting       : {fleting_version}")
+    console.print("📦 Environment\n", style="subtitle")
+    console.print(f"🧠 Python        : {python_version}", style="label")
+    console.print(f"🖥️  System      : {system}", style="label")
+    console.print(f"🧩 Flet          : {flet_version}", style="label")
+    console.print(f"🚀 Fleting       : {fleting_version}", style="label")
 
-    print("\n📚 Installed libraries:")
+    console.print("\n📚 Installed libraries:", style="subtitle")
     for dist in sorted(metadata.distributions(), key=lambda d: d.metadata["Name"].lower()):
         name = dist.metadata["Name"]
         version = dist.version
-        print(f"  - {name}=={version}")
+        console.print(f"  - {name}=={version}", style="muted")
 
-    print("\n✅ Ready-to-use environment.\n")
+    console.print("\n✅ Ready-to-use environment.\n", style="success")

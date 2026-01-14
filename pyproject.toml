@@ -33,7 +33,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "flet"
+    "flet",
+    "rich"
 ]
 
 # ------------------------

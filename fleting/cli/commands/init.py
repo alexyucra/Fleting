@@ -1,5 +1,6 @@
 from pathlib import Path
 from fleting.cli.templates.index import init_project
+from .rich_console import console
 
 DEFAULT_PROJECT_NAME = "app"
 DEFAULT_APP_NAME = "Fleting"
@@ -23,4 +24,4 @@ def handle_init(args=None):
         project_root.mkdir(parents=True, exist_ok=True)
 
     init_project(project_root, project_name)
-    print("✅ Project Fleting successfully initiated!")
+    console.print("✅ Project Fleting successfully initiated!", style="success")
