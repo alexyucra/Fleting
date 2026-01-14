@@ -47,6 +47,7 @@ Thumbs.db
 *.fletstate
 .python-version
 dist/
+app2/
 app/
 sources/
 fleting.bat
