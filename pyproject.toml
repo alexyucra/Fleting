@@ -1,6 +1,6 @@
 [project]
 name = "fleting"
-version = "1.1.28"
+version = "1.1.29"
 description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
 readme = "README.md"
 license = { text = "MIT" }
@@ -11,12 +11,18 @@ authors = [
 ]
 
 keywords = [
+    "fleting",
+    "fleting framework",
+    "pip install fleting",
     "flet",
     "framework",
     "mvc",
     "ui",
     "desktop",
-    "mobile"
+    "mobile",
+    "apk",
+    "app",
+    "android"
 ]
 
 classifiers = [

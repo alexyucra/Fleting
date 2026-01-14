@@ -363,7 +363,7 @@ ROUTES = [
     {
         "path": "/settings",
         "view": "views.pages.settings_view.SettingsView",
-        "label": "Settings",
+        "label": "menu.settings",
         "icon": ft.Icons.SETTINGS,
         "show_in_top": True,
         "show_in_bottom": False,
@@ -371,7 +371,7 @@ ROUTES = [
     {
         "path": "/help",
         "view": "views.pages.help_view.HelpView",
-        "label": "Help",
+        "label": "menu.help",
         "icon": ft.Icons.HELP,
         "show_in_top": True,
         "show_in_bottom": True,
@@ -428,13 +428,14 @@ DATABASE = {
     # =========================
     # LANGUAGES
     # =========================
-    us = {
+    en = {
     "app": {
         "name": project_name
     },
     "menu": {
         "home": "Home",
-        "settings": "Configs"
+        "settings": "Configs",
+        "help": "Help"
     },
     "home": {
         "title": f"Wellcome to {project_name}"
@@ -451,7 +452,8 @@ DATABASE = {
     },
     "menu": {
         "home": "Inicio",
-        "settings": "Configurações"
+        "settings": "Configurações",
+        "help": "Ajuda"
     },
     "home": {
         "title": f"Bem-vindo ao {project_name}"
@@ -468,7 +470,8 @@ DATABASE = {
     },
     "menu": {
         "home": "Inicio",
-        "settings": "Configuración"
+        "settings": "Configuración",
+        "help": "Ayuda"
     },
     "home": {
         "title": f"Bienvenido a {project_name}"
@@ -481,7 +484,7 @@ DATABASE = {
 
     pt_file = f"{BASE}/configs/languages/pt.json"
     es_file = f"{BASE}/configs/languages/es.json"
-    us_file = f"{BASE}/configs/languages/us.json"
+    us_file = f"{BASE}/configs/languages/en.json"
     with open(pt_file, 'w', encoding='utf-8') as f:
         json.dump(pt, f, indent=2, ensure_ascii=False)
     
@@ -489,7 +492,7 @@ DATABASE = {
         json.dump(es, f, indent=2, ensure_ascii=False)
 
     with open(us_file, 'w', encoding='utf-8') as f:
-        json.dump(es, f, indent=2, ensure_ascii=False)
+        json.dump(en, f, indent=2, ensure_ascii=False)
 
     # =========================
     # LAYOUT
@@ -661,15 +664,12 @@ from core.state import AppState
 from core.i18n import I18n
 from views.layouts.main_layout import MainLayout
 from controllers.settings_controller import SettingsController
-from models.settings_model import SettingsModel
 
 class SettingsView:
     def __init__(self, page, router):
         self.page = page
         self.router = router
-
-        self.model = SettingsModel()
-        self.controller = SettingsController(self.model)
+        self.controller = SettingsController()
     
     def _change_language(self, lang: str):
         I18n.load(lang)
@@ -697,7 +697,7 @@ class SettingsView:
                     content=ft.Column(
                         controls=[
                             ft.Radio(value="pt", label="Português 🇧🇷"),
-                            ft.Radio(value="us", label="English 🇺🇸"),
+                            ft.Radio(value="en", label="English 🇺🇸"),
                             ft.Radio(value="es", label="Español 🇪🇸"),
                         ]
                     ),
