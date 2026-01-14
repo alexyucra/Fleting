@@ -1,5 +1,6 @@
 from pathlib import Path
 from fleting.cli.templates.database import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
+from .rich_console import console
 
 def is_fleting_project(path: Path) -> bool:
     return (path / ".fleting").exists()
@@ -36,8 +37,8 @@ def activate_project(root):
 def get_project_root():
     root = find_project_root()
     if not root:
-        print("❌ This directory is not a Fleting project.")
-        print("👉 Go to the project root or a parent directory.")
+        console.print("❌ This directory is not a Fleting project.", style="error")
+        console.print("👉 Go to the project root or a parent directory.", style="suggestion")
         return
 
     activate_project(root)
@@ -45,7 +46,7 @@ def get_project_root():
 
 def handle_db(args):
     if not args:
-        print("Use: fleting db <init|migrate|seed|make|rollback|status>")
+        console.print("Use: fleting db <init|migrate|seed|make|rollback|status>", style="suggestion")
         return
 
     root = get_project_root()
@@ -62,7 +63,7 @@ def handle_db(args):
         db_seed(root)
     elif cmd == "make":
         if len(args) < 2:
-            print("Use: fleting db make <name>\n")
+            console.print("Use: fleting db make <name>\n", style="suggestion")
             return
         make_migration(root, args[1])
     elif cmd == "rollback":
@@ -70,6 +71,6 @@ def handle_db(args):
     elif cmd == "status":
         db_status(root)
     else:
-        print(f"Unknown db command: {cmd}")
+        console.print(f"Unknown db command: {cmd}", style="warning")
 
 

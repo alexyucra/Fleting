@@ -1,6 +1,7 @@
 from pathlib import Path
 import importlib.util
 import sys
+from .rich_console import console
 
 # ----------------------
 # Utils
@@ -21,11 +22,11 @@ def print_table(headers, rows):
     def fmt(row):
         return " | ".join(str(cell).ljust(col_sizes[i]) for i, cell in enumerate(row))
 
-    print(fmt(headers))
-    print("-+-".join("-" * s for s in col_sizes))
+    console.print(fmt(headers))
+    console.print("-+-".join("-" * s for s in col_sizes))
 
     for row in rows:
-        print(fmt(row))
+        console.print(fmt(row))
 
 # ----------------------
 # Handlers
@@ -34,11 +35,11 @@ def handle_list(args):
     root = get_project_root()
 
     if not is_fleting_project(root):
-        print("❌ This directory is not a Fleting project.")
+        console.print("❌ This directory is not a Fleting project.", style="error")
         return
 
     if not args:
-        print("Use: fleting list <pages|controllers|views|models|routes>")
+        console.print("Use: fleting list <pages|controllers|views|models|routes>", style="suggestion")
         return
 
     kind = args[0]
@@ -54,7 +55,7 @@ def handle_list(args):
     elif kind == "pages":
         list_pages(root)
     else:
-        print(f"Unknown list type: {kind}")
+        console.print(f"Unknown list type: {kind}", style="warning")
 
 # ----------------------
 # Simple lists
@@ -63,7 +64,7 @@ def list_simple(path: Path, suffix: str, label: str):
     rows = []
 
     if not path.exists():
-        print(f"No {label.lower()}s found.")
+        console.print(f"No {label.lower()}s found.", style="warning")
         return
 
     for file in sorted(path.glob(f"*{suffix}")):
