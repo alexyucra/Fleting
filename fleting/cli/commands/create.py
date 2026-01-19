@@ -125,8 +125,8 @@ def create_model(name: str):
     class_name = f"{name.capitalize()}Model"
 
     content = f"""class {class_name}:
-    def __init__(self):
-        pass
+    def __init__(self, db):
+        self.db = db
 """
 
     path.write_text(content, encoding="utf-8")
