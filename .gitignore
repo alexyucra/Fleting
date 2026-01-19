@@ -47,8 +47,10 @@ Thumbs.db
 *.fletstate
 .python-version
 dist/
+app3/
 app2/
 app/
 sources/
 fleting.bat
 fleting/cli/helpers/project.py
+fleting/cli/test_console.py

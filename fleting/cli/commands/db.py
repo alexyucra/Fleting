@@ -1,6 +1,6 @@
 from pathlib import Path
 from fleting.cli.templates.database import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
-from .rich_console import console
+from fleting.cli.console.console import console
 
 def is_fleting_project(path: Path) -> bool:
     return (path / ".fleting").exists()

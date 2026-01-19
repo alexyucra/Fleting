@@ -7,7 +7,94 @@ from fleting.cli.commands.delete import handle_delete
 from fleting.cli.commands.list import handle_list
 from fleting.cli.commands.db import handle_db
 
+from fleting.cli.console.console import console
+from fleting.cli.console import Table, Panel, Text, box, Rule
+
 def print_help():
+    console.clear()
+    
+    # Título principal
+    console.print()
+    console.rule("[bold cyan]🚀 Fleting CLI[/bold cyan]", style="cyan")
+    console.print()
+    
+    # Panel de uso
+    console.print(Panel.fit(
+        "[bold green]fleting <command> [options][/bold green]",
+        title="[yellow]📌 Usage[/yellow]",
+        border_style="yellow",
+        padding=(1, 2)
+    ))
+    console.print()
+    
+    # Tabla de comandos
+    table = Table(
+        show_header=True,
+        header_style="bold magenta",
+        box=box.ROUNDED,
+        border_style="blue",
+        padding=(0, 1)
+    )
+    
+    table.add_column("Command", style="bold green", width=36)
+    table.add_column("Description", style="cyan", width=44)
+    
+    # Comandos organizados por categorías
+    categories = {
+        "💼 Project Commands": [
+            ("fleting init <app_name>", "Initialize a new Fleting project"),
+            ("fleting info", "Show version and system information"),
+            ("fleting run", "Run the application"),
+        ],
+        "➕ Create Commands": [
+            ("fleting create page <name>", "Create a page (model + controller + view)"),
+            ("fleting create view <name>", "Create a new view"),
+            ("fleting create model <name>", "Create a new model"),
+            ("fleting create controller <name>", "Create a new controller"),
+        ],
+        "🗑️  Delete Commands": [
+            ("fleting delete page <name>", "Delete an existing page"),
+            ("fleting delete view <name>", "Delete a view"),
+            ("fleting delete model <name>", "Delete a model"),
+            ("fleting delete controller <name>", "Delete a controller"),
+        ],
+        "📋 List Commands": [
+            ("fleting list pages", "List all pages"),
+            ("fleting list controllers", "List all controllers"),
+            ("fleting list views", "List all views"),
+            ("fleting list models", "List all models"),
+            ("fleting list routes", "List all routes"),
+        ],
+        "🗄️  Database Commands": [
+            ("fleting db init", "Initialize the database"),
+            ("fleting db migrate", "Run database migrations"),
+            ("fleting db seed", "Seed the database with initial data"),
+            ("fleting db make <name>", "Create a new migration"),
+            ("fleting db rollback", "Rollback the last migration"),
+            ("fleting db status", "Show current database migration status"),
+        ]
+    }
+    
+    for category, commands in categories.items():
+        # Añadir separador para categorías
+        if list(categories.keys()).index(category) > 0:
+            table.add_row("─" * 36, "─" * 44, style="dim")
+        
+        # Añadir título de categoría
+        table.add_row(
+            f"[bold yellow]{category}[/bold yellow]",
+            "",
+            style="yellow"
+        )
+        
+        # Añadir comandos de la categoría
+        for cmd, desc in commands:
+            table.add_row(f"  {cmd}", desc)
+    
+    console.print(table)
+    console.print()
+
+def print_help_2():
     # ANSI Colors
     RESET = "\033[0m"
     BOLD = "\033[1m"

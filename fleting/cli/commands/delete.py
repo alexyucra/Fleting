@@ -1,5 +1,5 @@
 from pathlib import Path
-from .rich_console import console
+from fleting.cli.console.console import console
 
 BASE = Path.cwd()
 

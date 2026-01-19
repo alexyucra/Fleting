@@ -1,5 +1,5 @@
 from pathlib import Path
-from .rich_console import console
+from fleting.cli.console.console import console
 
 def is_fleting_project(path: Path) -> bool:
     return (path / "main.py").exists() and (path / "views").exists()

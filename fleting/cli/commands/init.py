@@ -1,6 +1,6 @@
 from pathlib import Path
 from fleting.cli.templates.index import init_project
-from .rich_console import console
+from fleting.cli.console.console import console
 
 DEFAULT_PROJECT_NAME = "app"
 DEFAULT_APP_NAME = "Fleting"

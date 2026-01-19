@@ -2,7 +2,7 @@ import subprocess
 import sys
 import shutil
 from pathlib import Path
-from .rich_console import console
+from fleting.cli.console.console import console
 
 def handle_run():
     project_root = Path.cwd()

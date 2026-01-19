@@ -1,7 +1,7 @@
 import platform
 import sys
 from importlib import metadata
-from .rich_console import console
+from fleting.cli.console.console import console
 
 BANNER = r"""
  ______ _      _   _             
