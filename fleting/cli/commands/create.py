@@ -125,8 +125,8 @@ def create_model(name: str):
     class_name = f"{name.capitalize()}Model"
 
     content = f"""class {class_name}:
-    def __init__(self, db):
-        self.db = db
+    def __init__(self):
+        pass
 """
 
     path.write_text(content, encoding="utf-8")
@@ -199,15 +199,12 @@ def create_page_view(name: str):
     content = f"""import flet as ft
 from views.layouts.main_layout import MainLayout
 from controllers.{name}_controller import {controller_class}
-from models.{name}_model import {model_class}
 
 class {class_name}:
     def __init__(self, page, router):
         self.page = page
         self.router = router
-
-        self.model = {model_class}()
-        self.controller = {controller_class}(self.model)
+        self.controller = {controller_class}()
 
     def render(self):
         content = ft.Column(

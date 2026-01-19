@@ -60,7 +60,6 @@ exec "{fleting_exe}" "$@"
         except:
             console.print(f"Could not make {launcher_path} executable", style="warning")
     
-    console.print(f"Launcher created at: {launcher_path}", style="success")
     return True
 
 def _create_symlink(project_root: Path, cli_name: str = CLI_NAME):

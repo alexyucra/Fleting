@@ -39,6 +39,7 @@ def up(db):
         )
     ''')
 """)
+    print(f"✅ migrations/001_initial.py successfully created")
     
     create_file(BASE / "seeds/initial.py", """
 def run(db):
@@ -47,6 +48,7 @@ def run(db):
         VALUES ('admin', 'fleting')
     ''')
 """)
+    print(f"✅ seeds/initial.py successfully created")
 
     create_file(BASE / "core/migrations.py", """
 from pathlib import Path
