@@ -1,291 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://alexyucra.github.io/Fleting/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/"/>
+         <loc>https://alexyucra.github.io/Fleting/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/CONTRIBUTING/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/CONTRIBUTING/"/>
+         <loc>https://alexyucra.github.io/Fleting/CONTRIBUTING/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/es/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/"/>
+         <loc>https://alexyucra.github.io/Fleting/index.es/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/es/arquitectura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/arquitectura/"/>
+         <loc>https://alexyucra.github.io/Fleting/index.pt/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/es/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/checklist/"/>
+         <loc>https://alexyucra.github.io/Fleting/es/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/es/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/cli/"/>
+         <loc>https://alexyucra.github.io/Fleting/es/arquitectura/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/es/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/enviroment/"/>
+         <loc>https://alexyucra.github.io/Fleting/es/checklist/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/"/>
+         <loc>https://alexyucra.github.io/Fleting/es/cli/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/arquitetura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/arquitetura/"/>
+         <loc>https://alexyucra.github.io/Fleting/es/enviroment/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/checklist/"/>
+         <loc>https://alexyucra.github.io/Fleting/pt/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/cli/"/>
+         <loc>https://alexyucra.github.io/Fleting/pt/arquitetura/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/enviroment/"/>
+         <loc>https://alexyucra.github.io/Fleting/pt/checklist/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/"/>
+         <loc>https://alexyucra.github.io/Fleting/pt/cli/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
     <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/CONTRIBUTING/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/CONTRIBUTING/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/es/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/es/arquitectura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/arquitectura/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/es/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/checklist/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/es/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/cli/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/es/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/enviroment/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/pt/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/pt/arquitetura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/arquitetura/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/pt/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/checklist/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/pt/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/cli/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/pt/pt/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/enviroment/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/CONTRIBUTING/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/CONTRIBUTING/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/CONTRIBUTING/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/es/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/es/arquitectura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/arquitectura/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/arquitectura/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/es/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/checklist/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/es/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/cli/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/cli/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/es/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/es/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/es/enviroment/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/pt/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/pt/arquitetura/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/arquitetura/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/arquitetura/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/pt/checklist/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/checklist/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/checklist/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/pt/cli/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/cli/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/cli/"/>
-    </url>
-    <url>
-        <loc>https://alexyucra.github.io/Fleting/es/pt/enviroment/</loc>
-        <lastmod>2026-02-10</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://alexyucra.github.io/Fleting/es/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://alexyucra.github.io/Fleting/pt/enviroment/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://alexyucra.github.io/Fleting/pt/pt/enviroment/"/>
+         <loc>https://alexyucra.github.io/Fleting/pt/enviroment/</loc>
+         <lastmod>2026-02-10</lastmod>
     </url>
 </urlset>
