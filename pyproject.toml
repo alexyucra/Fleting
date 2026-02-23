@@ -1,6 +1,6 @@
 [project]
 name = "fleting"
-version = "1.1.33"
+version = "1.1.34"
 description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
 readme = "README.md"
 license = { text = "MIT" }
@@ -34,10 +34,7 @@ classifiers = [
 
 dependencies = [
     "flet",
-    "rich",
-    "typer",
-    "psutil",
-    "langchain"
+    "rich"
 ]
 
 # ------------------------
