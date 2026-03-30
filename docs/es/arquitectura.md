@@ -34,12 +34,12 @@ fleting/
 │   └── templates/
 │
 ├── main.py              # Punto de entrada de la aplicación
-└── runtime_imports.py   # importacion de views para build (Windows)
+└── runtime_imports.py   # Importación de views para build (Windows)
 ```
 
 ## 🧭 Arquitectura de Views
 
-En Fleting, las Views no conocen el layout de la aplicación.
+En Fleting, las *Views* no conocen el *layout* de la aplicación.
 
 ```text
 View (contenido puro)
@@ -85,7 +85,7 @@ Se actualiza automáticamente al redimensionar la ventana.
 
 ## 🚦 Enrutamiento
 
-Las rutas se definen en `configs/routes.py` con lazy loading:
+Las rutas se definen en `configs/routes.py` con *lazy loading*:
 
 ```py
 ROUTE_MAP = {
@@ -93,7 +93,7 @@ ROUTE_MAP = {
 }
 ```
 
-Cada view recibe:
+Cada *view* recibe:
 
 - page
 - router
@@ -112,8 +112,8 @@ Fleting no intenta ser todo.
 
 Existe para:
 
-- acelerar proyectos con Flet
-- mantener el código limpio
-- servir como base sólida para aplicaciones reales
+- Acelerar proyectos con Flet
+- Mantener el código limpio
+- Servir como base sólida para aplicaciones reales
 
 Simple, extensible y directo al punto.

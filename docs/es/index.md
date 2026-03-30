@@ -27,7 +27,7 @@ Esta guía describe los conceptos, herramientas y buenas prácticas para desarro
 
 ---
 
-## 📌 Cómo usar esta documentación
+## 📌 ¿Cómo usar esta documentación?
 
 - Lee el **README** para una visión general
 - Usa el **CLI** para generar código rápidamente

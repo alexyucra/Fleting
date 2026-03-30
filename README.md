@@ -6,7 +6,7 @@
 
 ---
 <p align="center">
-  <img src="../img/fleting_logo.png" width="100"/>
+  <img src="docs/img/fleting_logo.png" width="100"/>
 </p>
 
 # Fleting Framework

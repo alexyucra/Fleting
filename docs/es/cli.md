@@ -16,15 +16,15 @@ cd <nombre_proyecto>
 fleting run
 ```
 
-### 📌 Comportamento:
+### 📌 Comportamiento:
 
-Cria automaticamente a pasta <nombre_proyecto>/
+Crea automáticamente la carpeta <nombre_proyecto>/
 
-Estrutura compatível com Flet Build (APK / Web / Desktop)
+Estructura compatible con Flet Build (APK / Web / Desktop)
 
-Nome padrão do projeto: Fleting
+Nombre predeterminado del proyecto: Fleting
 
-Estrutura gerada:
+Estructura generada:
 
 ```bash
 <nombre_proyecto>/
