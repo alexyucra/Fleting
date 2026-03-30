@@ -5,9 +5,13 @@
 </p>
 
 Fleting es un micro-framework opinativo construido sobre **Flet**, enfocado en:
+
 - simplicidad
+
 - organización clara
+
 - productividad
+
 - aplicaciones multiplataforma (móvil, tablet y escritorio)
 
 Aporta una arquitectura inspirada en MVC, con **layout desacoplado**, **enrutamiento simple**, **i18n**, **responsividad automática** y un **CLI para generación de código**.
@@ -18,7 +22,7 @@ Aporta una arquitectura inspirada en MVC, con **layout desacoplado**, **enrutami
 
 ## 🚀 Inicio rápido
 
-### 1. crea un entorno virtual aislado
+### 1. Crea un entorno virtual aislado
 
 - [Recomendado: entorno con poetry](es/enviroment.md)
 
@@ -85,7 +89,7 @@ Los layouts pueden reaccionar dinámicamente al tipo de dispositivo
 
 ## 📄 Licencia
 
-MIT
+[MIT](/LICENSE)
 
 ## Cómo contribuir
 

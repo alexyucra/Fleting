@@ -2,7 +2,7 @@
 
 ## 🟢 BASE (ya implementado)
 - [x] Arquitectura MVC organizada
-- [x] Router con lazy loading (sin imports circulares)
+- [x] Router con *lazy loading* (sin imports circulares)
 - [x] Layout global (TopBar + BottomBar)
 - [x] Responsividad (mobile / tablet / desktop)
 - [x] Estado global (`AppState`)
@@ -13,9 +13,9 @@
 ---
 
 ## 🔵 RESPONSIVIDAD & UI
-- [ ] Limitar el ancho del contenido en desktop (`max_content_width`)
+- [ ] Limitar el ancho del contenido en *desktop* (`max_content_width`)
 - [ ] Crear `ResponsiveContainer` reutilizable
-- [ ] Sidebar automática para desktop (reemplazar BottomBar)
+- [ ] Sidebar automática para *desktop* (reemplazar BottomBar)
 - [ ] Breakpoints configurables vía `AppConfig`
 - [ ] Detección de orientación (portrait / landscape)
 - [ ] Sistema de espaciado estándar (design system)
@@ -24,7 +24,7 @@
 
 ## 🟣 LAYOUT & NAVEGACIÓN
 - [ ] Crear `BaseView` abstracta
-- [ ] Estandarizar el título de la página por view
+- [ ] Estandarizar el título de la página por *view*
 - [ ] Resaltar la ruta activa en el menú
 - [ ] Soporte para rutas con parámetros (`/user/:id`)
 - [ ] Historial de navegación (back)
@@ -83,7 +83,7 @@
 - [x] README con la filosofía del framework
 - [x] Guía de comandos CLI
 - [x] Diagrama de la arquitectura
-- [x] Guía de creación de views
+- [x] Guía de creación de *views*
 - [x] Ejemplos completos
 - [x] Checklist de mejoras
 - [ ] Guía de responsividad
