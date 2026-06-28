@@ -149,7 +149,7 @@ Exemplo de saída:
 Após inicializar o projeto, execute o app com:
 
 ```bash 
-fletting run
+fleting run
 # ou
 bash flet run fleting/main.py
 
@@ -328,7 +328,7 @@ app/
 Exemplo de uso:
 
 ```bash
-fletting db init
+fleting db init
 ```
 Saída esperada
 
@@ -376,7 +376,7 @@ Este comando:
 
 Exemplo de uso
 ```bash
-fletting db seed
+fleting db seed
 ```
 Saída esperada
 > 🌱 Seed executada: initial.py
@@ -453,7 +453,7 @@ Este comando:
 Exemplo de uso
 
 ```bash
-fletting db status
+fleting db status
 ```
 Exemplo de saída:
 
@@ -481,10 +481,10 @@ Banco de dados atualizado
 
 ## 🚀 Fluxo Recomendado
 ```bash
-fletting db init
-fletting db make create_users_table
-fletting db migrate
-fletting db seed
+fleting db init
+fleting db make create_users_table
+fleting db migrate
+fleting db seed
 ```
 
 Este fluxo garante um ambiente de banco de dados consistente, reproduzível e seguro.
