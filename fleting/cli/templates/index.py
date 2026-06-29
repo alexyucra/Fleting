@@ -26,10 +26,12 @@ def init_project(project_root: Path, project_name: str = "Fleting"):
         "assets",
         "core",
         "configs/languages",
-        "controllers",
-        "models",
-        "views/layouts",
-        "views/pages",
+        "app",
+        "app/controllers",
+        "app/models",
+        "app/views",
+        "app/views/layouts",
+        "app/views/pages",
     ]
 
     for folder in folders:
