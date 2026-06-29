@@ -37,11 +37,17 @@ fleting create page home
 flet run fleting/app.py
 ```
 
-## 📚 Documentação
+## 📚 Documentação - Fleting Docs
 
 A documentação completa está disponível em:
 
-👉 [documentação completa](pt/index.md)
+👉 [Fleting Documentação](https://alexyucra.github.io/Fleting/)
+
+👉 [Flet Documentação](https://github.com/alexyucra/flet-docs)
+
+👉 [Fleting Curso Completo](https://github.com/alexyucra/fleting-curso)
+
+👉 [FLAI – Local AI Framework para Fleting](https://github.com/alexyucra/flai)
 
 ---
 
