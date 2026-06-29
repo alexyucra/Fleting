@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../../img/fleting_logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1484,7 +1484,7 @@ fleting run
 </code></pre>
 <h2 id="executando-o-projeto">▶️ Executando o Projeto</h2>
 <p>Após inicializar o projeto, execute o app com:</p>
-<pre><code class="language-bash">fletting run
+<pre><code class="language-bash">fleting run
 # ou
 bash flet run fleting/main.py
 
@@ -1624,7 +1624,7 @@ python -m cli.cli create view home
 └── data/
 </code></pre>
 <p>Exemplo de uso:</p>
-<pre><code class="language-bash">fletting db init
+<pre><code class="language-bash">fleting db init
 </code></pre>
 <p>Saída esperada</p>
 <blockquote>
@@ -1664,7 +1664,7 @@ Insere dados iniciais ou de teste no banco de dados.</p>
 <h3 id="aviso">⚠️ Aviso</h3>
 <p>⚠️ Este comando pode ser executado mais de uma vez, portanto, as seeds devem ser idempotentes (use INSERT ou IGNORE, por exemplo).</p>
 <p>Exemplo de uso</p>
-<pre><code class="language-bash">fletting db seed
+<pre><code class="language-bash">fleting db seed
 </code></pre>
 <p>Saída esperada</p>
 <blockquote>
@@ -1726,7 +1726,7 @@ Exibe o status atual das migrações do projeto.</p>
 <li>Detecta inconsistências (migrações aplicadas sem um arquivo)</li>
 </ul>
 <p>Exemplo de uso</p>
-<pre><code class="language-bash">fletting db status
+<pre><code class="language-bash">fleting db status
 </code></pre>
 <p>Exemplo de saída:</p>
 <pre><code class="language-text">📦 Status do banco de dados
@@ -1751,10 +1751,10 @@ Migrações pendentes:
 <li>Versionar as migrações juntamente com o código</li>
 </ul>
 <h2 id="fluxo-recomendado">🚀 Fluxo Recomendado</h2>
-<pre><code class="language-bash">fletting db init
-fletting db make create_users_table
-fletting db migrate
-fletting db seed
+<pre><code class="language-bash">fleting db init
+fleting db make create_users_table
+fleting db migrate
+fleting db seed
 </code></pre>
 <p>Este fluxo garante um ambiente de banco de dados consistente, reproduzível e seguro.</p>
 <hr />
