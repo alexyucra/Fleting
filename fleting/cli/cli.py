@@ -11,7 +11,7 @@ from fleting.cli.commands.pull import handle_pull
 
 from fleting.cli.console.console import console
 from fleting.cli.console import Table, Panel, Text, box, Rule
-# import traceback
+import traceback
 
 def print_help():
     console.clear()
@@ -138,8 +138,8 @@ def main():
             print_help()
 
     except Exception as e:
-         print("Error executing CLI command:", str(e))
-         # traceback.print_exc() 
+        print("Error executing CLI command:", str(e))
+        traceback.print_exc() 
 
 if __name__ == "__main__":
     main()

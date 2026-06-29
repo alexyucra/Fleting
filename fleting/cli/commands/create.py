@@ -1,21 +1,11 @@
 from pathlib import Path
 from fleting.cli.console.console import console
-
-def is_fleting_project(path: Path) -> bool:
-    return (path / "main.py").exists() and (path / "views").exists()
-
-def get_project_root() -> Path:
-    return Path.cwd()
+from fleting.cli.helpers.project import get_project_root
 
 def handle_create(args):
     
     root = get_project_root()
-
-    if not is_fleting_project(root):
-        console.print("❌ This directory is not a Fleting project.", style="error")
-        console.print("👉 Execute this command within the project folder.", style="suggestion")
-        return
-    
+ 
     if len(args) < 2:
         console.print("Use: fleting create <controller|view|model|page> <nome>", style="suggestion")
         return
@@ -46,7 +36,7 @@ def to_pascal_case(text: str) -> str:
 
 def create_controller(name: str):
     BASE = get_project_root()
-    path = BASE / "controllers" / f"{name}_controller.py"
+    path = BASE / "app/controllers" / f"{name}_controller.py"
 
     if path.exists():
         console.print(f"Controller '{name}' already exists.", style="warning")
@@ -55,7 +45,7 @@ def create_controller(name: str):
     class_name = f"{to_pascal_case(name)}Controller"
     model_class = f"{to_pascal_case(name)}Model"
 
-    content = f'''from models.{name}_model import {model_class}
+    content = f'''from app.models.{name}_model import {model_class}
 
 class {class_name}:
     """
@@ -76,7 +66,7 @@ class {class_name}:
 # --------------
 def create_view(name: str):
     BASE = get_project_root()
-    path = BASE / "views" / "pages" / f"{name}_view.py"
+    path = BASE / "app" / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
         console.print(f"View '{name}' already exists.", style="warning")
@@ -85,7 +75,7 @@ def create_view(name: str):
     class_name = f"{name.capitalize()}View"
 
     content = f"""import flet as ft
-from views.layouts.main_layout import MainLayout
+from app.views.layouts.main_layout import MainLayout
 
 class {class_name}:
     def __init__(self, page, router):
@@ -116,7 +106,7 @@ class {class_name}:
 # --------------
 def create_model(name: str):
     BASE = get_project_root()
-    path = BASE / "models" / f"{name}_model.py"
+    path = BASE / "app/models" / f"{name}_model.py"
 
     if path.exists():
         console.print(f"Model '{name}' already exists.", style="warning")
@@ -157,7 +147,7 @@ def register_route(name: str):
     route_block = f"""
     {{
         "path": "/{name}",
-        "view": "views.pages.{name}_view.{name.capitalize()}View",
+        "view": "app.views.pages.{name}_view.{name.capitalize()}View",
         "label": "{name.capitalize()}",
         "icon": ft.Icons.CHEVRON_RIGHT,
         "show_in_top": True,
@@ -187,7 +177,7 @@ def register_route(name: str):
 
 def create_page_view(name: str):
     BASE = get_project_root()
-    path = BASE / "views" / "pages" / f"{name}_view.py"
+    path = BASE / "app" / "views" / "pages" / f"{name}_view.py"
 
     if path.exists():
         console.print(f"View '{name}' already exists.", style="warning")
@@ -198,8 +188,8 @@ def create_page_view(name: str):
     model_class = f"{name.capitalize()}Model"
 
     content = f"""import flet as ft
-from views.layouts.main_layout import MainLayout
-from controllers.{name}_controller import {controller_class}
+from app.views.layouts.main_layout import MainLayout
+from app.controllers.{name}_controller import {controller_class}
 
 class {class_name}:
     def __init__(self, page, router):
