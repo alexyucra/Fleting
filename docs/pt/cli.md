@@ -6,7 +6,15 @@ O CLI do Fleting automatiza a criação e remoção de arquivos seguindo o padr�
 
 ---
 
+## Amviente virtual recomendado
+
+> uv venv
+
+> .\venv\script\Activate
+
 ## 📦 Inicialização do Projeto
+
+> pip install fleting
 
 Para criar a estrutura inicial de um novo projeto Fleting, execute:
 
@@ -28,12 +36,13 @@ Estrutura gerada:
 
 ```bash
 <nome_projeto>/
+ ├─ app/
+ |   ├─ models/
+ |   ├─ views/
+ |   ├─ controllers/
  ├─ assets/
  ├─ configs/
- ├─ controllers/
  ├─ core/
- ├─ models/
- ├─ views/
  └─ main.py
 ```
 
