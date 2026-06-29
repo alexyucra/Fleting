@@ -33,7 +33,7 @@ def handle_delete(args):
 # delete controller
 # -----------------
 def delete_controller(name: str):
-    path = BASE / "controllers" / f"{name}_controller.py"
+    path = BASE / "app/controllers" / f"{name}_controller.py"
 
     if not path.exists():
         console.print(f"Controller '{name}' does not exist.", style="warning")
@@ -46,7 +46,7 @@ def delete_controller(name: str):
 # delete view
 # -----------------
 def delete_view(name: str):
-    path = BASE / "views" / "pages" / f"{name}_view.py"
+    path = BASE / "app/views" / "pages" / f"{name}_view.py"
 
     if not path.exists():
         console.print(f"View '{name}' does not exist.", style="warning")
@@ -59,7 +59,7 @@ def delete_view(name: str):
 # delete model
 # -----------------
 def delete_model(name: str):
-    path = BASE / "models" / f"{name}_model.py"
+    path = BASE / "app/models" / f"{name}_model.py"
 
     if not path.exists():
         console.print(f"Model '{name}' does not exist.", style="warning")

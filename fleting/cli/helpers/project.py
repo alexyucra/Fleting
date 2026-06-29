@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 
 def is_fleting_project(path: Path) -> bool:
-    return (path / ".fleting").exists()
+    return (path / ".fleting").exists() and (path / "main.py").exists()
 
 def find_project_root(start=None) -> Path | None:
     if start is None:

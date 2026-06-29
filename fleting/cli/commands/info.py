@@ -29,17 +29,17 @@ def handle_info():
 
     console.print(BANNER)
     console.print("🚀 Fleting Framework\n", style="header")
-
-    console.print("📦 Environment\n", style="subtitle")
-    console.print(f"🧠 Python        : {python_version}", style="label")
-    console.print(f"🖥️  System      : {system}", style="label")
-    console.print(f"🧩 Flet          : {flet_version}", style="label")
-    console.print(f"🚀 Fleting       : {fleting_version}", style="label")
-
     console.print("\n📚 Installed libraries:", style="subtitle")
     for dist in sorted(metadata.distributions(), key=lambda d: d.metadata["Name"].lower()):
         name = dist.metadata["Name"]
         version = dist.version
         console.print(f"  - {name}=={version}", style="muted")
+
+    
+    console.print("📦 Environment\n", style="subtitle")
+    console.print(f"🧠 Python        : {python_version}", style="label")
+    console.print(f"🖥️  System      : {system}", style="label")
+    console.print(f"🧩 Flet          : {flet_version}", style="label")
+    console.print(f"🚀 Fleting       : {fleting_version}", style="label")
 
     console.print("\n✅ Ready-to-use environment.\n", style="success")

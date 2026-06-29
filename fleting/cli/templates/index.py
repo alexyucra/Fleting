@@ -623,7 +623,7 @@ import importlib
 ROUTES = [
     {
         "path": "/",
-        "view": "views.pages.home_view.HomeView",
+        "view": "app.views.pages.home_view.HomeView",
         "label": "menu.home",
         "icon": ft.Icons.HOME,
         "show_in_top": True,
@@ -631,7 +631,7 @@ ROUTES = [
     },
     {
         "path": "/settings",
-        "view": "views.pages.settings_view.SettingsView",
+        "view": "app.views.pages.settings_view.SettingsView",
         "label": "menu.settings",
         "icon": ft.Icons.SETTINGS,
         "show_in_top": True,
@@ -639,7 +639,7 @@ ROUTES = [
     },
     {
         "path": "/help",
-        "view": "views.pages.help_view.HelpView",
+        "view": "app.views.pages.help_view.HelpView",
         "label": "menu.help",
         "icon": ft.Icons.HELP,
         "show_in_top": True,
@@ -864,7 +864,7 @@ class MainLayout(ft.Column):
     # =========================
     create_file(BASE / "views/pages/home_view.py", """
 import flet as ft
-from views.layouts.main_layout import MainLayout
+from app.views.layouts.main_layout import MainLayout
 
 class HomeView:
     def __init__(self, page, router):
@@ -931,8 +931,8 @@ class HomeView:
 import flet as ft
 from core.state import AppState
 from core.i18n import I18n
-from views.layouts.main_layout import MainLayout
-from controllers.settings_controller import SettingsController
+from app.views.layouts.main_layout import MainLayout
+from app.controllers.settings_controller import SettingsController
 
 class SettingsView:
     def __init__(self, page, router):
@@ -983,8 +983,8 @@ class SettingsView:
 
     create_file(BASE / "views/pages/help_view.py", """
 import flet as ft
-from views.layouts.main_layout import MainLayout
-from controllers.help_controller import HelpController
+from app.views.layouts.main_layout import MainLayout
+from app.controllers.help_controller import HelpController
 from flet import UrlLauncher
 
 class HelpView:
@@ -1097,16 +1097,16 @@ ft.app(main)
 
 """)
     create_file(BASE / "runtime_imports.py", """
-from views.pages.home_view import HomeView
-from views.pages.settings_view import SettingsView
-from views.pages.help_view import HelpView
+from app.views.pages.home_view import HomeView
+from app.views.pages.settings_view import SettingsView
+from app.views.pages.help_view import HelpView
 """)
 
     # =========================
     # BASIC CONTROLLERS
     # =========================
     create_file(BASE / "controllers/settings_controller.py", """
-from models.settings_model import SettingsModel
+from app.models.settings_model import SettingsModel
 
 class SettingsController:
     '''
@@ -1121,7 +1121,7 @@ class SettingsController:
 """)
 
     create_file(BASE / "controllers/help_controller.py", """
-from models.help_model import HelpModel
+from app.models.help_model import HelpModel
 
 class HelpController:
     '''

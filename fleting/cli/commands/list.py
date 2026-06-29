@@ -84,11 +84,11 @@ def handle_list(args):
     kind = args[0]
 
     if kind == "controllers":
-        list_simple(root / "controllers", "_controller.py", "Controller")
+        list_simple(root / "app/controllers", "_controller.py", "Controller")
     elif kind == "views":
-        list_simple(root / "views" / "pages", "_view.py", "View")
+        list_simple(root / "app/views" / "pages", "_view.py", "View")
     elif kind == "models":
-        list_simple(root / "models", "_model.py", "Model")
+        list_simple(root / "app/models", "_model.py", "Model")
     elif kind == "routes":
         list_routes(root)
     elif kind == "pages":
@@ -128,9 +128,9 @@ def list_simple(path: Path, suffix: str, title: str):
 def list_pages(root: Path):
     rows = []
 
-    models = {f.stem.replace("_model", "") for f in (root / "models").glob("*_model.py")}
-    controllers = {f.stem.replace("_controller", "") for f in (root / "controllers").glob("*_controller.py")}
-    views = {f.stem.replace("_view", "") for f in (root / "views" / "pages").glob("*_view.py")}
+    models = {f.stem.replace("_model", "") for f in (root / "app/models").glob("*_model.py")}
+    controllers = {f.stem.replace("_controller", "") for f in (root / "app/controllers").glob("*_controller.py")}
+    views = {f.stem.replace("_view", "") for f in (root / "app/views" / "pages").glob("*_view.py")}
 
     routes = load_routes(root)
 
