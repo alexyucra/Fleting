@@ -768,7 +768,7 @@ DATABASE = {
     # =========================
     # LAYOUT
     # =========================
-    create_file(BASE / "views/layouts/main_layout.py", """
+    create_file(BASE / "app/views/layouts/main_layout.py", """
 import flet as ft
 from core.state import AppState
 from core.i18n import I18n
@@ -864,7 +864,7 @@ class MainLayout(ft.Column):
     # =========================
     # VIEW HOME
     # =========================
-    create_file(BASE / "views/pages/home_view.py", """
+    create_file(BASE / "app/views/pages/home_view.py", """
 import flet as ft
 from app.views.layouts.main_layout import MainLayout
 
@@ -929,7 +929,7 @@ class HomeView:
         )
 """)
 
-    create_file(BASE / "views/pages/settings_view.py", """
+    create_file(BASE / "app/views/pages/settings_view.py", """
 import flet as ft
 from core.state import AppState
 from core.i18n import I18n
@@ -983,7 +983,7 @@ class SettingsView:
         )
 """)
 
-    create_file(BASE / "views/pages/help_view.py", """
+    create_file(BASE / "app/views/pages/help_view.py", """
 import flet as ft
 from app.views.layouts.main_layout import MainLayout
 from app.controllers.help_controller import HelpController
@@ -1107,7 +1107,7 @@ from app.views.pages.help_view import HelpView
     # =========================
     # BASIC CONTROLLERS
     # =========================
-    create_file(BASE / "controllers/settings_controller.py", """
+    create_file(BASE / "app/controllers/settings_controller.py", """
 from app.models.settings_model import SettingsModel
 
 class SettingsController:
@@ -1122,7 +1122,7 @@ class SettingsController:
         return "Settings"
 """)
 
-    create_file(BASE / "controllers/help_controller.py", """
+    create_file(BASE / "app/controllers/help_controller.py", """
 from app.models.help_model import HelpModel
 
 class HelpController:
@@ -1140,14 +1140,14 @@ class HelpController:
     # =========================
     # BASIC models
     # =========================
-    create_file(BASE / "models/help_model.py", """
+    create_file(BASE / "app/models/help_model.py", """
 from core.base_model import BaseModel
 
 class HelpModel(BaseModel):
     table_name = "help"
 """)
 
-    create_file(BASE / "models/settings_model.py", """
+    create_file(BASE / "app/models/settings_model.py", """
 from core.base_model import BaseModel
 
 class SettingsModel(BaseModel):
