@@ -1,13 +1,15 @@
 [project]
 name = "fleting"
-version = "1.2.3"
+version = "1.2.4"
 description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
 
 authors = [
-    { name = "Alex Yucra" }
+    {   name = "Alex Yucra", 
+        email = xalextrack@gmail.com"
+    }
 ]
 
 keywords = [
@@ -33,7 +35,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "flet",
+    "flet==1.0.5",
     "rich",
     "typer",
     "psutil"

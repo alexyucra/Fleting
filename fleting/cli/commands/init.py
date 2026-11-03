@@ -109,22 +109,25 @@ def handle_init(args=None):
     args = args or []
     cwd = Path.cwd()
 
-    if not args:
+    use_mysql = "--mysql" in args
+    clean_args = [arg for arg in args if arg != "--mysql"]
+
+    if not clean_args:
         project_root = cwd / DEFAULT_PROJECT_NAME
         project_name = DEFAULT_APP_NAME
         project_root.mkdir(parents=True, exist_ok=True)
-
-    elif args[0] == ".":
+    elif clean_args[0] == ".":
         project_root = cwd
         project_name = DEFAULT_APP_NAME
-
     else:
-        project_root = cwd / args[0]
-        project_name = args[0].replace("_", " ").title()
+        project_root = cwd / clean_args[0]
+        project_name = clean_args[0].replace("_", " ").title()
         project_root.mkdir(parents=True, exist_ok=True)
+    
+    engine = "mysql" if use_mysql else "sqlite"
 
     try:
-        init_project(project_root, project_name)
+        init_project(project_root, project_name, engine=engine)
         
         # Always use "fleting" as the CLI name for consistency
         _bin(project_root, CLI_NAME)

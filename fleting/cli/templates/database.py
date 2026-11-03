@@ -2,7 +2,8 @@ import importlib.util
 from pathlib import Path
 import datetime
 
-def db_init(project_root: Path):
+# def db_init(project_root: Path):
+def db_init(project_root: Path, engine: str = "sqlite"):
 
     BASE = project_root
     # =========================
@@ -56,6 +57,7 @@ def run(db):
     print(f"✅ seeds/initial.py successfully created")
 
     create_file(BASE / "core/migrations.py", """
+# Core migrations MySQL
 from pathlib import Path
 from core.database import get_connection
 

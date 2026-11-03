@@ -1,4 +1,19 @@
 <p align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" alt="Python">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Flet-0.25+-green.svg" alt="Flet">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
+  </a>
+</p>
+
+<p align="center">
 | <a href="https://alexyucra.github.io/Fleting/">🇺🇸 English</a> |
   <a href="https://alexyucra.github.io/Fleting/pt/cli/">🇧🇷 Português</a> |
   <a href="https://alexyucra.github.io/Fleting/es/cli/">🇪🇸 Español</a> |
@@ -9,7 +24,7 @@
   <img src="../img/fleting_logo.png" width="100"/>
 </p>
 
-# Fleting Framework
+# 🚀 Fleting Framework for Flet Python
 
 Fleting is an opinionated micro-framework built on top of Flet, focused on:
 
@@ -18,13 +33,31 @@ Fleting is an opinionated micro-framework built on top of Flet, focused on:
 - Productivity
 - Cross-platform applications (mobile, tablet, and desktop)
 
-Ele traz uma arquitetura inspirada em MVC, com **layout desacoplado**, **roteamento simples**, **i18n**, **responsividade automática** e um **CLI para geração de código**.
+It features an architecture inspired by MVC, with a **decoupled layout**, **simple routing**, **i18n**, **automatic responsiveness**, and a **CLI for code generation**.
 
 It brings an MVC-inspired architecture with **decoupled layout**, **simple routing**, **i18n**, **automatic responsiveness**, and a **CLI for code generation**.
 
 <p align="center">
   <img src="docs/img/fleting.gif" width="260" />
 </p>
+
+## ⚠️ Important change to the Fleting foundation
+
+Version **Fleting 1.2.3** was originally built upon **Flet 0.8.x**.
+
+As of this update, the project now uses **Flet 1.0.5** as its foundation. In other words:
+
+- **Before:** Fleting 1.2.3 + Flet 0.8.x
+- **Now:** Fleting 1.2.3 + Flet 1.0.5
+
+This update incorporates the stability, performance, and API improvements found in Flet 1.0, but it also **introduces breaking changes** compared to Flet 0.8.x. If you have existing code written for the older Flet API, please review the points below before migrating:
+
+- Services are now asynchronous and independent of the `page` object (e.g., `await ft.SharedPreferences()` instead of `page.client_storage`).
+- Most explicit calls to `page.update()` are no longer required.
+- `UserControl` has been removed; custom components now inherit directly from controls (e.g., `ft.Row`, etc.).
+- Some controls have been renamed (e.g., `ElevatedButton` → `Button`).
+
+Please refer to the official Flet migration guide for further details.
 
 ## 🚀 Quick Start
 
@@ -51,7 +84,7 @@ flet run fleting/app.py
 
 Complete documentation is available at:
 
-👉 [Full documentation](docs/pt/index.md)
+👉 [Full documentation](https://alexyucra.github.io/Fleting/)
 
 ---
 
@@ -97,3 +130,9 @@ MIT
 
 ## How to contribute
 - [For those who want to contribute to Fleting on GitHub.](CONTRIBUTING.md)
+
+<p align="center">
+| <a href="https://alexyucra.github.io/Fleting/">🇺🇸 English</a> |
+  <a href="https://alexyucra.github.io/Fleting/pt/cli/">🇧🇷 Português</a> |
+  <a href="https://alexyucra.github.io/Fleting/es/cli/">🇪🇸 Español</a> |
+</p>

@@ -4,9 +4,13 @@ import base64
 
 ICON = "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"
 
-def init_project(project_root: Path, project_name: str = "Fleting"):
+def init_project(project_root: Path, project_name: str = "Fleting", engine: str = "sqlite"):
     """
     Initializes a Fleting project in the current directory.
+    Args:
+        project_root: Path where project will be created
+        project_name: Name of the application
+        engine: Database engine to use ("sqlite" | "mysql" | "sqlserver" | "postgres")
     """
 
     BASE = project_root
@@ -252,10 +256,61 @@ class GlobalErrorHandler:
         page.update()
 """)
 
-    create_file(BASE / "core/database.py", """
+    if engine == "mysql":
+        # Template MySQL
+        create_file(BASE / "core/database.py", """
+import mysql.connector  
+from configs.database import DATABASE
+from pathlib import Path
 
-import sqlite3
-# import mysql.connector  
+BASE_DIR = Path(__file__).resolve().parent.parent
+_connection = None
+
+def get_connection():
+    global _connection
+
+    if _connection is not None:
+        return _connection
+
+    engine = DATABASE.get("ENGINE", "mysql").lower()
+
+    if engine == "mysql":
+        _connection = _connect_mysql()
+    else:
+        raise RuntimeError(f"Unsupported database engine: {engine}")
+
+    return _connection
+
+# =========================
+# MYSQL
+# =========================
+def _connect_mysql():
+    try:
+        import mysql.connector
+    except ImportError:
+        raise RuntimeError(
+            "MySQL support requires `mysql-connector-python`\\n"
+            "Install: pip install mysql-connector-python"
+        )
+
+    cfg = DATABASE.get("MYSQL", {})
+
+    return mysql.connector.connect(
+        host=cfg.get("HOST", "localhost"),
+        port=cfg.get("PORT", 3306),
+        user=cfg.get("USER"),
+        password=cfg.get("PASSWORD"),
+        database=cfg.get("NAME"),
+        charset=cfg.get("OPTIONS", {}).get("charset", "utf8mb4"),
+    )
+
+""")
+        
+    else:
+        # Template SQLite (padrão)
+        create_file(BASE / "core/database.py", """
+
+import sqlite3 
 from configs.database import DATABASE
 from pathlib import Path
 
@@ -272,8 +327,6 @@ def get_connection():
 
     if engine == "sqlite":
         _connection = _connect_sqlite()
-    elif engine == "mysql":
-        _connection = _connect_mysql()
     else:
         raise RuntimeError(f"Unsupported database engine: {engine}")
 
@@ -290,31 +343,6 @@ def _connect_sqlite():
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
     return sqlite3.connect(db_path)
-
-# =========================
-# MYSQL
-# =========================
-def _connect_mysql():
-    pass
-    # try:
-    #     import mysql.connector
-    # except ImportError:
-    #     raise RuntimeError(
-    #         "MySQL support requires `mysql-connector-python` :"
-    #         "pip install mysql-connector-python"
-    #     )
-
-    # cfg = DATABASE.get("MYSQL", {})
-
-    # return mysql.connector.connect(
-    #     host=cfg.get("HOST", "localhost"),
-    #     port=cfg.get("PORT", 3306),
-    #     user=cfg.get("USER"),
-    #     password=cfg.get("PASSWORD"),
-    #     database=cfg.get("NAME"),
-    #     charset=cfg.get("OPTIONS", {}).get("charset", "utf8mb4"),
-    # )
-
 """)
     
     create_file(BASE / "core/base_model.py", """
@@ -673,27 +701,35 @@ def get_routes():
 
 routes = get_routes()
 
+def has_view(route: str) -> bool:
+    if route not in routes:
+        return False
+    path = next((r["view"] for r in ROUTES if r["path"] == route), None)
+    if path is None:
+        return False
+    return load_view(path) is not None
 """)
     
-    create_file(BASE / "configs/database.py", """
-DATABASE = {
-    "ENGINE": "sqlite",  # sqlite | mysql
+    create_file(BASE / "configs/database.py", f"""
+# ENGINE: "sqlite" | "mysql"
+DATABASE = {{
+    "ENGINE": "{engine}", 
 
-    "SQLITE": {
+    "SQLITE": {{
         "PATH": "data/fleting.db"
-    },
+    }},
 
-    "MYSQL": {
+    "MYSQL": {{
         "HOST": "localhost",
         "PORT": 3306,
         "USER": "root",
         "PASSWORD": "",
         "NAME": "fleting",
-        "OPTIONS": {
+        "OPTIONS": {{
             "charset": "utf8mb4"
-        }
-    }
-}
+        }}
+    }}
+}}
 """)
 
     # =========================
@@ -772,7 +808,7 @@ DATABASE = {
 import flet as ft
 from core.state import AppState
 from core.i18n import I18n
-from configs.routes import ROUTES
+from configs.routes import ROUTES, has_view
 
 class MainLayout(ft.Column):
     def __init__(self, page, content, router):
@@ -809,6 +845,9 @@ class MainLayout(ft.Column):
         for r in ROUTES:
             if not r.get("show_in_top"):
                 continue
+            
+            if not has_view(r["path"]):
+                continue
 
             items.append(
                 ft.PopupMenuItem(
@@ -841,7 +880,7 @@ class MainLayout(ft.Column):
         paths = []
 
         for r in ROUTES:
-            if r.get("show_in_bottom"):
+            if r.get("show_in_bottom") and has_view(r["path"]):
                 destinations.append(
                     ft.NavigationBarDestination(
                         icon=r["icon"],
@@ -1095,7 +1134,7 @@ def main(page: ft.Page):
     except Exception as e:
         GlobalErrorHandler.handle(page, e)
 
-ft.app(main)
+ft.run(main)
 
 """)
     create_file(BASE / "runtime_imports.py", """
