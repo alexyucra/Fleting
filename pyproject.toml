@@ -8,7 +8,7 @@ requires-python = ">=3.11"
 
 authors = [
     {   name = "Alex Yucra", 
-        email = xalextrack@gmail.com"
+        email = "xalextrack@gmail.com"
     }
 ]
 
