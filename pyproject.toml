@@ -6,11 +6,7 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
 
-authors = [
-    {   name = "Alex Yucra", 
-        email = "xalextrack@gmail.com"
-    }
-]
+authors = [{name = "Alex Yucra", email = "xalextrack@gmail.com"}]
 
 keywords = [
     "fleting",
