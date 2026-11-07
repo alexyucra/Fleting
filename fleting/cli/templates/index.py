@@ -109,54 +109,6 @@ class Router:
         self.page.update()
 """)
 
-    create_file(BASE / "core/app.py", """
-import flet as ft
-from core.responsive import get_device_type
-from core.state import AppState
-from core.i18n import I18n
-
-class FletingApp:
-    def __init__(self, page):
-        self.page = page
-        AppState.device = AppState.initial_device
-        self.page.on_resize = self.on_resize
-        I18n.load(AppState.language)
-        self.page.appbar = self.build_topbar()
-        from core.router import Router
-        self.router = Router(page)
-        self.router.navigate("/")
-    
-    def build_topbar(self):
-        menu_items = []
-
-        menu = I18n.translations.get("menu", {})
-
-        for route, label in menu.items():
-            menu_items.append(
-                ft.TextButton(
-                    text=label,
-                    icon=ft.icons.CIRCLE,
-                    on_click=lambda e, r=f"/{route}": self.router.navigate(r),
-                )
-            )
-
-        return ft.AppBar(
-            title=ft.Text(I18n.t("app.name")),
-            actions=menu_items,
-            center_title=False,
-        )
-
-    def on_resize(self, e):
-        real_device = get_device_type(self.page.width)
-
-        # Avoid overwriting on the first fake frame
-        if not AppState.initialized:
-            AppState.initialized = True
-
-        AppState.device = real_device
-        self.page.update()
-""")
-
     create_file(BASE / "core/i18n.py", """
 import json
 from pathlib import Path
@@ -266,6 +218,15 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 _connection = None
 
+def placeholder():
+    return "%s" if DATABASE.get("ENGINE", "sqlite").lower() == "mysql" else "?"
+
+def dict_cursor(conn):
+    if DATABASE.get("ENGINE", "sqlite").lower() == "mysql":
+        return conn.cursor(dictionary=True)
+    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+    return conn.cursor()
+
 def get_connection():
     global _connection
 
@@ -317,6 +278,15 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 _connection = None
 
+def placeholder():
+    return "%s" if DATABASE.get("ENGINE", "sqlite").lower() == "mysql" else "?"
+
+def dict_cursor(conn):
+    if DATABASE.get("ENGINE", "sqlite").lower() == "mysql":
+        return conn.cursor(dictionary=True)
+    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+    return conn.cursor()
+
 def get_connection():
     global _connection
 
@@ -347,7 +317,7 @@ def _connect_sqlite():
     
     create_file(BASE / "core/base_model.py", """
 # core/base_model.py
-from core.database import get_connection
+from core.database import get_connection, placeholder, dict_cursor
 from core.orm import ForeignKey, HasMany
 from typing import Any
 
@@ -359,10 +329,7 @@ class QuerySet:
     
     def _cursor(self):
         conn = get_connection()
-        conn.row_factory = lambda c, r: dict(
-            zip([col[0] for col in c.description], r)
-        )
-        return conn, conn.cursor()
+        return conn, dict_cursor(conn)
 
     def all(self):
         conn, cursor = self._cursor()
@@ -388,7 +355,7 @@ class QuerySet:
         conn, cursor = self._cursor()
 
         cursor.execute(
-            f"SELECT * FROM {self.model.table_name} WHERE id = ?",
+            f"SELECT * FROM {self.model.table_name} WHERE id = {placeholder()}",
             (id,)
         )
         row = cursor.fetchone()
@@ -403,7 +370,7 @@ class QuerySet:
 
         keys = filters.keys()
         values = tuple(filters.values())
-        cond = " AND ".join(f"{k}=?" for k in keys)
+        cond = " AND ".join(f"{k}={placeholder()}" for k in keys)
 
         cursor.execute(
             f"SELECT * FROM {self.model.table_name} WHERE {cond}",
@@ -483,7 +450,7 @@ class BaseModel:
         cursor = conn.cursor()
 
         keys = ", ".join(data.keys())
-        placeholders = ", ".join("?" for _ in data)
+        placeholders = ", ".join(placeholder() for _ in data)
         values = tuple(data.values())
 
         cursor.execute(
@@ -502,15 +469,14 @@ class BaseModel:
         }
 
     def save(self):
-        data = self.__dict__.copy()
+        data = self.to_dict()
 
-        if "id" in data and data["id"]:
+        if data.get("id"):
             self.update(**data)
         else:
+            data.pop("id", None)
             obj = self.__class__.create(**data)
-            self.id = obj["id"]
-
-        return self
+            self.id = obj["id"] if obj else None
 
     def update(self, **data):
         conn = get_connection()
@@ -520,11 +486,11 @@ class BaseModel:
             raise ValueError("Update requires id")
 
         id = data.pop("id")
-        assigns = ", ".join(f"{k}=?" for k in data)
+        assigns = ", ".join(f"{k}={placeholder()}" for k in data)
         values = tuple(data.values()) + (id,)
 
         cursor.execute(
-            f"UPDATE {self.table_name} SET {assigns} WHERE id = ?",
+            f"UPDATE {self.table_name} SET {assigns} WHERE id = {placeholder()}",
             values
         )
         conn.commit()
@@ -538,7 +504,7 @@ class BaseModel:
         cursor = conn.cursor()
 
         cursor.execute(
-            f"DELETE FROM {self.table_name} WHERE id = ?",
+            f"DELETE FROM {self.table_name} WHERE id = {placeholder()}",
             (self.id,)
         )
         conn.commit()
@@ -554,7 +520,7 @@ class ForeignKey:
 
     def resolve(self, cursor, value):
         cursor.execute(
-            f"SELECT * FROM {self.table} WHERE {self.remote} = ?",
+            f"SELECT * FROM {self.table} WHERE {self.remote} = {placeholder()}",
             (value,)
         )
         row = cursor.fetchone()
@@ -570,7 +536,7 @@ class HasMany:
 
     def resolve(self, cursor, value):
         cursor.execute(
-            f"SELECT * FROM {self.table} WHERE {self.foreign_key} = ?",
+            f"SELECT * FROM {self.table} WHERE {self.foreign_key} = {placeholder()}",
             (value,)
         )
         return [dict(r) for r in cursor.fetchall()]
@@ -1116,12 +1082,12 @@ def main(page: ft.Page):
         page.assets_dir = "assets"
 
         if page.platform in (ft.PagePlatform.WINDOWS, ft.PagePlatform.LINUX, ft.PagePlatform.MACOS):
-            from core.app import FletingApp
             page.window.width = AppConfig.DEFAULT_SCREEN["width"]
             page.window.height = AppConfig.DEFAULT_SCREEN["height"]
 
         from core.i18n import I18n
-        I18n.load("pt")
+        from core.state import AppState
+        I18n.load(AppState.language)
 
         from core.router import Router
         from configs.routes import routes

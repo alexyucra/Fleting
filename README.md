@@ -1,9 +1,9 @@
 <p align="center">
   <a href="#">
-    <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" alt="Python">
+    <img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python">
   </a>
   <a href="#">
-    <img src="https://img.shields.io/badge/Flet-0.25+-green.svg" alt="Flet">
+    <img src="https://img.shields.io/badge/Flet-1.0.5+-green.svg" alt="Flet">
   </a>
   <a href="#">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">

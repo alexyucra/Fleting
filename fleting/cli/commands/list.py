@@ -2,6 +2,7 @@ from pathlib import Path
 import importlib.util
 import sys
 from typing import Dict, List, Set
+from fleting.cli.helpers.project import get_project_root
 from fleting.cli.console import (
     console, 
     print_simple_table,     
@@ -13,11 +14,6 @@ from fleting.cli.console import (
 # ----------------------
 # Utils
 # ----------------------
-def get_project_root() -> Path:
-    return Path.cwd()
-
-def is_fleting_project(path: Path) -> bool:
-    return (path / "main.py").exists() and (path / "configs").exists()
 
 def print_table_2(headers, rows):
     col_sizes = [len(h) for h in headers]
@@ -62,9 +58,7 @@ def print_table(headers: List[str], rows: List[List[str]], title: str = ""):
 # ----------------------
 def handle_list(args):
     root = get_project_root()
-
-    if not is_fleting_project(root):
-        console.print("❌ This directory is not a Fleting project.", style="error")
+    if not root:
         return
 
     if not args:

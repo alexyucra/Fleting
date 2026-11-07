@@ -1,7 +1,8 @@
 from pathlib import Path
 import shutil
-import stat
 import sys
+import os
+
 from fleting.cli.templates.index import init_project
 from fleting.cli.console.console import console
 
@@ -100,7 +101,7 @@ def _bin(project_root: Path, cli_name: str = CLI_NAME):
             return
     
     if _create_launcher(project_root, cli_name):
-        console.print("Project created with local Fleting (symlink)", style="info")
+        console.print("Project created with local Fleting (launcher)", style="info")
     # else:
     #     console.print("[warning]Project created without local Fleting access[/warning]")
     #     console.print("[info]Install Fleting globally or use full path[/info]")

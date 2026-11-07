@@ -2,16 +2,28 @@ from pathlib import Path
 from fleting.cli.console.console import console
 from fleting.cli.helpers.project import get_project_root
 
+def to_pascal_case(text: str) -> str:
+    return "".join(word.capitalize() for word in text.split("_"))
+
 def handle_create(args):
     
     root = get_project_root()
+    if not root:
+        return
  
     if len(args) < 2:
         console.print("Use: fleting create <controller|view|model|page> <nome>", style="suggestion")
         return
 
-    kind, name = args[0], args[1]
-    name = name.lower()
+    import re, keyword
+    kind, name = args[0], args[1].lower()
+
+    if not re.fullmatch(r"[a-z][a-z0-9_]*", name) or keyword.iskeyword(name):
+        console.print(
+            f"Invalid name '{name}'. Use snake_case: letters, numbers and '_' (starting with a letter).",
+            style="error",
+        )
+        return
 
     try:
         if kind == "controller":
@@ -31,9 +43,6 @@ def handle_create(args):
 # --------------
 # create controller
 # --------------
-def to_pascal_case(text: str) -> str:
-    return "".join(word.capitalize() for word in text.split("_"))
-
 def create_controller(name: str):
     BASE = get_project_root()
     path = BASE / "app/controllers" / f"{name}_controller.py"
@@ -72,7 +81,7 @@ def create_view(name: str):
         console.print(f"View '{name}' already exists.", style="warning")
         return
 
-    class_name = f"{name.capitalize()}View"
+    class_name = f"{to_pascal_case(name)}View"
 
     content = f"""import flet as ft
 from app.views.layouts.main_layout import MainLayout
@@ -85,7 +94,7 @@ class {class_name}:
     def render(self):
         content = ft.Column(
             controls=[
-                ft.Text("{name.capitalize()}", size=24),
+                ft.Text("{name.replace("_", " ").title()}", size=24),
             ],
             spacing=16,
         )
@@ -112,7 +121,7 @@ def create_model(name: str):
         console.print(f"Model '{name}' already exists.", style="warning")
         return
 
-    class_name = f"{name.capitalize()}Model"
+    class_name = f"{to_pascal_case(name)}Model"
 
     content = f"""from core.base_model import BaseModel
 
@@ -147,8 +156,8 @@ def register_route(name: str):
     route_block = f"""
     {{
         "path": "/{name}",
-        "view": "app.views.pages.{name}_view.{name.capitalize()}View",
-        "label": "{name.capitalize()}",
+        "view": "app.views.pages.{name}_view.{to_pascal_case(name)}View",
+        "label": "{name.replace("_", " ").title()}",
         "icon": ft.Icons.CHEVRON_RIGHT,
         "show_in_top": True,
         "show_in_bottom": False,
@@ -183,9 +192,9 @@ def create_page_view(name: str):
         console.print(f"View '{name}' already exists.", style="warning")
         return
 
-    class_name = f"{name.capitalize()}View"
-    controller_class = f"{name.capitalize()}Controller"
-    model_class = f"{name.capitalize()}Model"
+    class_name = f"{to_pascal_case(name)}View"
+    controller_class = f"{to_pascal_case(name)}Controller"
+    model_class = f"{to_pascal_case(name)}Model"
 
     content = f"""import flet as ft
 from app.views.layouts.main_layout import MainLayout

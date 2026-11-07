@@ -1,52 +1,7 @@
 # fleting/cli/commands/shell.py
 from pathlib import Path
 from fleting.cli.console.console import console
-
-
-def is_fleting_project(path: Path) -> bool:
-    return (path / ".fleting").exists()
-
-
-def find_project_root(start=None) -> Path | None:
-    if start is None:
-        start = Path.cwd()
-    elif isinstance(start, str):
-        start = Path(start)
-
-    start = start.resolve()
-
-    if is_fleting_project(start):
-        return start
-
-    for parent in start.parents:
-        if is_fleting_project(parent):
-            return parent
-
-    return None
-
-
-def activate_project(root):
-    import sys
-
-    if isinstance(root, str):
-        root = Path(root)
-
-    root = root.resolve()
-
-    if str(root) not in sys.path:
-        sys.path.insert(0, str(root))
-
-
-def get_project_root():
-    root = find_project_root()
-    if not root:
-        console.print("❌ This directory is not a Fleting project.", style="error")
-        console.print("👉 Go to the project root or a parent directory.", style="suggestion")
-        return
-
-    activate_project(root)
-    return root
-
+from fleting.cli.helpers.project import get_project_root
 
 def handle_shell():
     """Ponto de entrada - detecta engine e redireciona"""
