@@ -4,6 +4,136 @@ import base64
 
 ICON = "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"
 
+CORE_DATABASE_TEMPLATE = """
+# core/database.py — SQLite, MySQL e MariaDB
+import threading
+from contextlib import contextmanager
+from pathlib import Path
+
+from configs.database import DATABASE
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+_connection = None
+_lock = threading.RLock()
+
+
+def engine() -> str:
+    return DATABASE.get("ENGINE", "sqlite").lower()
+
+
+def is_mysql() -> bool:
+    return engine() == "mysql"
+
+
+def mysql_driver() -> str:
+    return DATABASE.get("MYSQL", {}).get("DRIVER", "mysql-connector")
+
+
+def placeholder() -> str:
+    return "%s" if is_mysql() else "?"
+
+
+def dict_cursor(conn):
+    if is_mysql():
+        if mysql_driver() == "pymysql":
+            import pymysql
+            return conn.cursor(pymysql.cursors.DictCursor)
+        return conn.cursor(dictionary=True, buffered=True)
+    cur = conn.cursor()
+    cur.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+    return cur
+
+
+def get_connection():
+    global _connection
+    with _lock:
+        if _connection is None:
+            eng = engine()
+            if eng == "sqlite":
+                _connection = _connect_sqlite()
+            elif eng == "mysql":
+                _connection = _connect_mysql()
+            else:
+                raise RuntimeError(f"Unsupported database engine: {eng}")
+        return _connection
+
+
+def close_connection():
+    global _connection
+    with _lock:
+        if _connection is not None:
+            try:
+                _connection.close()
+            finally:
+                _connection = None
+
+
+@contextmanager
+def transaction():
+    with _lock:
+        conn = get_connection()
+        try:
+            yield conn
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+
+
+# =========================
+# SQLITE
+# =========================
+def _connect_sqlite():
+    import sqlite3
+
+    cfg = DATABASE.get("SQLITE", {})
+    db_path = BASE_DIR / Path(cfg.get("PATH", "data/fleting.db"))
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    # handlers do Flet podem rodar em threads diferentes
+    return sqlite3.connect(db_path, check_same_thread=False)
+
+
+# =========================
+# MYSQL / MARIADB
+# =========================
+def _connect_mysql():
+    cfg = DATABASE.get("MYSQL", {})
+    opts = cfg.get("OPTIONS", {})
+    params = dict(
+        host=cfg.get("HOST", "localhost"),
+        port=int(cfg.get("PORT", 3306)),
+        user=cfg.get("USER"),
+        password=cfg.get("PASSWORD"),
+        database=cfg.get("NAME"),
+        charset=opts.get("charset", "utf8mb4"),
+    )
+
+    if mysql_driver() == "pymysql":
+        try:
+            import pymysql
+        except ImportError:
+            raise RuntimeError('MariaDB/PyMySQL support requires: pip install "fleting[mariadb]"')
+        return pymysql.connect(**params, autocommit=False)
+
+    try:
+        import mysql.connector
+    except ImportError:
+        raise RuntimeError('MySQL support requires: pip install "fleting[mysql]"')
+
+    # MariaDB não conhece utf8mb4_0900_ai_ci (padrão do connector 8.0.30+)
+    params["collation"] = opts.get("collation", "utf8mb4_general_ci")
+    return mysql.connector.connect(**params)
+"""
+
+
+def write_core_database(project_root: Path, engine: str = "sqlite", overwrite: bool = False):
+    """Gera core/database.py (o mesmo arquivo atende SQLite e MySQL/MariaDB)."""
+    path = Path(project_root) / "core" / "database.py"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if overwrite or not path.exists():
+        path.write_text(CORE_DATABASE_TEMPLATE, encoding="utf-8")
+
+
 def init_project(project_root: Path, project_name: str = "Fleting", engine: str = "sqlite"):
     """
     Initializes a Fleting project in the current directory.
@@ -208,116 +338,11 @@ class GlobalErrorHandler:
         page.update()
 """)
 
-    if engine == "mysql":
-        # Template MySQL
-        create_file(BASE / "core/database.py", """
-import mysql.connector  
-from configs.database import DATABASE
-from pathlib import Path
+    write_core_database(BASE, engine)
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-_connection = None
-
-def placeholder():
-    return "%s" if DATABASE.get("ENGINE", "sqlite").lower() == "mysql" else "?"
-
-def dict_cursor(conn):
-    if DATABASE.get("ENGINE", "sqlite").lower() == "mysql":
-        return conn.cursor(dictionary=True)
-    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
-    return conn.cursor()
-
-def get_connection():
-    global _connection
-
-    if _connection is not None:
-        return _connection
-
-    engine = DATABASE.get("ENGINE", "mysql").lower()
-
-    if engine == "mysql":
-        _connection = _connect_mysql()
-    else:
-        raise RuntimeError(f"Unsupported database engine: {engine}")
-
-    return _connection
-
-# =========================
-# MYSQL
-# =========================
-def _connect_mysql():
-    try:
-        import mysql.connector
-    except ImportError:
-        raise RuntimeError(
-            "MySQL support requires `mysql-connector-python`\\n"
-            "Install: pip install mysql-connector-python"
-        )
-
-    cfg = DATABASE.get("MYSQL", {})
-
-    return mysql.connector.connect(
-        host=cfg.get("HOST", "localhost"),
-        port=cfg.get("PORT", 3306),
-        user=cfg.get("USER"),
-        password=cfg.get("PASSWORD"),
-        database=cfg.get("NAME"),
-        charset=cfg.get("OPTIONS", {}).get("charset", "utf8mb4"),
-    )
-
-""")
-        
-    else:
-        # Template SQLite (padrão)
-        create_file(BASE / "core/database.py", """
-
-import sqlite3 
-from configs.database import DATABASE
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-_connection = None
-
-def placeholder():
-    return "%s" if DATABASE.get("ENGINE", "sqlite").lower() == "mysql" else "?"
-
-def dict_cursor(conn):
-    if DATABASE.get("ENGINE", "sqlite").lower() == "mysql":
-        return conn.cursor(dictionary=True)
-    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
-    return conn.cursor()
-
-def get_connection():
-    global _connection
-
-    if _connection is not None:
-        return _connection
-
-    engine = DATABASE.get("ENGINE", "sqlite").lower()
-
-    if engine == "sqlite":
-        _connection = _connect_sqlite()
-    else:
-        raise RuntimeError(f"Unsupported database engine: {engine}")
-
-    return _connection
-
-# =========================
-# SQLITE
-# =========================
-def _connect_sqlite():
-    cfg = DATABASE.get("SQLITE", {})
-    path_cfg = cfg.get("PATH", "data/fleting.db")
-
-    db_path = BASE_DIR / Path(path_cfg)
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-
-    return sqlite3.connect(db_path)
-""")
-    
     create_file(BASE / "core/base_model.py", """
 # core/base_model.py
-from core.database import get_connection, placeholder, dict_cursor
+from core.database import get_connection, placeholder, dict_cursor, transaction
 from core.orm import ForeignKey, HasMany
 from typing import Any
 import re
@@ -380,7 +405,7 @@ class QuerySet:
         cond = " AND ".join(f"{_ident(k)}={placeholder()}" for k in keys)
 
         cursor.execute(
-            f"SELECT * FROM {_ident(self.model.table_name_ident)} WHERE {cond}",
+            f"SELECT * FROM {_ident(self.model.table_name)} WHERE {cond}",
             values
         )
 
@@ -453,20 +478,20 @@ class BaseModel:
     # ---------- Write ----------
     @classmethod
     def create(cls, **data):
-        conn = get_connection()
-        cursor = conn.cursor()
-
         keys = ", ".join(_ident(k) for k in data.keys())
         placeholders = ", ".join(placeholder() for _ in data)
         values = tuple(data.values())
 
-        cursor.execute(
-            f"INSERT INTO {_ident(cls.table_name)} ({keys}) VALUES ({placeholders})",
-            values
-        )
-        conn.commit()
+        with transaction() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                f"INSERT INTO {_ident(cls.table_name)} ({keys}) VALUES ({placeholders})",
+                values
+            )
+            new_id = cursor.lastrowid
+            cursor.close()
 
-        return cls.find(cursor.lastrowid)
+        return cls.find(new_id)
 
     def to_dict(self):
         return {
@@ -486,9 +511,6 @@ class BaseModel:
             self.id = obj["id"] if obj else None
 
     def update(self, **data):
-        conn = get_connection()
-        cursor = conn.cursor()
-
         if "id" not in data:
             raise ValueError("Update requires id")
 
@@ -496,30 +518,39 @@ class BaseModel:
         assigns = ", ".join(f"{_ident(k)}={placeholder()}" for k in data)
         values = tuple(data.values()) + (id,)
 
-        cursor.execute(
-            f"UPDATE {_ident(self.table_name)} SET {assigns} WHERE id = {placeholder()}",
-            values
-        )
-        conn.commit()
+        with transaction() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                f"UPDATE {_ident(self.table_name)} SET {assigns} WHERE id = {placeholder()}",
+                values
+            )
+            cursor.close()
         return self
 
     def delete(self):
         if not getattr(self, "id", None):
             raise ValueError("Delete requires id")
 
-        conn = get_connection()
-        cursor = conn.cursor()
-
-        cursor.execute(
-            f"DELETE FROM {_ident(self.table_name)} WHERE id = {placeholder()}",
-            (self.id,)
-        )
-        conn.commit()
+        with transaction() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                f"DELETE FROM {_ident(self.table_name)} WHERE id = {placeholder()}",
+                (self.id,)
+            )
+            cursor.close()
  """)
 
     create_file(BASE / "core/orm.py", """
 # core/orm.py
-from core.base_model import _ident
+import re
+from core.database import placeholder
+
+_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+
+def _ident(name: str) -> str:
+    if not _IDENT.fullmatch(name):
+        raise ValueError(f"Invalid SQL identifier: {name!r}")
+    return name
 
 class ForeignKey:
     def __init__(self, table: str, local: str, remote: str = "id"):
@@ -696,13 +727,15 @@ DATABASE = {{
     }},
 
     "MYSQL": {{
+        "DRIVER": os.environ.get("FLETING_DB_DRIVER", "mysql-connector"),  # ou "pymysql" (MariaDB)
         "HOST": os.environ.get("FLETING_DB_HOST", "localhost"),
         "PORT": int(os.environ.get("FLETING_DB_PORT", "3306")),
         "USER": os.environ.get("FLETING_DB_USER", "root"),
         "PASSWORD": os.environ.get("FLETING_DB_PASSWORD", ""),
         "NAME": os.environ.get("FLETING_DB_NAME", "fleting"),
         "OPTIONS": {{
-            "charset": "utf8mb4"
+            "charset": "utf8mb4",
+            "collation": "utf8mb4_general_ci"
         }}
     }}
 }}
@@ -1104,6 +1137,16 @@ def main(page: ft.Page):
 
         router = Router(page)
         router.navigate("/")
+
+        def _close_db(e=None):
+            try:
+                from core.database import close_connection
+                close_connection()
+            except Exception:
+                pass
+
+        page.on_close = _close_db
+        page.on_disconnect = _close_db
 
         logger.info("Aplicação iniciada com sucesso")
         

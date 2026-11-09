@@ -1,5 +1,4 @@
 import subprocess
-import sys
 import shutil
 from pathlib import Path
 from fleting.cli.console.console import console

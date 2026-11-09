@@ -1,4 +1,5 @@
-from pathlib import Path
+import keyword
+import re
 from fleting.cli.console.console import console
 from fleting.cli.helpers.project import get_project_root
 
@@ -15,7 +16,6 @@ def handle_create(args):
         console.print("Use: fleting create <controller|view|model|page> <nome>", style="suggestion")
         return
 
-    import re, keyword
     kind, name = args[0], args[1].lower()
 
     if not re.fullmatch(r"[a-z][a-z0-9_]*", name) or keyword.iskeyword(name):
@@ -143,14 +143,14 @@ def create_page(name: str):
         create_page_view(name)
         register_route(name)
     except Exception as e:
-        console.print("Error creating page: ", str(e), style="error")
+        console.print(f"Error creating page: {e}", style="error")
 
 def register_route(name: str):
     BASE = get_project_root()
     routes_file = BASE / "configs" / "routes.py"
 
     if not routes_file.exists():
-        console.print("❌ configs/routes.py não not found", style="error")
+        console.print("❌ configs/routes.py not found", style="error")
         return
 
     route_block = f"""
@@ -171,15 +171,13 @@ def register_route(name: str):
         console.print(f"⚠️ Route '/{name}' already exists.", style="warning")
         return
 
-    if "ROUTES = [" not in content:
+    content, n = re.subn(r"ROUTES\s*=\s*\[", lambda m: m.group(0) + route_block, content, count=1)
+    if not n:
         console.print("❌ ROUTES structure not found", style="error")
         return
 
-    content = content.replace(
-        "ROUTES = [",
-        "ROUTES = [" + route_block,
-        1,
-    )
+    if not re.search(r"^import flet as ft\b", content, re.M):
+        content = "import flet as ft\n" + content
 
     routes_file.write_text(content, encoding="utf-8")
     console.print(f"✅ Route '/{name}' successfully registered", style="success")
@@ -194,7 +192,6 @@ def create_page_view(name: str):
 
     class_name = f"{to_pascal_case(name)}View"
     controller_class = f"{to_pascal_case(name)}Controller"
-    model_class = f"{to_pascal_case(name)}Model"
 
     content = f"""import flet as ft
 from app.views.layouts.main_layout import MainLayout

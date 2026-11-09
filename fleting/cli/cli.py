@@ -8,10 +8,13 @@ from fleting.cli.commands.list import handle_list
 from fleting.cli.commands.db import handle_db
 from fleting.cli.commands.shell import handle_shell
 from fleting.cli.commands.pull import handle_pull
+from fleting.cli.commands.doctor import handle_doctor
 
 from fleting.cli.console.console import console
-from fleting.cli.console import Table, Panel, Text, box, Rule
+from fleting.cli.console import Table, Panel, box
+import os
 import traceback
+from rich.markup import escape
 
 def print_help():
     console.clear()
@@ -41,12 +44,17 @@ def print_help():
     table.add_column("Command", style="bold green", width=36)
     table.add_column("Description", style="cyan", width=44)
     
+    from fleting.cli.engines import ENGINES, current_project_engine
+
+    active_engine = current_project_engine()
+
     # Comandos organizados por categorías
     categories = {
         "💼 Project Commands": [
-            ("fleting init <app_name>", "Initialize a new Fleting project"),
+            ("fleting init <app_name>", "Initialize a new Fleting project (SQLite)"),
             ("fleting info", "Show version and system information"),
             ("fleting run", "Run the application"),
+            ("fleting doctor", "Check the project for common problems"),
         ],
         "➕ Create Commands": [
             ("fleting create page <name>", "Create a page (model + controller + view)"),
@@ -81,10 +89,25 @@ def print_help():
             ("fleting db model pull <table> --force", "Overwrite existing model files"),
         ],
         "🧩  Console Command": [
-            ("fleting shell", "Open interactive database shell (SQLite only)"),
+            ("fleting shell", "Open interactive database shell (SQLite, MySQL/MariaDB)"),
         ],
     }
-    
+
+    # Inicialização com banco de dados (gerado a partir do registro de engines)
+    items = list(categories.items())
+    items.insert(1, ("🛢️  Init with Database", [
+        (f"fleting init <app_name> {e.flag}", f"New project using {e.label}")
+        for e in ENGINES.values() if e.flag
+    ]))
+    categories = dict(items)
+
+    # Comandos específicos da engine: dentro de um projeto mostra só a engine ativa;
+    # fora de um projeto mostra todas
+    shown = [ENGINES[active_engine]] if active_engine else list(ENGINES.values())
+    for e in shown:
+        title = f"{e.icon} {e.label} (this project)" if active_engine else f"{e.icon} {e.label} Commands"
+        categories[title] = [(escape(cmd), escape(desc)) for cmd, desc in e.commands]
+
     for category, commands in categories.items():
         # Añadir separador para categorías
         if list(categories.keys()).index(category) > 0:
@@ -133,13 +156,21 @@ def main():
             handle_shell()
         elif command == "pull":
             handle_pull(args[1:])
+        elif command == "doctor":
+            if handle_doctor(args[1:]):
+                sys.exit(1)
         else:
-            print(f"Unknown command: {command}")
-            print_help()
+            console.print(f"Unknown command: {command}", style="error")
+            console.print("Use: fleting --help", style="suggestion")
+            sys.exit(2)
 
     except Exception as e:
-        print("Error executing CLI command:", str(e))
-        traceback.print_exc() 
+        console.print(f"Error: {e}", style="error")
+        if os.environ.get("FLETING_DEBUG") == "1":
+            traceback.print_exc()
+        else:
+            console.print("Set FLETING_DEBUG=1 to see the full traceback.", style="suggestion")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

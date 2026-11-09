@@ -1,6 +1,7 @@
 import code
 from pathlib import Path
 from fleting.cli.console.console import console
+from fleting.cli.helpers.project import get_project_root
 import importlib
 import inspect
 import sys
@@ -18,50 +19,6 @@ class FletingPrompt:
 
         return f"{YELLOW}[{self.counter}] Fleting{GREEN} ❯_ {RESET}"
 
-sys.ps1 = FletingPrompt()
-
-def is_fleting_project(path: Path) -> bool:
-    return (path / ".fleting").exists()
-
-def find_project_root(start=None) -> Path | None:
-    if start is None:
-        start = Path.cwd()
-    elif isinstance(start, str):
-        start = Path(start)
-
-    start = start.resolve()
-
-    if is_fleting_project(start):
-        return start
-
-    for parent in start.parents:
-        if is_fleting_project(parent):
-            return parent
-
-    return None
-
-def activate_project(root):
-    from pathlib import Path
-    import sys
-
-    if isinstance(root, str):
-        root = Path(root)
-
-    root = root.resolve()
-
-    if str(root) not in sys.path:
-        sys.path.insert(0, str(root))
-
-def get_project_root():
-    root = find_project_root()
-    if not root:
-        console.print("❌ This directory is not a Fleting project.", style="error")
-        console.print("👉 Go to the project root or a parent directory.", style="suggestion")
-        return
-
-    activate_project(root)
-    return root
-
 def find_database(project_root: Path) -> Path | None:
     data_dir = project_root / "data"
 
@@ -72,18 +29,22 @@ def find_database(project_root: Path) -> Path | None:
     return db_files[0] if db_files else None
 
 def load_models(project_root: Path):
-    models_dir = project_root / "models"
+    models_dir = project_root / "app" / "models"
     loaded = {}
 
     if not models_dir.exists():
         return loaded
 
-    for file in models_dir.glob("*.py"):
+    for file in sorted(models_dir.glob("*.py")):
         if file.name.startswith("_"):
             continue
 
-        module_name = f"models.{file.stem}"
-        module = importlib.import_module(module_name)
+        module_name = f"app.models.{file.stem}"
+        try:
+            module = importlib.import_module(module_name)
+        except Exception as e:
+            console.print(f"[warning]⚠️  Could not load {module_name}: {e}[/warning]")
+            continue
 
         for name, obj in inspect.getmembers(module, inspect.isclass):
             if obj.__module__ == module_name:
@@ -91,9 +52,8 @@ def load_models(project_root: Path):
 
     return loaded
 
-def handle_shell_sqlite():
-    
-    project_root = get_project_root()
+def handle_shell_sqlite(project_root: Path | None = None):
+    project_root = project_root or get_project_root()
 
     if not project_root:
         console.print("[error]No Fleting projects found.[/error]")
@@ -224,8 +184,14 @@ Use quit() or Ctrl-Z plus Return to exit
 
     context.update(all_models_map)
 
+    old_ps1 = getattr(sys, "ps1", None)
+    sys.ps1 = FletingPrompt()
     try:
-        code.interact(banner="", local=context)
+        code.interact(banner="", local=context, exitmsg="")
     except SystemExit:
+        pass
+    finally:
+        if old_ps1 is not None:
+            sys.ps1 = old_ps1
         console.print("\n[info]👋 Leaving the Fleting Shell[/info]")
 

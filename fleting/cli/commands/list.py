@@ -1,12 +1,11 @@
 from pathlib import Path
 import importlib.util
 import sys
-from typing import Dict, List, Set
+from typing import Dict, List
 from fleting.cli.helpers.project import get_project_root
 from fleting.cli.console import (
     console, 
     print_simple_table,     
-    print_pages_table,       
     print_routes_table,      
     create_table
 )
@@ -89,7 +88,7 @@ def handle_list(args):
         list_pages(root)
     else:
         console.print(f"Unknown list type: {kind}", style="warning")
-        console.print(f"[dim]Available options: pages, controllers, views, models, routes[/dim]")
+        console.print("[dim]Available options: pages, controllers, views, models, routes[/dim]")
 
 # ----------------------
 # Simple lists

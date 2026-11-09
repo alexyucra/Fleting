@@ -11,14 +11,17 @@ jobs:
 
     steps:
       # 1️⃣ Checkout do código
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # 2️⃣ Configura Python
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3️⃣ Instalar dependências para build
+      # 3️⃣ Testes antes de publicar
+      - run: pip install -e .[dev] && pytest -q
+
+      # 4️⃣ Instalar dependências para build
       - run: pip install --upgrade build twine
 
       # 4️⃣ Build do pacote

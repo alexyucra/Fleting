@@ -1,6 +1,4 @@
 from pathlib import Path
-import sys
-from fleting.cli.helpers.project import get_project_root
 
 from rich.console import Console
 
@@ -24,11 +22,11 @@ def get_tables(cursor):
     return [row[0] for row in cursor.fetchall()]
 
 def get_columns(cursor, table):
-    cursor.execute(f"PRAGMA table_info(?)", (table,))
+    cursor.execute("SELECT * FROM pragma_table_info(?)", (table,))
     return cursor.fetchall()
 
 def get_foreign_keys(cursor, table: str):
-    cursor.execute(f"PRAGMA foreign_key_list({table})")
+    cursor.execute("SELECT * FROM pragma_foreign_key_list(?)", (table,))
     return cursor.fetchall()
 
 def map_sqlite_type(sqlite_type: str) -> str:
@@ -130,114 +128,45 @@ class {class_name}Model(BaseModel):
     path.write_text(content, encoding="utf-8")
     console.print(f"[success]✔ Model generated in: [bold]{path.absolute()}[/bold][/success]")
 
-def register_db_commands(subparsers):
-    db_parser = subparsers.add_parser("db")
-
-    db_sub = db_parser.add_subparsers(dest="db_command")
-
-    model_parser = db_sub.add_parser("model")
-    model_sub = model_parser.add_subparsers(dest="model_command")
-
-    pull_parser = model_sub.add_parser("pull")
-    pull_parser.add_argument("--table", help="Pull apenas uma tabela")
-    pull_parser.add_argument(
-        "--force",
-        action="store_true",
-        help="Overscrew existing models"
-    )
-
-def handle_pull_sqlite(args: list[str]):
-    if not args:
-        print("Error: No se proporcionaron argumentos.")
-        sys.exit(1)
-    
-    action = args[0]          # pull
-    rest = args[1:]           # users, --force
-    table = None
-    force = False
-    for arg in rest:
-        if arg == "--force":
-            force = True
-        else:
-            table = arg
-    if action == "pull":
-        console.print(f"[info]Running model pull | table={table} | force={force}[/info]")
-        
-        project_root = get_project_root()
-
-        if not project_root:
-            console.print("[error]No Fleting projects found.[/error]")
-            return
-        
-        db_path = find_database(project_root)
-        if not db_path:
-            console.print(
-                "[error]❌ No local databases found.[/error]\n"
-                "[suggestion]👉 Execute: fleting db init & fleting db migrate [/suggestion]"
-            )
-            return
-        
-        from core.table_filters import should_generate_model
-        from configs.database import DATABASE
-        engine = DATABASE.get("ENGINE", "sqlite").lower()
-        conn = None
-        cursor = None
-        
-        if engine == "sqlite":
-            console.print("[success]🟢 SQLite detected[/success]")
-            try:
-                from core.database import get_connection
-                import sqlite3
-
-                conn = get_connection()
-                conn.row_factory = sqlite3.Row
-                cursor = conn.cursor()
-            except Exception as e:
-                console.print(f"[error]Error obtaining connection: {e}[/error]")
-                return
-        else:
-            console.print(
-                f"[error]❌ Engine '{engine}' not supported by the shell.[/error]"
-            )
-            return
-        
-        console.print("[info]🔍 Starting the introspection of the SQLite bank[/info]")
-
-        excluded = DATABASE.get("MODEL_PULL", {}).get("EXCLUDE_TABLES", [])
-        
-        tables = [table] if table else get_tables(cursor)
-
-        foreign_key_map = {}
-
-        for tbl in tables:
-            foreign_key_map[tbl] = get_foreign_keys(cursor, tbl)
-
-        for tbl in tables:
-            if not should_generate_model(tbl, excluded):
-                console.print(f"[yellow]⏭ Skipping table {tbl}[/yellow]")
-                continue
-                    
-            columns = get_columns(cursor, tbl)
-            foreign_keys = foreign_key_map.get(tbl, [])
-
-            if not columns:
-                continue
-
-            code = generate_model(
-                tbl,
-                columns,
-                foreign_keys,
-                foreign_key_map
-            )
-
-            save_model(project_root, tbl, code, force)
-
-        console.print("[success]🎉 Models with relationships generated successfully[/success]")
-
-    else:
-        console.print( f"[error]Unknown model action: {action}[/error]\n"
-            "[suggestion]Use: fleting db model pull[/suggestion]"
+def handle_pull_sqlite(project_root: Path, table: str | None = None, force: bool = False):
+    db_path = find_database(project_root)
+    if not db_path:
+        console.print(
+            "[red]❌ No local databases found.[/red]\n"
+            "👉 Execute: fleting db init & fleting db migrate"
         )
+        return
 
+    from core.table_filters import should_generate_model
+    from configs.database import DATABASE
+    from core.database import get_connection
+    import sqlite3
 
-    
+    try:
+        conn = get_connection()
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+    except Exception as e:
+        console.print(f"[red]Error obtaining connection: {e}[/red]")
+        return
+
+    console.print("🔍 Starting the introspection of the SQLite database")
+
+    excluded = DATABASE.get("MODEL_PULL", {}).get("EXCLUDE_TABLES", [])
+    tables = [table] if table else get_tables(cursor)
+
+    foreign_key_map = {tbl: get_foreign_keys(cursor, tbl) for tbl in tables}
+
+    for tbl in tables:
+        if not should_generate_model(tbl, excluded):
+            console.print(f"[yellow]⏭ Skipping table {tbl}[/yellow]")
+            continue
+
+        columns = get_columns(cursor, tbl)
+        if not columns:
+            continue
+
+        code = generate_model(tbl, columns, foreign_key_map.get(tbl, []), foreign_key_map)
+        save_model(project_root, tbl, code, force)
+
+    console.print("[green]🎉 Models with relationships generated successfully[/green]")

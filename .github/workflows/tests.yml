@@ -1,0 +1,62 @@
+name: Tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e .[dev]
+      - run: ruff check fleting
+      - run: pytest -q
+
+  mysql:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: mysql:8
+            driver: mysql-connector
+          - image: mariadb:11
+            driver: pymysql
+          - image: mariadb:11
+            driver: mysql-connector
+    services:
+      db:
+        image: ${{ matrix.image }}
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: fleting
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: fleting
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="mysqladmin ping -uroot -proot || mariadb-admin ping -uroot -proot"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    env:
+      FLETING_TEST_MYSQL: "1"
+      FLETING_DB_HOST: 127.0.0.1
+      FLETING_DB_PORT: "3306"
+      FLETING_DB_USER: root
+      FLETING_DB_PASSWORD: root
+      FLETING_DB_NAME: fleting
+      FLETING_DB_DRIVER: ${{ matrix.driver }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .[dev,mysql,mariadb]
+      - run: pytest -q tests/test_04_mysql.py

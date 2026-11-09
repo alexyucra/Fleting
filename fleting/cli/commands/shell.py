@@ -1,5 +1,4 @@
 # fleting/cli/commands/shell.py
-from pathlib import Path
 from fleting.cli.console.console import console
 from fleting.cli.helpers.project import get_project_root
 

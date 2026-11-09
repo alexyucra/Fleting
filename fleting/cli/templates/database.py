@@ -1,6 +1,7 @@
 import importlib.util
 from pathlib import Path
 import datetime
+from fleting.cli.templates.defaults import INITIAL_MIGRATION, INITIAL_SEED
 
 # def db_init(project_root: Path):
 def db_init(project_root: Path, engine: str = "sqlite"):
@@ -30,39 +31,10 @@ def db_init(project_root: Path, engine: str = "sqlite"):
     if not init_file.exists():
         init_file.write_text("", encoding="utf-8")
 
-    create_file(BASE / "migrations/001_initial.py", """
-def up(db):
-    db.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE,
-            password TEXT
-        )
-    ''')
-
-def down(db):
-    db.execute('''
-        DROP TABLE IF EXISTS users
-    ''')               
-""")
+    create_file(BASE / "migrations/001_initial.py", INITIAL_MIGRATION)
     print(f"✅ migrations/001_initial.py successfully created")
     
-    create_file(BASE / "seeds/initial.py", """
-def hash_password(raw: str) -> str:
-    salt = secrets.token_hex(16)
-    digest = hashlib.pbkdf2_hmac("sha256", raw.encode(), salt.encode(), 200_000).hex()
-    return f"pbkdf2_sha256$200000${salt}${digest}"
-
-def run(db):
-    raw = os.environ.get("FLETING_ADMIN_PASSWORD")
-    if not raw:
-        print("⚠️  FLETING_ADMIN_PASSWORD not set; admin user not created.")
-        return
-    db.execute(
-        "INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)",
-        ("admin", hash_password(raw)),
-    )
-""")
+    create_file(BASE / "seeds/initial.py", INITIAL_SEED)
     print(f"✅ seeds/initial.py successfully created")
 
     create_file(BASE / "core/migrations.py", """

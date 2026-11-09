@@ -1,5 +1,5 @@
 # fleting/cli/commands/pull.py
-from pathlib import Path
+import re
 import sys
 from fleting.cli.helpers.project import get_project_root
 from fleting.cli.console.console import console
@@ -39,6 +39,10 @@ def handle_pull(args: list[str]):
         else:
             table = arg
     
+    if table is not None and not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", table):
+        console.print(f"[error]Invalid table name: {table!r}[/error]")
+        return
+
     if action != "pull":
         console.print(f"[error]Unknown model action: {action}[/error]\n"
             "[suggestion]Use: fleting db model pull[/suggestion]")

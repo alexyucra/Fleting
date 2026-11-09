@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+from fleting.cli.console.console import console
 
 def is_fleting_project(path: Path) -> bool:
     return (path / ".fleting").exists() and (path / "main.py").exists()
@@ -36,8 +37,8 @@ def activate_project(root):
 def get_project_root():
     root = find_project_root()
     if not root:
-        print("❌ This directory is not a Fleting project.")
-        print("👉 Go to the project root or a parent directory.")
+        console.print("❌ This directory is not a Fleting project.", style="error")
+        console.print("👉 Go to the project root or a parent directory.", style="suggestion")
         return
 
     activate_project(root)

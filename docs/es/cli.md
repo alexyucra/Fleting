@@ -290,7 +290,7 @@ Elimina:
 
 ### ⚠️ Observaciones Importantes
 
-- El CLI no elimina rutas automáticamente
+- `fleting delete page <nombre>` también elimina la ruta de `configs/routes.py`
 - No sobrescribe archivos existentes
 - Todos los comandos generan logs en `logs/fleting.log`
 
@@ -301,6 +301,10 @@ Elimina:
 El Fleting Framework incluye un sistema de gestión de base de datos simple, seguro y orientado a **migraciones**, inspirado en frameworks modernos como Django y Alembic.
 
 Esta sección describe en detalle todos los comandos disponibles bajo `fleting db`.
+
+> 🔒 **Seguridad:** `fleting db migrate`, `fleting db seed` y `fleting list routes` importan y ejecutan archivos Python del proyecto (`migrations/`, `seeds/`, `configs/routes.py`). Ejecútelos solo en proyectos confiables.
+
+> 🔑 **Seed y credenciales:** `fleting db seed` solo crea el usuario `admin` si la variable `FLETING_ADMIN_PASSWORD` está definida; la contraseña se guarda con hash PBKDF2-SHA256. `configs/database.py` lee `FLETING_DB_HOST`, `FLETING_DB_PORT`, `FLETING_DB_USER`, `FLETING_DB_PASSWORD` y `FLETING_DB_NAME` del entorno.
 
 ---
 
@@ -500,3 +504,16 @@ Convención > Configuración
 - Cero preguntas interactivas
 - Predecible
 - Seguro (no sobrescribe código)
+
+## 🧩 `fleting shell` (SQLite, MySQL / MariaDB)
+
+```bash
+pip install "fleting[mysql]"     # MySQL
+pip install "fleting[mariadb]"   # MariaDB (configure "DRIVER": "pymysql" en configs/database.py)
+fleting shell
+>>> tables()
+>>> describe("users")
+>>> table("users", limit=20)
+>>> query("UPDATE users SET username=%s WHERE id=%s", ("adm", 1))
+>>> models()
+```

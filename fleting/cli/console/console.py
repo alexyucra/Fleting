@@ -85,7 +85,7 @@ def print_pages_table(headers: list, rows: list):
     
     console.print()
     console.print(table)
-    console.print(f"[dim]Legend: [green]✔[/green] = Present | [dim red]—[/dim red] = Missing[/dim]")
+    console.print("[dim]Legend: [green]✔[/green] = Present | [dim red]—[/dim red] = Missing[/dim]")
     console.print()
 
 def print_routes_table(headers: list, rows: list):

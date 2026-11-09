@@ -49,6 +49,8 @@ def get_foreign_keys(cursor, table: str):
 def map_type(mysql_type: str) -> str:
     """Mapeia tipos de MySQL para Python"""
     stype = mysql_type.upper()
+    if stype.startswith("UUID") or stype.startswith("INET"):  # tipos exclusivos do MariaDB
+        return "str"
     if "INT" in stype or "TINYINT" in stype or "SMALLINT" in stype or "MEDIUMINT" in stype or "BIGINT" in stype:
         return "int"
     if "VARCHAR" in stype or "CHAR" in stype or "TEXT" in stype or "ENUM" in stype or "SET" in stype:
@@ -158,7 +160,10 @@ def handle_pull_mysql(project_root: Path, table: str | None = None, force: bool 
     try:
         from core.database import get_connection
         conn = get_connection()
-        cursor = conn.cursor()
+        if DATABASE.get("MYSQL", {}).get("DRIVER") == "pymysql":
+            cursor = conn.cursor()
+        else:
+            cursor = conn.cursor(buffered=True)
     except Exception as e:
         console.print(f"[error]Error obtaining connection: {e}[/error]")
         return

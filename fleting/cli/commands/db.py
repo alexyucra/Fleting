@@ -13,30 +13,30 @@ def handle_db(args):
     if not root:
         return
 
+    force_mysql = "--mysql" in args
+    force_sqlite = "--sqlite" in args
+    args = [a for a in args if a not in ("--mysql", "--sqlite")]
+    if not args:
+        console.print("Use: fleting db <init|migrate|seed|make|rollback|status>", style="suggestion")
+        return
     cmd = args[0]
-    # get init engine
+
     engine = get_engine_from_config(root)
-    
+    if cmd == "init" and (force_mysql or force_sqlite):
+        new_engine = "mysql" if force_mysql else "sqlite"
+        if new_engine != engine:
+            update_database_engine(root, new_engine)
+            regenerate_core_database(root, new_engine)
+            console.print(f"Engine switched: {engine} → {new_engine}", style="success")
+        engine = new_engine
+
     if engine == "mysql":
         from fleting.cli.templates.database_mysql import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
     else:
         from fleting.cli.templates.database import db_init, db_migrate, db_seed, make_migration, db_rollback, db_status
 
-    # send update engine
-    force_mysql = "--mysql" in args
-    force_sqlite = "--sqlite" in args
-    clean_args = [arg for arg in args if arg not in ["--mysql", "--sqlite"]]
-
-
     if cmd == "init":
-        if force_mysql:
-            new_engine = "mysql"
-            db_init(root, new_engine)
-        elif force_sqlite:
-            new_engine = "sqlite"
-            db_init(root, new_engine)
-        else:
-            db_init(root, engine)
+        db_init(root, engine)
 
     elif cmd == "migrate":
         db_migrate(root)
@@ -107,3 +107,28 @@ def update_database_engine(project_root: Path, engine: str) -> bool:
         console.print("⚠️  Could not find ENGINE setting in database.py", style="warning")
         return False
 
+
+def regenerate_core_database(root: Path, engine: str):
+    """Recria core/database.py e core/migrations.py para a engine escolhida (com backup .bak)."""
+    for rel in ("core/database.py", "core/migrations.py"):
+        f = root / rel
+        if f.exists():
+            bak = f.with_suffix(".py.bak")
+            if bak.exists():
+                bak.unlink()
+            f.rename(bak)
+            console.print(f"Backup: {rel} → {bak.name}", style="info")
+
+    # migration/seed padrão de versões antigas eram específicos de uma engine
+    from fleting.cli.templates.defaults import DEFAULT_FILES, ENGINE_AGNOSTIC_MARKER
+    for rel in DEFAULT_FILES:
+        f = root / rel
+        if f.exists() and ENGINE_AGNOSTIC_MARKER not in f.read_text(encoding="utf-8"):
+            bak = f.with_suffix(".py.bak")
+            if bak.exists():
+                bak.unlink()
+            f.rename(bak)
+            console.print(f"Backup: {rel} → {bak.name} (engine-specific; regenerated)", style="warning")
+
+    from fleting.cli.templates.index import write_core_database
+    write_core_database(root, engine, overwrite=True)

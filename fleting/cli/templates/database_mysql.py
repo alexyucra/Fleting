@@ -3,16 +3,29 @@ import importlib.util
 from pathlib import Path
 from fleting.cli.console.console import console
 import datetime
+from fleting.cli.templates.defaults import INITIAL_MIGRATION, INITIAL_SEED
 
-def check_mysql_dependency() -> bool:
-    """Verifica se o mysql-connector-python está instalado"""
+def _configured_driver() -> str:
     try:
-        import mysql.connector  # noqa: F401
+        from configs.database import DATABASE
+        return DATABASE.get("MYSQL", {}).get("DRIVER", "mysql-connector")
+    except Exception:
+        return "mysql-connector"
+
+def check_mysql_dependency(driver: str | None = None) -> bool:
+    """Verifica se o driver configurado (mysql-connector ou pymysql) está instalado"""
+    driver = driver or _configured_driver()
+    try:
+        if driver == "pymysql":
+            import pymysql  # noqa: F401
+        else:
+            import mysql.connector  # noqa: F401
         return True
     except ImportError:
-        console.print("\n[bold red]❌ MySQL connector not installed[/bold red]")
-        console.print("\n[yellow]To use MySQL with Fleting, you need to install:[/yellow]")
-        console.print("[bold cyan]pip install mysql-connector-python[/bold cyan]\n")
+        extra = "mariadb" if driver == "pymysql" else "mysql"
+        console.print(f"\n[bold red]❌ MySQL driver '{driver}' not installed[/bold red]")
+        console.print("\n[yellow]Install it with:[/yellow]")
+        console.print(f'[bold cyan]pip install "fleting[{extra}]"[/bold cyan]\n')
         return False
 
 def handle_mysql_error(e: Exception):
@@ -98,38 +111,10 @@ def db_init(project_root: Path, engine: str = "mysql"):
     if not init_file.exists():
         init_file.write_text("", encoding="utf-8")
 
-    create_file(BASE / "migrations/001_initial.py", """
-# Migration MySQL
-def up(db):
-    cursor = db.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(255) UNIQUE,
-            password VARCHAR(255)
-        )
-    ''')
-    db.commit()
-
-def down(db):
-    cursor = db.cursor()
-    cursor.execute('''
-        DROP TABLE IF EXISTS users
-    ''')
-    db.commit()
-""")
+    create_file(BASE / "migrations/001_initial.py", INITIAL_MIGRATION)
     print(f"✅ migrations/001_initial.py successfully created")
 
-    create_file(BASE / "seeds/initial.py", """
-# Seed MySQL
-def run(db):
-    cursor = db.cursor()
-    cursor.execute('''
-        INSERT IGNORE INTO users (username, password)
-        VALUES VALUES (%s, %s), ("admin", hash_password(raw)),
-    ''')
-    db.commit()
-""")
+    create_file(BASE / "seeds/initial.py", INITIAL_SEED)
     print(f"✅ seeds/initial.py successfully created")
 
     create_file(BASE / "core/migrations.py", """
@@ -200,15 +185,6 @@ def db_migrate(root: Path):
     if not check_mysql_dependency():
         return
     
-    try:
-        import mysql.connector
-    except ImportError:
-        from fleting.cli.console.console import console
-        console.print("\n[bold red]❌ MySQL connector not installed[/bold red]")
-        console.print("\n[yellow]To use MySQL with Fleting, you need to install:[/yellow]")
-        console.print("[bold cyan]pip install mysql-connector-python[/bold cyan]\n")
-        console.print("[dim]Or if you prefer: pip install pymysql (requires code changes)[/dim]")
-        return
 
     try:
         from core.migrations import applied_migrations, apply_migration
@@ -265,9 +241,8 @@ def db_seed(root: Path):
 
         if hasattr(mod, "run"):
             mod.run(db)
+            db.commit()
             print(f"🌱 Seed executed: {file.name}")
-
-    db.commit()
 
 def make_migration(root: Path, name: str):
     migrations_dir = root / "migrations"
@@ -290,17 +265,19 @@ Created at: {datetime.datetime.now().isoformat()}
 """
 
 def up(db):
-    db.execute(\'\'\'
+    cur = db.cursor()
+    cur.execute(\'\'\'
         CREATE TABLE IF NOT EXISTS exemplo (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nome VARCHAR(255)
+            name VARCHAR(255)
         )
     \'\'\')
-    pass
+    cur.close()
 
 def down(db):
-    # db.execute('DROP TABLE IF EXISTS exemplo')
-    pass
+    cur = db.cursor()
+    cur.execute('DROP TABLE IF EXISTS exemplo')
+    cur.close()
 '''
 
     path.write_text(template, encoding="utf-8")

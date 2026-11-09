@@ -1,6 +1,6 @@
 [project]
 name = "fleting"
-version = "1.2.7"
+version = "1.3.0"
 description = "Micro-framework MVC baseado em Flet para aplicações mobile, tablet e desktop"
 readme = "README.md"
 license = { text = "MIT" }
@@ -33,9 +33,12 @@ classifiers = [
 dependencies = [
     "flet==1.0.5",
     "rich",
-    "typer",
-    "psutil"
 ]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+mysql = ["mysql-connector-python>=8.0"]
+mariadb = ["PyMySQL>=1.1"]
 
 # ------------------------
 # CLI ENTRY POINT
@@ -58,3 +61,18 @@ Issues = "https://github.com/alexyucra/fleting/issues"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+# ------------------------
+# TESTES
+# ------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "tests"]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 110
+extend-exclude = ["fleting/cli/templates"]   # templates são strings geradas (ver 03-M2)
+
+[tool.ruff.lint]
+select = ["E9", "F", "E722"]

@@ -5,6 +5,8 @@ import os
 
 from fleting.cli.templates.index import init_project
 from fleting.cli.console.console import console
+from rich.markup import escape
+from fleting.cli.engines import ENGINES, engine_from_args
 
 DEFAULT_PROJECT_NAME = "app"
 DEFAULT_APP_NAME = "fleting"
@@ -58,7 +60,7 @@ exec "{fleting_exe}" "$@"
         
         try:
             launcher_path.chmod(launcher_path.stat().st_mode | 0o111)  # +x for all
-        except:
+        except OSError:
             console.print(f"Could not make {launcher_path} executable", style="warning")
     
     return True
@@ -110,8 +112,11 @@ def handle_init(args=None):
     args = args or []
     cwd = Path.cwd()
 
-    use_mysql = "--mysql" in args
-    clean_args = [arg for arg in args if arg != "--mysql"]
+    try:
+        engine, clean_args = engine_from_args(args)
+    except ValueError as e:
+        console.print(str(e), style="error")
+        return
 
     if not clean_args:
         project_root = cwd / DEFAULT_PROJECT_NAME
@@ -124,8 +129,6 @@ def handle_init(args=None):
         project_root = cwd / clean_args[0]
         project_name = clean_args[0].replace("_", " ").title()
         project_root.mkdir(parents=True, exist_ok=True)
-    
-    engine = "mysql" if use_mysql else "sqlite"
 
     try:
         init_project(project_root, project_name, engine=engine)
@@ -147,6 +150,13 @@ def handle_init(args=None):
         console.print(f"  cd {project_root.name}")
         console.print("  bin\\fleting <command> # Access database shell (Windows)", style="suggestion")
         console.print("  bin/fleting <command>  # Access database shell (Unix)", style="suggestion")
+
+        # Próximos passos específicos da engine (ex.: --mysql)
+        eng = ENGINES[engine]
+        if eng.flag:
+            console.print(f"\n{eng.icon} {eng.label}:", style="info")
+            for cmd, desc in eng.commands:
+                console.print(escape(f"  {cmd:<36} {desc}"), style="suggestion")
             
     except Exception as e:
         console.print(f"Error creating project: {e}", style="error")
