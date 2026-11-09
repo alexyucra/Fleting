@@ -1629,13 +1629,17 @@ python -m cli.cli create view home
 </ul>
 <h3 id="observacoes-importantes">⚠️ Observações Importantes</h3>
 <ul>
-<li>O CLI não remove rotas automaticamente</li>
+<li><code>fleting delete page &lt;nome&gt;</code> também remove a rota de <code>configs/routes.py</code></li>
 <li>Não sobrescreve arquivos existentes</li>
 <li>Todos os comandos geram logs em logs/fleting.log</li>
 </ul>
 <h1 id="gerenciamento-de-banco-de-dados-fleting-cli">🗄️ Gerenciamento de Banco de Dados — Fleting CLI</h1>
 <p>O Fleting Framework inclui um sistema de gerenciamento de banco de dados simples, seguro e orientado a migrações, inspirado em frameworks modernos como Django e Alembic.</p>
 <p>Esta seção descreve em detalhes todos os comandos disponíveis em <code>fleting db</code>.</p>
+<blockquote>
+<p>🔒 <strong>Segurança:</strong> <code>fleting db migrate</code>, <code>fleting db seed</code> e <code>fleting list routes</code> importam e executam arquivos Python do projeto (<code>migrations/</code>, <code>seeds/</code>, <code>configs/routes.py</code>). Só rode esses comandos em projetos confiáveis.</p>
+<p>🔑 <strong>Credenciais MySQL/MariaDB:</strong> <code>configs/database.py</code> lê <code>FLETING_DB_HOST</code>, <code>FLETING_DB_PORT</code>, <code>FLETING_DB_USER</code>, <code>FLETING_DB_PASSWORD</code> e <code>FLETING_DB_NAME</code> do ambiente. Não grave senhas no código.</p>
+</blockquote>
 <hr />
 <h2 id="fleting-db-init">📌 <code>fleting db init</code></h2>
 <h3 id="descricao">Descrição</h3>
@@ -1855,6 +1859,16 @@ fleting db seed
 <li>Previsível</li>
 <li>Seguro (não sobrescreve código)</li>
 </ul>
+<h2 id="fleting-shell-sqlite-mysql-mariadb">🧩 <code>fleting shell</code> (SQLite, MySQL / MariaDB)</h2>
+<pre><code class="language-bash">pip install &quot;fleting[mysql]&quot;     # MySQL
+pip install &quot;fleting[mariadb]&quot;   # MariaDB (configure &quot;DRIVER&quot;: &quot;pymysql&quot; em configs/database.py)
+fleting shell
+&gt;&gt;&gt; tables()
+&gt;&gt;&gt; describe(&quot;users&quot;)
+&gt;&gt;&gt; table(&quot;users&quot;, limit=20)
+&gt;&gt;&gt; query(&quot;UPDATE users SET username=%s WHERE id=%s&quot;, (&quot;adm&quot;, 1))
+&gt;&gt;&gt; models()
+</code></pre>
 
 
 

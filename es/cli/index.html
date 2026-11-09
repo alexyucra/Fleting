@@ -1625,7 +1625,7 @@ python -m cli.cli create view home
 - model</p>
 <h3 id="observaciones-importantes">⚠️ Observaciones Importantes</h3>
 <ul>
-<li>El CLI no elimina rutas automáticamente</li>
+<li><code>fleting delete page &lt;nombre&gt;</code> también elimina la ruta de <code>configs/routes.py</code></li>
 <li>No sobrescribe archivos existentes</li>
 <li>Todos los comandos generan logs en <code>logs/fleting.log</code></li>
 </ul>
@@ -1633,6 +1633,10 @@ python -m cli.cli create view home
 <h1 id="gestion-de-base-de-datos-fleting-cli">🗄️ Gestión de Base de Datos — Fleting CLI</h1>
 <p>El Fleting Framework incluye un sistema de gestión de base de datos simple, seguro y orientado a <strong>migraciones</strong>, inspirado en frameworks modernos como Django y Alembic.</p>
 <p>Esta sección describe en detalle todos los comandos disponibles bajo <code>fleting db</code>.</p>
+<blockquote>
+<p>🔒 <strong>Seguridad:</strong> <code>fleting db migrate</code>, <code>fleting db seed</code> y <code>fleting list routes</code> importan y ejecutan archivos Python del proyecto (<code>migrations/</code>, <code>seeds/</code>, <code>configs/routes.py</code>). Ejecútelos solo en proyectos confiables.</p>
+<p>🔑 <strong>Seed y credenciales:</strong> <code>fleting db seed</code> solo crea el usuario <code>admin</code> si la variable <code>FLETING_ADMIN_PASSWORD</code> está definida; la contraseña se guarda con hash PBKDF2-SHA256. <code>configs/database.py</code> lee <code>FLETING_DB_HOST</code>, <code>FLETING_DB_PORT</code>, <code>FLETING_DB_USER</code>, <code>FLETING_DB_PASSWORD</code> y <code>FLETING_DB_NAME</code> del entorno.</p>
+</blockquote>
 <hr />
 <h2 id="fleting-db-init">📌 <code>fleting db init</code></h2>
 <h3 id="descripcion">Descripción</h3>
@@ -1794,6 +1798,16 @@ fleting db seed
 <li>Predecible</li>
 <li>Seguro (no sobrescribe código)</li>
 </ul>
+<h2 id="fleting-shell-sqlite-mysql-mariadb">🧩 <code>fleting shell</code> (SQLite, MySQL / MariaDB)</h2>
+<pre><code class="language-bash">pip install &quot;fleting[mysql]&quot;     # MySQL
+pip install &quot;fleting[mariadb]&quot;   # MariaDB (configure &quot;DRIVER&quot;: &quot;pymysql&quot; en configs/database.py)
+fleting shell
+&gt;&gt;&gt; tables()
+&gt;&gt;&gt; describe(&quot;users&quot;)
+&gt;&gt;&gt; table(&quot;users&quot;, limit=20)
+&gt;&gt;&gt; query(&quot;UPDATE users SET username=%s WHERE id=%s&quot;, (&quot;adm&quot;, 1))
+&gt;&gt;&gt; models()
+</code></pre>
 
 
 
