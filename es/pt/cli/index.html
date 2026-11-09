@@ -1701,6 +1701,65 @@ Insere dados iniciais ou de teste no banco de dados.</p>
 <blockquote>
 <p>🌱 Seed executada: initial.py</p>
 </blockquote>
+<h4 id="fleting_admin_password">FLETING_ADMIN_PASSWORD</h4>
+<h4 id="o-que-e"><strong>O que é</strong></h4>
+<p>Uma variável de ambiente lida por <code>seeds/initial.py</code>. Ela contém a senha em texto puro usada para criar o usuário admin inicial no primeiro <code>fleting db seed</code>. O seed aplica hash PBKDF2-SHA256 e grava apenas o hash na coluna <code>users.password</code> — a senha em texto puro nunca vai para o banco.</p>
+<h4 id="o-que-faz">O que faz</h4>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Não definida    O seed imprime ⚠️ FLETING_ADMIN_PASSWORD not set; admin user not created. e encerra. Nenhum admin é criado.</td>
+<td></td>
+</tr>
+<tr>
+<td>Definida (ex.: FLETING_ADMIN_PASSWORD=minhasenha)   Cria admin com password = pbkdf2_sha256$200000$<salt>$<digest>.</td>
+<td></td>
+</tr>
+<tr>
+<td>Seed rodado de novo INSERT IGNORE evita duplicação; o admin existente é mantido.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Em resumo: a variável é o interruptor que decide se o admin é criado. Sem ela → sem admin. Com ela → admin criado com aquela senha, armazenada como hash.</p>
+<p>Isso substitui o antigo seed com ('admin', 'fleting') hardcoded, para que nenhuma instalação nasça com credencial default conhecida.</p>
+<p>Como criar a variável
+A variável vale apenas para o processo atual (ou para a sessão do shell, se exportada).</p>
+<p>Windows — PowerShell
+Para um único comando (recomendado — não persiste):</p>
+<p>powershell
+$env:FLETING_ADMIN_PASSWORD = "MinhaSenhaForte123"
+fleting db seed
+Remove-Item Env:\FLETING_ADMIN_PASSWORD
+Para a sessão inteira:</p>
+<p>powershell
+$env:FLETING_ADMIN_PASSWORD = "MinhaSenhaForte123"
+fleting db seed
+Windows — CMD
+cmd
+set FLETING_ADMIN_PASSWORD=MinhaSenhaForte123
+fleting db seed
+set FLETING_ADMIN_PASSWORD=
+Linux / macOS — bash/zsh
+Um único comando:</p>
+<p>bash
+FLETING_ADMIN_PASSWORD='MinhaSenhaForte123' fleting db seed
+Sessão:</p>
+<p>bash
+export FLETING_ADMIN_PASSWORD='MinhaSenhaForte123'
+fleting db seed
+Arquivo .env (desenvolvimento)
+Crie .env na raiz do projeto e adicione ao .gitignore:</p>
+<p>env
+FLETING_ADMIN_PASSWORD=MinhaSenhaForte123
+Carregue antes de rodar (ex.: com python-dotenv ou lendo o arquivo manualmente).</p>
+<hr />
 <h2 id="fleting-db-make">📌 fleting db make <nome></h2>
 <p><strong>Descrição</strong>
 Cria uma nova migração de banco de dados.</p>
