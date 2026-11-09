@@ -13,20 +13,36 @@ theme:
 
 nav:
   - Home: index.md
+  - English:
+      - Databases: en/database.md
+      - Step-by-step examples: en/examples.md
   - Português:
       - Início: pt/index.md
       - Arquitetura: pt/arquitetura.md
       - Checklist: pt/checklist.md
       - CLI: pt/cli.md
+      - Bancos de dados: pt/banco-de-dados.md
+      - Exemplos passo a passo: pt/exemplos.md
       - Ambiente: pt/enviroment.md
   - Español:
       - Inicio: es/index.md
       - Arquitectura: es/arquitectura.md
       - Checklist: es/checklist.md
       - CLI: es/cli.md
+      - Bases de datos: es/base-de-datos.md
+      - Ejemplos paso a paso: es/ejemplos.md
       - Entorno: es/enviroment.md
   - Contribuir: CONTRIBUTING.md
-  
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
 plugins:
   - search
   - i18n:

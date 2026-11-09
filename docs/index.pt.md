@@ -42,7 +42,7 @@ Seja criando um aplicativo móvel, uma ferramenta para desktop ou um painel otim
 - **📱 Mobile-First** — Adapta-se automaticamente a dispositivos móveis, tablets e desktops
 - **🌍 i18n Integrado** — Suporte nativo a múltiplos idiomas
 - **🛠️ CLI Produtiva** — Gere páginas, modelos, controladores e muito mais
-- **🗄️ Suporte a Múltiplos Bancos de Dados** — SQLite e MySQL (PostgreSQL e SQL Server em breve)
+- **🗄️ Suporte a Múltiplos Bancos de Dados** — SQLite, MySQL e MariaDB (PostgreSQL e SQL Server em breve)
 - **🎨 Layouts Desacoplados** — Componentes de interface (UI) reutilizáveis ​​e responsivos
 - **🚦 Roteamento Simples** — Definições de rotas limpas e declarativas
 - **🧪 ORM Integrado** — Camada de modelo leve com suporte a relacionamentos
@@ -151,12 +151,16 @@ Pronto! 🎉 Agora você tem um aplicativo multiplataforma funcional com:
 ✅ Banco de dados SQLite pronto para uso
 
 ---
-## 🧪 Prefere usar MySQL?
+## 🧪 Prefere usar MySQL ou MariaDB?
 
 ```bash
+pip install "fleting[mysql]"      # MySQL
+pip install "fleting[mariadb]"    # MariaDB (PyMySQL)
 fleting init myapp --mysql
 ```
-[configuração do banco de dados no docker](./en/database.md)
+
+- [Guia de bancos de dados](./pt/banco-de-dados.md): configuração, variáveis de ambiente, Docker, migrations, ORM, shell
+- [Exemplos passo a passo](./pt/exemplos.md): todos os comandos da CLI na prática
 
 ## 🛠️ Comandos da CLI do Fleting
 
@@ -165,9 +169,10 @@ fleting init myapp --mysql
 | Comando | Descrição |
 |---------|-------------|
 | `fleting init <app_name>` | Inicializa um novo projeto Fleting |
-| `fleting init <app_name> --mysql` | Inicializa um novo projeto Fleting com MySQL |
+| `fleting init <app_name> --mysql` | Inicializa um novo projeto Fleting com MySQL / MariaDB |
 | `fleting info` | Exibe informações de versão e do sistema |
 | `fleting run` | Executa a aplicação |
+| `fleting doctor` | Verifica problemas comuns no projeto |
 
 ---
 
@@ -210,7 +215,8 @@ fleting init myapp --mysql
 | Comando | Descrição |
 |---------|-------------|
 | `fleting db init` | Inicializa o banco de dados (SQLite por padrão) |
-| `fleting db init --mysql` | Inicializa o banco de dados com MySQL |
+| `fleting db init --mysql` | Troca o projeto para MySQL / MariaDB (com backup `.bak`) |
+| `fleting db init --sqlite` | Volta o projeto para SQLite |
 | `fleting db migrate` | Executa as migrações do banco de dados |
 | `fleting db seed` | Popula o banco de dados com dados iniciais |
 | `fleting db make <name>` | Cria uma nova migração |
@@ -233,7 +239,7 @@ fleting init myapp --mysql
 
 | Comando | Descrição |
 |---------|-------------|
-| `fleting shell` | Abre o shell interativo do banco de dados (apenas SQLite) |
+| `fleting shell` | Abre o shell interativo do banco de dados (SQLite, MySQL / MariaDB) |
 
 ---
 
@@ -241,7 +247,7 @@ fleting init myapp --mysql
 
 | Categoria | Comandos |
 |----------|----------|
-| **Projeto** | `init`, `info`, `run` |
+| **Projeto** | `init`, `info`, `run`, `doctor` |
 | **Criação** | `create page`, `create view`, `create model`, `create controller` |
 | **Exclusão** | `delete page`, `delete view`, `delete model`, `delete controller` |
 | **Listagem** | `list pages`, `list controllers`, `list views`, `list models`, `list routes` |
@@ -297,6 +303,7 @@ I18n.t("home.title")  # "Bienvenido a MyApp" em espanhol
 |-------|-------|--------|
 |SQLite	    |✅ Estável	|Desenvolvimento, aplicações embarcadas|
 |MySQL	    |✅ Estável	|Produção, aplicações web|
+|MariaDB	|✅ Estável	|Produção (driver PyMySQL recomendado)|
 |PostgreSQL	|🔄 Em breve	|Aplicações corporativas|
 |SQL Server	|🔄 Em breve	|Integrações corporativas| 
 

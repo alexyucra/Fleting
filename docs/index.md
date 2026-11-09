@@ -176,12 +176,16 @@ That's it! 🎉 You now have a working cross-platform application with:
 ✅ SQLite database ready
 
 ---
-## 🧪 Want MySQL instead?
+## 🧪 Want MySQL or MariaDB instead?
 
 ```bash
+pip install "fleting[mysql]"      # MySQL
+pip install "fleting[mariadb]"    # MariaDB (PyMySQL)
 fleting init myapp --mysql
 ```
-[data base setup in docker](./en/database.md)
+
+- [Databases guide](./en/database.md): configuration, environment variables, Docker, migrations, ORM, shell
+- [Step-by-step examples](./en/examples.md): every CLI command in practice
 
 ## 🛠️ Fleting CLI Commands
 
@@ -190,9 +194,10 @@ fleting init myapp --mysql
 | Command | Description |
 |---------|-------------|
 | `fleting init <app_name>` | Initialize a new Fleting project |
-| `fleting init <app_name> --mysql` | Initialize a new Fleting project with MySQL |
+| `fleting init <app_name> --mysql` | Initialize a new Fleting project with MySQL / MariaDB |
 | `fleting info` | Show version and system information |
 | `fleting run` | Run the application |
+| `fleting doctor` | Check the project for common problems |
 
 ---
 
@@ -235,7 +240,8 @@ fleting init myapp --mysql
 | Command | Description |
 |---------|-------------|
 | `fleting db init` | Initialize the database (SQLite by default) |
-| `fleting db init --mysql` | Initialize the database with MySQL |
+| `fleting db init --mysql` | Switch the project to MySQL / MariaDB (with `.bak` backups) |
+| `fleting db init --sqlite` | Switch the project back to SQLite |
 | `fleting db migrate` | Run database migrations |
 | `fleting db seed` | Seed the database with initial data |
 | `fleting db make <name>` | Create a new migration |
@@ -258,7 +264,7 @@ fleting init myapp --mysql
 
 | Command | Description |
 |---------|-------------|
-| `fleting shell` | Open interactive database shell
+| `fleting shell` | Open interactive database shell (SQLite, MySQL / MariaDB) |
 
 ---
 
@@ -266,7 +272,7 @@ fleting init myapp --mysql
 
 | Category | Commands |
 |----------|----------|
-| **Project** | `init`, `info`, `run` |
+| **Project** | `init`, `info`, `run`, `doctor` |
 | **Create** | `create page`, `create view`, `create model`, `create controller` |
 | **Delete** | `delete page`, `delete view`, `delete model`, `delete controller` |
 | **List** | `list pages`, `list controllers`, `list views`, `list models`, `list routes` |
@@ -321,6 +327,7 @@ I18n.t("home.title")  # "Bienvenido a MyApp" in Spanish
 |-------|-------|--------|
 |SQLite	    |✅ Stable	|Development, embedded apps|
 |MySQL	    |✅ Stable	|Production, web applications|
+|MariaDB	|✅ Stable	|Production (PyMySQL driver recommended)|
 |PostgreSQL	|🔄 Coming Soon	|Enterprise applications|
 |SQL Server	|🔄 Coming Soon	|Enterprise integrations|
 
