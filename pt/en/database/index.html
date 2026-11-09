@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://alexyucra.github.io/Fleting/pt/en/database/">
       
       
+        <link rel="prev" href="../../">
+      
+      
+        <link rel="next" href="../examples/">
       
       
         
@@ -27,7 +31,7 @@
     
     
       
-        <title>Database - Fleting Docs</title>
+        <title>Databases - Fleting Docs</title>
       
     
     
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#database-setup" class="md-skip">
+        <a href="#databases" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Database
+              Databases
             
           </span>
         </div>
@@ -254,6 +258,326 @@
       
   
   
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-configsdatabasepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (configs/database.py)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration (configs/database.py)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-and-mariadb-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL and MariaDB with Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrations-and-seeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations and seeds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrations and seeds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seed-admin-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed admin user
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ORM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions-and-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transactions and connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-models-from-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate models from the database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-fleting-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console (fleting shell)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step-by-step examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -261,6 +585,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -284,7 +612,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -306,14 +634,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -416,6 +744,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../pt/banco-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bancos de dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/exemplos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exemplos passo a passo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../pt/enviroment/" class="md-nav__link">
         
   
@@ -465,6 +849,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -478,7 +866,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -500,14 +888,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -610,6 +998,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../es/base-de-datos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bases de datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../es/ejemplos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos paso a paso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../es/enviroment/" class="md-nav__link">
         
   
@@ -682,6 +1126,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -690,83 +1136,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#database-setup" class="md-nav__link">
+  <a href="#choosing-the-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🗄️ Database Setup
+        Choosing the engine
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🗄️ Database Setup">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-configsdatabasepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (configs/database.py)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration (configs/database.py)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#quick-mysql-with-docker" class="md-nav__link">
+  <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick MySQL with Docker
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick MySQL with Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linux-macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linux / macOS:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#windows-powershell" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Windows (PowerShell):
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#windows-cmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Windows (CMD):
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-port-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Port Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#database-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Commands
+        Environment variables
       
     </span>
   </a>
@@ -779,66 +1175,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-development-workflow" class="md-nav__link">
+  <a href="#mysql-and-mariadb-with-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Recommended Development Workflow
+        MySQL and MariaDB with Docker
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Recommended Development Workflow">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrations-and-seeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations and seeds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrations and seeds">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-set-up-your-environment" class="md-nav__link">
+  <a href="#seed-admin-user" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Set up your environment
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-your-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Create your project
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-initialize-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Initialize database
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-start-developing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Start developing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-database-migrations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Database migrations
+        Seed admin user
       
     </span>
   </a>
@@ -851,10 +1214,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environment-setup-comparison" class="md-nav__link">
+  <a href="#orm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 Environment Setup Comparison
+        ORM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions-and-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transactions and connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-models-from-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate models from the database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-fleting-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console (fleting shell)
       
     </span>
   </a>
@@ -862,10 +1264,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pro-tips" class="md-nav__link">
+  <a href="#diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Pro Tips
+        Diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
       
     </span>
   </a>
@@ -889,225 +1302,400 @@
 
 
 
-  <h1>Database</h1>
+<h1 id="databases">🗄️ Databases</h1>
+<p>Fleting supports <strong>SQLite</strong> (default) and <strong>MySQL / MariaDB</strong>. The same models, migrations and seeds work on both engines; only the configuration changes.</p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Status</th>
+<th>Driver</th>
+<th>Install</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite</td>
+<td>✅ Stable</td>
+<td><code>sqlite3</code> (built in)</td>
+<td>—</td>
+<td>Development, embedded/mobile apps</td>
+</tr>
+<tr>
+<td>MySQL 8</td>
+<td>✅ Stable</td>
+<td><code>mysql-connector-python</code></td>
+<td><code>pip install "fleting[mysql]"</code></td>
+<td>Production, web apps</td>
+</tr>
+<tr>
+<td>MariaDB 10.6+ / 11</td>
+<td>✅ Stable</td>
+<td><code>PyMySQL</code> (recommended) or <code>mysql-connector-python</code></td>
+<td><code>pip install "fleting[mariadb]"</code></td>
+<td>Production</td>
+</tr>
+<tr>
+<td>SQL Server</td>
+<td>🔄 Coming soon</td>
+<td>—</td>
+<td>—</td>
+<td>Enterprise integrations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="choosing-the-engine">Choosing the engine</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">New project</label><label for="__tabbed_1_2">Existing project</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>init<span class="w"> </span>myapp<span class="w">            </span><span class="c1"># SQLite</span>
+fleting<span class="w"> </span>init<span class="w"> </span>myapp<span class="w"> </span>--mysql<span class="w">    </span><span class="c1"># MySQL / MariaDB</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>init<span class="w"> </span>--mysql<span class="w">       </span><span class="c1"># switch to MySQL / MariaDB</span>
+fleting<span class="w"> </span>db<span class="w"> </span>init<span class="w"> </span>--sqlite<span class="w">      </span><span class="c1"># back to SQLite</span>
+</code></pre></div>
+<p>When switching, Fleting:</p>
+<ul>
+<li>updates <code>"ENGINE"</code> in <code>configs/database.py</code>;</li>
+<li>saves <code>core/database.py</code> and <code>core/migrations.py</code> as <code>*.py.bak</code> and generates the new engine's versions;</li>
+<li>regenerates <code>migrations/001_initial.py</code> and <code>seeds/initial.py</code> <strong>only</strong> if they are the default files from older versions (also backed up as <code>.bak</code>). Your other files are left untouched.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Inside a project, <code>fleting --help</code> shows the commands for the engine in use.</p>
+<hr />
+<h2 id="configuration-configsdatabasepy">Configuration (<code>configs/database.py</code>)</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># ENGINE: "sqlite" | "mysql"</span>
+<span class="n">DATABASE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"ENGINE"</span><span class="p">:</span> <span class="s2">"sqlite"</span><span class="p">,</span>
 
-<h2 id="database-setup">🗄️ Database Setup</h2>
-<h3 id="quick-mysql-with-docker">Quick MySQL with Docker</h3>
-<p>Get a MySQL 8 container running in one line:</p>
-<h4 id="linux-macos">Linux / macOS:</h4>
-<pre><code class="language-bash">docker run --name fleting_mysql -e MYSQL_ROOT_PASSWORD=fleting123 -e MYSQL_DATABASE=fleting -p 3306:3306 -d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-</code></pre>
-<h4 id="windows-powershell">Windows (PowerShell):</h4>
-<pre><code class="language-bash">docker run --name fleting_mysql -e MYSQL_ROOT_PASSWORD=fleting123 -e MYSQL_DATABASE=fleting -p 3306:3306 -d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-</code></pre>
-<h4 id="windows-cmd">Windows (CMD):</h4>
-<pre><code class="language-bash">docker run --name fleting_mysql -e MYSQL_ROOT_PASSWORD=fleting123 -e MYSQL_DATABASE=fleting -p 3306:3306 -d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-</code></pre>
-<details> <summary><strong>🔧 MySQL Connection Details</strong></summary>
+    <span class="s2">"SQLITE"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"PATH"</span><span class="p">:</span> <span class="s2">"data/fleting.db"</span>
+    <span class="p">},</span>
 
-|Setting    |Value|
-|-----------|-----|
-|Host       |localhost|
-|Port       |3306|
-|User       |root|
-|Password   |fleting123|
-|Database   |fleting|
+    <span class="s2">"MYSQL"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"DRIVER"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_DRIVER"</span><span class="p">,</span> <span class="s2">"mysql-connector"</span><span class="p">),</span>  <span class="c1"># or "pymysql" (MariaDB)</span>
+        <span class="s2">"HOST"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_HOST"</span><span class="p">,</span> <span class="s2">"localhost"</span><span class="p">),</span>
+        <span class="s2">"PORT"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_PORT"</span><span class="p">,</span> <span class="s2">"3306"</span><span class="p">)),</span>
+        <span class="s2">"USER"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_USER"</span><span class="p">,</span> <span class="s2">"root"</span><span class="p">),</span>
+        <span class="s2">"PASSWORD"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_PASSWORD"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+        <span class="s2">"NAME"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"FLETING_DB_NAME"</span><span class="p">,</span> <span class="s2">"fleting"</span><span class="p">),</span>
+        <span class="s2">"OPTIONS"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"charset"</span><span class="p">:</span> <span class="s2">"utf8mb4"</span><span class="p">,</span>
+            <span class="s2">"collation"</span><span class="p">:</span> <span class="s2">"utf8mb4_general_ci"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Keep passwords out of the code</p>
+<p>Use the environment variables below. Keep the <code>"ENGINE": "..."</code> line as a literal string: the CLI reads it to detect the engine.</p>
+</div>
+<h3 id="environment-variables">Environment variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FLETING_DB_HOST</code></td>
+<td><code>localhost</code></td>
+<td>MySQL/MariaDB server</td>
+</tr>
+<tr>
+<td><code>FLETING_DB_PORT</code></td>
+<td><code>3306</code></td>
+<td>Port</td>
+</tr>
+<tr>
+<td><code>FLETING_DB_USER</code></td>
+<td><code>root</code></td>
+<td>User</td>
+</tr>
+<tr>
+<td><code>FLETING_DB_PASSWORD</code></td>
+<td><em>(empty)</em></td>
+<td>Password</td>
+</tr>
+<tr>
+<td><code>FLETING_DB_NAME</code></td>
+<td><code>fleting</code></td>
+<td>Database name</td>
+</tr>
+<tr>
+<td><code>FLETING_DB_DRIVER</code></td>
+<td><code>mysql-connector</code></td>
+<td><code>mysql-connector</code> or <code>pymysql</code></td>
+</tr>
+<tr>
+<td><code>FLETING_ADMIN_PASSWORD</code></td>
+<td>—</td>
+<td>Password for the <code>admin</code> user created by <code>fleting db seed</code></td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PowerShell</label><label for="__tabbed_2_2">CMD</label><label for="__tabbed_2_3">Linux / macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">$env:FLETING_DB_PASSWORD</span> <span class="p">=</span> <span class="s2">"mypassword"</span>
+<span class="nv">$env:FLETING_DB_DRIVER</span> <span class="p">=</span> <span class="s2">"pymysql"</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">set</span> <span class="nv">FLETING_DB_PASSWORD</span><span class="p">=</span>mypassword
+<span class="k">set</span> <span class="nv">FLETING_DB_DRIVER</span><span class="p">=</span>pymysql
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">FLETING_DB_PASSWORD</span><span class="o">=</span>mypassword
+<span class="nb">export</span><span class="w"> </span><span class="nv">FLETING_DB_DRIVER</span><span class="o">=</span>pymysql
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="mysql-and-mariadb-with-docker">MySQL and MariaDB with Docker</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># MySQL 8</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>fleting-mysql<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_DATABASE</span><span class="o">=</span>fleting<span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>mysql:8
 
-- To verify the container is running:
-
-
-<pre><code class="language-bash">docker ps
-docker logs fleting_mysql
-</code></pre>
-
-
-- To access MySQL directly:
-
-
-<pre><code class="language-bash">docker exec -it fleting_mysql mysql -uroot -pfleting123
-</code></pre>
-
-
-- To stop the container:
-
-
-<pre><code class="language-bash">docker stop fleting_mysql
-docker rm fleting_mysql
-</code></pre>
-
-
-</details>
-
-<h3 id="custom-port-configuration">Custom Port Configuration</h3>
-<p>If your MySQL container is running on a different port (e.g., 3366), update your <code>configs/database.py</code>:</p>
-<pre><code class="language-py">DATABASE = {
-    &quot;ENGINE&quot;: &quot;mysql&quot;,
-    &quot;MYSQL&quot;: {
-        &quot;HOST&quot;: &quot;localhost&quot;,
-        &quot;PORT&quot;: 3366,  # Change to your port
-        &quot;USER&quot;: &quot;root&quot;,
-        &quot;PASSWORD&quot;: &quot;fleting123&quot;,
-        &quot;NAME&quot;: &quot;fleting&quot;,
-        # ...
-    }
-}
-</code></pre>
-<h3 id="database-commands">Database Commands</h3>
+<span class="c1"># MariaDB 11</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>fleting-mariadb<span class="w"> </span>-e<span class="w"> </span><span class="nv">MARIADB_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>-e<span class="w"> </span><span class="nv">MARIADB_DATABASE</span><span class="o">=</span>fleting<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>mariadb:11
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w">                                   </span><span class="c1"># is it running?</span>
+docker<span class="w"> </span>logs<span class="w"> </span>fleting-mysql
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>fleting-mysql<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-proot
+docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>fleting-mysql<span class="w">                  </span><span class="c1"># stop and remove</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">MariaDB</p>
+<p><code>mysql-connector-python</code> 8.0.30+ sends the <code>utf8mb4_0900_ai_ci</code> collation, which MariaDB does not have. Fleting already defaults to <code>utf8mb4_general_ci</code>, but the recommended MariaDB driver is <strong>PyMySQL</strong> (<code>FLETING_DB_DRIVER=pymysql</code>).</p>
+</div>
+<hr />
+<h2 id="migrations-and-seeds">Migrations and seeds</h2>
 <table>
 <thead>
 <tr>
 <th>Command</th>
-<th>Description</th>
+<th>What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>fleting db init</td>
-<td>Initialize database structure</td>
+<td><code>fleting db init</code></td>
+<td>Creates <code>migrations/</code>, <code>seeds/</code>, <code>data/</code> and <code>core/migrations.py</code></td>
 </tr>
 <tr>
-<td>fleting db init --mysql</td>
-<td>Initialize with MySQL (if using MySQL)</td>
+<td><code>fleting db migrate</code></td>
+<td>Applies pending migrations (tracked in <code>_fleting_migrations</code>)</td>
 </tr>
 <tr>
-<td>fleting db migrate</td>
-<td>Run pending migrations</td>
+<td><code>fleting db make &lt;name&gt;</code></td>
+<td>Creates <code>migrations/00N_&lt;name&gt;.py</code></td>
 </tr>
 <tr>
-<td>fleting db seed</td>
-<td>Seed the database with initial data</td>
+<td><code>fleting db rollback</code></td>
+<td>Reverts the last migration (<code>down</code>)</td>
 </tr>
 <tr>
-<td>fleting db make <name></td>
-<td>Create a new migration</td>
+<td><code>fleting db status</code></td>
+<td>Lists applied and pending migrations</td>
 </tr>
 <tr>
-<td>fleting db rollback</td>
-<td>Rollback the last migration</td>
-</tr>
-<tr>
-<td>fleting db status</td>
-<td>Check migration status</td>
-</tr>
-<tr>
-<td>fleting db model pull</td>
-<td>Generate models from existing tables</td>
-</tr>
-<tr>
-<td>fleting shell</td>
-<td>Interactive database console</td>
+<td><code>fleting db seed</code></td>
+<td>Runs <code>run(db)</code> from every file in <code>seeds/</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="recommended-development-workflow">🚀 Recommended Development Workflow</h2>
-<h3 id="1-set-up-your-environment">1. Set up your environment</h3>
-<pre><code class="language-bash"># Using uv (recommended)
-uv init myapp
-cd myapp
-uv venv
-source .venv/bin/activate  # Linux/macOS
-# or .venv\Scripts\activate  # Windows PowerShell
-uv pip install flet fleting
+<p>A migration receives the connection in <code>up(db)</code> / <code>down(db)</code>. Use a <strong>cursor</strong>, which works on every engine:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_mysql</span>
 
-# Or using venv
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# or venv\Scripts\activate  # Windows PowerShell
-pip install flet fleting
-</code></pre>
-<h3 id="2-create-your-project">2. Create your project</h3>
-<pre><code class="language-bash"># With SQLite (default)
-fleting init myapp
+<span class="k">def</span><span class="w"> </span><span class="nf">up</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">pk</span> <span class="o">=</span> <span class="s2">"INT AUTO_INCREMENT PRIMARY KEY"</span> <span class="k">if</span> <span class="n">is_mysql</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"INTEGER PRIMARY KEY AUTOINCREMENT"</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">        CREATE TABLE IF NOT EXISTS products (</span>
+<span class="s2">            id </span><span class="si">{</span><span class="n">pk</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            name VARCHAR(255),</span>
+<span class="s2">            price DECIMAL(10, 2)</span>
+<span class="s2">        )</span>
+<span class="s2">    """</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-# With MySQL
-fleting init myapp --mysql
-cd myapp
-</code></pre>
-<h3 id="3-initialize-database">3. Initialize database</h3>
-<pre><code class="language-bash"># For SQLite
-fleting db init
+<span class="k">def</span><span class="w"> </span><span class="nf">down</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS products"</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="seed-admin-user">Seed admin user</h3>
+<p><code>seeds/initial.py</code> only creates the <code>admin</code> user if <code>FLETING_ADMIN_PASSWORD</code> is set. The password is stored as a <strong>PBKDF2-SHA256</strong> hash (<code>pbkdf2_sha256$200000$&lt;salt&gt;$&lt;hash&gt;</code>), never in plain text. Running the seed again does not duplicate the user.</p>
+<div class="admonition danger">
+<p class="admonition-title">Project code</p>
+<p><code>db migrate</code>, <code>db seed</code> and <code>list routes</code> import and run Python files from the project (<code>migrations/</code>, <code>seeds/</code>, <code>configs/routes.py</code>). Only run them on projects you trust.</p>
+</div>
+<hr />
+<h2 id="orm">ORM</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">core.base_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 
-# For MySQL (after setting up container)
-fleting db init --mysql
-</code></pre>
-<h3 id="4-start-developing">4. Start developing</h3>
-<pre><code class="language-bash"># Create a new page
-fleting create page dashboard
-
-# Run the app
-fleting run
-</code></pre>
-<h3 id="5-database-migrations">5. Database migrations</h3>
-<pre><code class="language-bash"># Create a migration
-fleting db make add_user_profile
-
-# Apply it
-fleting db migrate
-
-# Seed data
-fleting db seed
-</code></pre>
-<h2 id="environment-setup-comparison">📊 Environment Setup Comparison</h2>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProductsModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="s2">"products"</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
-<th>Tool</th>
-<th>Speed</th>
-<th>Ease of Use</th>
-<th>Recommended For</th>
+<th>Method</th>
+<th>Returns</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>uv</td>
-<td>⚡ Fastest</td>
-<td>✅ Easy</td>
-<td>New projects, production</td>
+<td><code>Model.all()</code></td>
+<td>list of dicts</td>
 </tr>
 <tr>
-<td>venv</td>
-<td>🐢 Standard</td>
-<td>✅ Standard</td>
-<td>All projects</td>
+<td><code>Model.first()</code></td>
+<td>dict or <code>None</code></td>
 </tr>
 <tr>
-<td>Poetry</td>
-<td>🐢 Standard</td>
-<td>⚠️ Complex</td>
-<td>Large projects with dependencies</td>
+<td><code>Model.find(id)</code></td>
+<td>dict or <code>None</code></td>
 </tr>
 <tr>
-<td>Conda</td>
-<td>🐢 Slower</td>
-<td>⚠️ Complex</td>
-<td>Data science projects</td>
+<td><code>Model.where(field=value, ...)</code></td>
+<td>list of dicts</td>
+</tr>
+<tr>
+<td><code>Model.count()</code> / <code>Model.exists(**filters)</code></td>
+<td><code>int</code> / <code>bool</code></td>
+</tr>
+<tr>
+<td><code>Model.create(**data)</code></td>
+<td>created dict</td>
+</tr>
+<tr>
+<td><code>obj.save()</code></td>
+<td>inserts (no <code>id</code>) or updates (with <code>id</code>)</td>
+</tr>
+<tr>
+<td><code>obj.delete()</code></td>
+<td>deletes by <code>id</code></td>
+</tr>
+<tr>
+<td><code>Model.with_("relation").all()</code></td>
+<td>loads <code>ForeignKey</code> / <code>HasMany</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="pro-tips">💡 Pro Tips</h2>
-<details> <summary><strong>🔹 Use uv for faster dependency management</strong></summary>
-uv is 10-100x faster than pip and poetry. Install it with:
+<p>Table and column names are validated (<code>[A-Za-z_][A-Za-z0-9_]*</code>); values are always passed as parameters. Something like <code>Model.where(**{"id=1 OR 1": 1})</code> raises <code>ValueError</code>.</p>
+<h3 id="transactions-and-connection">Transactions and connection</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">transaction</span><span class="p">,</span> <span class="n">close_connection</span>
 
+<span class="k">with</span> <span class="n">transaction</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>          <span class="c1"># commit at the end, rollback on error</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"UPDATE products SET price = price * 1.1"</span><span class="p">)</span>
 
-<pre><code class="language-bash">pip install uv
-</code></pre>
-
-
-</details>
-<details> <summary><strong>🔹 Use Docker for MySQL development</strong></summary>
-
-Get a MySQL 8 container in one line:
-
-
-<pre><code class="language-bash">docker run --name fleting_mysql -e MYSQL_ROOT_PASSWORD=fleting123 -e MYSQL_DATABASE=fleting -p 3306:3306 -d mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-</code></pre>
-
-</details>
-<details> <summary><strong>🔹 Use .env for sensitive data</strong></summary>
-
-Create a .env file for database credentials and load it with python-dotenv.
-
-</details>
+<span class="n">close_connection</span><span class="p">()</span>                   <span class="c1"># the app already calls this on exit</span>
+</code></pre></div>
+<h3 id="generate-models-from-the-database">Generate models from the database</h3>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>model<span class="w"> </span>pull<span class="w">                 </span><span class="c1"># every table</span>
+fleting<span class="w"> </span>db<span class="w"> </span>model<span class="w"> </span>pull<span class="w"> </span>products<span class="w">        </span><span class="c1"># one table</span>
+fleting<span class="w"> </span>db<span class="w"> </span>model<span class="w"> </span>pull<span class="w"> </span>products<span class="w"> </span>--force
+</code></pre></div>
+<hr />
+<h2 id="console-fleting-shell">Console (<code>fleting shell</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Helper</th>
+<th>SQLite</th>
+<th>MySQL / MariaDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tables()</code></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>query(sql)</code></td>
+<td>SELECT → dicts</td>
+<td>SELECT → dicts; INSERT/UPDATE/DELETE → commit + row count</td>
+</tr>
+<tr>
+<td><code>table("t")</code></td>
+<td>✅</td>
+<td>✅ (<code>limit=200</code>)</td>
+</tr>
+<tr>
+<td><code>describe("t")</code></td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>models()</code> / <code>&lt;Model&gt;.all()</code></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>conn</code> / <code>db</code></td>
+<td>connection</td>
+<td>connection</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; tables()
+['_fleting_migrations', 'users']
+&gt;&gt;&gt; query("UPDATE users SET username=%s WHERE id=%s", ("adm", 1))
+✔ 1 row(s) affected
+</code></pre></div>
+<hr />
+<h2 id="diagnostics">Diagnostics</h2>
+<p><code>fleting doctor</code> checks the configured engine, whether the MySQL driver is installed and whether the seed still uses the old default password.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause / fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MySQL support requires: pip install "fleting[mysql]"</code></td>
+<td>Install the driver (or <code>fleting[mariadb]</code> with <code>DRIVER=pymysql</code>)</td>
+</tr>
+<tr>
+<td><code>Unknown collation: utf8mb4_0900_ai_ci</code></td>
+<td>MariaDB + old connector: use <code>FLETING_DB_DRIVER=pymysql</code></td>
+</tr>
+<tr>
+<td><code>Access denied for user</code></td>
+<td>Check <code>FLETING_DB_USER</code> / <code>FLETING_DB_PASSWORD</code></td>
+</tr>
+<tr>
+<td><code>Unknown database</code></td>
+<td>Create it (<code>CREATE DATABASE fleting</code>) or set <code>FLETING_DB_NAME</code></td>
+</tr>
+<tr>
+<td><code>Can't connect to MySQL server</code></td>
+<td>Server stopped or wrong port (<code>FLETING_DB_PORT</code>)</td>
+</tr>
+<tr>
+<td><code>'Connection' object has no attribute 'execute'</code></td>
+<td>Old migration/seed using <code>db.execute</code>: use <code>db.cursor().execute(...)</code></td>
+</tr>
+</tbody>
+</table>
 
 
 

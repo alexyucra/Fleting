@@ -1,0 +1,1531 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexyucra.github.io/Fleting/pt/es/ejemplos/">
+      
+      
+        <link rel="prev" href="../base-de-datos/">
+      
+      
+        <link rel="next" href="../enviroment/">
+      
+      
+        
+          <link rel="alternate" href="../../../es/ejemplos/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="pt">
+        
+          <link rel="alternate" href="../../../es/es/ejemplos/" hreflang="es">
+        
+      
+      
+      <link rel="icon" href="../../../img/fleting_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Ejemplos paso a paso - Fleting Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejemplos-paso-a-paso" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../" title="Fleting Docs" class="md-header__button md-logo" aria-label="Fleting Docs" data-md-component="logo">
+      
+  <img src="../../../img/fleting_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Fleting Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejemplos paso a paso
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Selecione o idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../es/ejemplos/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="pt" class="md-select__link">
+              Português
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/es/ejemplos/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Fleting Docs" class="md-nav__button md-logo" aria-label="Fleting Docs" data-md-component="logo">
+      
+  <img src="../../../img/fleting_logo.png" alt="logo">
+
+    </a>
+    Fleting Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../en/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../en/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step-by-step examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Português
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Português
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/banco-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bancos de dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/exemplos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exemplos passo a passo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pt/enviroment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Español
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Español
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-de-datos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bases de datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos paso a paso
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos paso a paso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-primera-app-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Primera app (SQLite)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-una-pagina-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear una página completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-componentes-sueltos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear componentes sueltos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-eliminar-una-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Eliminar una página
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sqlite-tabla-datos-y-consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SQLite: tabla, datos y consultas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-usar-el-orm-en-el-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Usar el ORM en el controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-proyecto-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Proyecto con MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-proyecto-con-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Proyecto con MariaDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-migrar-un-proyecto-sqlite-existente-a-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Migrar un proyecto SQLite existente a MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-diagnostico-y-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Diagnóstico y depuración
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enviroment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entorno
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribuir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-primera-app-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Primera app (SQLite)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-una-pagina-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear una página completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-componentes-sueltos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear componentes sueltos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-eliminar-una-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Eliminar una página
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sqlite-tabla-datos-y-consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SQLite: tabla, datos y consultas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-usar-el-orm-en-el-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Usar el ORM en el controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-proyecto-con-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Proyecto con MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-proyecto-con-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Proyecto con MariaDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-migrar-un-proyecto-sqlite-existente-a-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Migrar un proyecto SQLite existente a MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-diagnostico-y-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Diagnóstico y depuración
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ejemplos-paso-a-paso">🧭 Ejemplos paso a paso</h1>
+<p>Recorridos completos con la CLI. Cada ejemplo empieza desde cero.</p>
+<blockquote>
+<p>En todos los ejemplos, active antes el entorno virtual (<a href="../enviroment/">Entorno</a>) e instale: <code>pip install fleting</code>.</p>
+</blockquote>
+<hr />
+<h2 id="1-primera-app-sqlite">1. Primera app (SQLite)</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>init<span class="w"> </span>tienda
+<span class="nb">cd</span><span class="w"> </span>tienda
+fleting<span class="w"> </span>run
+</code></pre></div>
+<p>Resultado: app con páginas <strong>Home</strong>, <strong>Settings</strong> y <strong>Help</strong>, layout responsive e i18n (pt, en, es).</p>
+<p>Para revisar la estructura:</p>
+<p><div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>doctor
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>  ✔ .fleting found
+  ✔ main.py found
+  ✔ 3 route(s) checked
+  ✔ Database engine: sqlite
+
+0 error(s), 0 warning(s)
+</code></pre></div></p>
+<hr />
+<h2 id="2-crear-una-pagina-completa">2. Crear una página completa</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>create<span class="w"> </span>page<span class="w"> </span>productos
+</code></pre></div>
+<p>Genera:</p>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Clase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/models/productos_model.py</code></td>
+<td><code>ProductosModel</code></td>
+</tr>
+<tr>
+<td><code>app/controllers/productos_controller.py</code></td>
+<td><code>ProductosController</code></td>
+</tr>
+<tr>
+<td><code>app/views/pages/productos_view.py</code></td>
+<td><code>ProductosView</code></td>
+</tr>
+<tr>
+<td><code>configs/routes.py</code></td>
+<td>ruta <code>/productos</code> en el menú</td>
+</tr>
+</tbody>
+</table>
+<p>Los nombres con varias palabras usan <em>snake_case</em>: <code>fleting create page user_profile</code> → <code>UserProfileView</code>, <code>UserProfileController</code>, <code>UserProfileModel</code>.</p>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>list<span class="w"> </span>pages<span class="w">      </span><span class="c1"># model / controller / view de cada página</span>
+fleting<span class="w"> </span>list<span class="w"> </span>routes<span class="w">     </span><span class="c1"># rutas registradas</span>
+fleting<span class="w"> </span>run<span class="w">             </span><span class="c1"># la página aparece en el menú</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nombres válidos</p>
+<p>Minúsculas, números y <code>_</code>, empezando por letra. <code>mi-pagina</code>, <code>1abc</code> y palabras reservadas (<code>class</code>) se rechazan.</p>
+</div>
+<hr />
+<h2 id="3-crear-componentes-sueltos">3. Crear componentes sueltos</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>create<span class="w"> </span>model<span class="w"> </span>cliente
+fleting<span class="w"> </span>create<span class="w"> </span>controller<span class="w"> </span>cliente
+fleting<span class="w"> </span>create<span class="w"> </span>view<span class="w"> </span>cliente
+</code></pre></div>
+<p>Una view creada así <strong>no</strong> recibe ruta. <code>fleting doctor</code> avisa:</p>
+<div class="highlight"><pre><span></span><code>  ⚠️  View cliente_view.py has no route in configs/routes.py
+</code></pre></div>
+<hr />
+<h2 id="4-eliminar-una-pagina">4. Eliminar una página</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>delete<span class="w"> </span>page<span class="w"> </span>productos
+</code></pre></div>
+<p>Elimina model, controller, view <strong>y</strong> la ruta <code>/productos</code>. Funciona desde cualquier subcarpeta del proyecto (por ejemplo, dentro de <code>app/views</code>).</p>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>delete<span class="w"> </span>view<span class="w"> </span>cliente<span class="w">        </span><span class="c1"># solo la view</span>
+</code></pre></div>
+<hr />
+<h2 id="5-sqlite-tabla-datos-y-consultas">5. SQLite: tabla, datos y consultas</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>init
+fleting<span class="w"> </span>db<span class="w"> </span>make<span class="w"> </span>productos
+</code></pre></div>
+<p>Edite <code>migrations/002_productos.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_mysql</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">up</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">pk</span> <span class="o">=</span> <span class="s2">"INT AUTO_INCREMENT PRIMARY KEY"</span> <span class="k">if</span> <span class="n">is_mysql</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"INTEGER PRIMARY KEY AUTOINCREMENT"</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">        CREATE TABLE IF NOT EXISTS productos (</span>
+<span class="s2">            id </span><span class="si">{</span><span class="n">pk</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            nombre VARCHAR(255),</span>
+<span class="s2">            precio DECIMAL(10, 2)</span>
+<span class="s2">        )</span>
+<span class="s2">    """</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">down</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS productos"</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>Aplique y cree el admin:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PowerShell</label><label for="__tabbed_1_2">Linux / macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">fleting</span> <span class="n">db</span> <span class="n">migrate</span>
+<span class="nv">$env:FLETING_ADMIN_PASSWORD</span> <span class="p">=</span> <span class="s2">"ClaveFuerte123"</span>
+<span class="n">fleting</span> <span class="n">db</span> <span class="n">seed</span>
+<span class="n">fleting</span> <span class="n">db</span> <span class="n">status</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>migrate
+<span class="nv">FLETING_ADMIN_PASSWORD</span><span class="o">=</span>ClaveFuerte123<span class="w"> </span>fleting<span class="w"> </span>db<span class="w"> </span>seed
+fleting<span class="w"> </span>db<span class="w"> </span>status
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Genere el model desde la tabla y use el ORM:</p>
+<p><div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>model<span class="w"> </span>pull<span class="w"> </span>productos
+fleting<span class="w"> </span>shell
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; tables()
+['_fleting_migrations', 'sqlite_sequence', 'users', 'productos']
+&gt;&gt;&gt; ProductosModel.create(nombre="Lápiz", precio=2.5)
+{'id': 1, 'nombre': 'Lápiz', 'precio': 2.5}
+&gt;&gt;&gt; ProductosModel.where(nombre="Lápiz")
+[{'id': 1, 'nombre': 'Lápiz', 'precio': 2.5}]
+&gt;&gt;&gt; table("productos")
+&gt;&gt;&gt; quit()
+</code></pre></div></p>
+<p>Revertir la última migración:</p>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>rollback
+</code></pre></div>
+<hr />
+<h2 id="6-usar-el-orm-en-el-controller">6. Usar el ORM en el controller</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># app/controllers/productos_controller.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.models.productos_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProductosModel</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ProductosController</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">listar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ProductosModel</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">registrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">precio</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ProductosModel</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="o">=</span><span class="n">precio</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># app/views/pages/productos_view.py (fragmento de render)</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">]</span><span class="si">}</span><span class="s2"> — $ </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'precio'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">listar</span><span class="p">()]</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">controls</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="7-proyecto-con-mysql">7. Proyecto con MySQL</h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>fleting-mysql<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_DATABASE</span><span class="o">=</span>fleting<span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>mysql:8
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"fleting[mysql]"</span>
+
+fleting<span class="w"> </span>init<span class="w"> </span>tienda<span class="w"> </span>--mysql
+<span class="nb">cd</span><span class="w"> </span>tienda
+</code></pre></div>
+<p>Configure la conexión:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PowerShell</label><label for="__tabbed_2_2">Linux / macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">$env:FLETING_DB_PASSWORD</span> <span class="p">=</span> <span class="s2">"root"</span>
+<span class="nv">$env:FLETING_ADMIN_PASSWORD</span> <span class="p">=</span> <span class="s2">"ClaveFuerte123"</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">FLETING_DB_PASSWORD</span><span class="o">=</span>root
+<span class="nb">export</span><span class="w"> </span><span class="nv">FLETING_ADMIN_PASSWORD</span><span class="o">=</span>ClaveFuerte123
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>init
+fleting<span class="w"> </span>db<span class="w"> </span>migrate
+fleting<span class="w"> </span>db<span class="w"> </span>seed
+fleting<span class="w"> </span>doctor
+fleting<span class="w"> </span>shell
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Fleting Console (MySQL 8.4.x)
+&gt;&gt;&gt; describe("users")
+&gt;&gt;&gt; query("SELECT COUNT(*) n FROM users")
+[{'n': 1}]
+</code></pre></div></p>
+<hr />
+<h2 id="8-proyecto-con-mariadb">8. Proyecto con MariaDB</h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>fleting-mariadb<span class="w"> </span>-e<span class="w"> </span><span class="nv">MARIADB_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>-e<span class="w"> </span><span class="nv">MARIADB_DATABASE</span><span class="o">=</span>fleting<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>mariadb:11
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"fleting[mariadb]"</span>
+
+fleting<span class="w"> </span>init<span class="w"> </span>tienda<span class="w"> </span>--mysql
+<span class="nb">cd</span><span class="w"> </span>tienda
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">PowerShell</label><label for="__tabbed_3_2">Linux / macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">$env:FLETING_DB_DRIVER</span> <span class="p">=</span> <span class="s2">"pymysql"</span>
+<span class="nv">$env:FLETING_DB_PORT</span> <span class="p">=</span> <span class="s2">"3307"</span>
+<span class="nv">$env:FLETING_DB_PASSWORD</span> <span class="p">=</span> <span class="s2">"root"</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">FLETING_DB_DRIVER</span><span class="o">=</span>pymysql<span class="w"> </span><span class="nv">FLETING_DB_PORT</span><span class="o">=</span><span class="m">3307</span><span class="w"> </span><span class="nv">FLETING_DB_PASSWORD</span><span class="o">=</span>root
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>init<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>fleting<span class="w"> </span>db<span class="w"> </span>migrate
+fleting<span class="w"> </span>shell<span class="w">          </span><span class="c1"># el banner muestra "Fleting Console (MariaDB 11.x)"</span>
+</code></pre></div>
+<hr />
+<h2 id="9-migrar-un-proyecto-sqlite-existente-a-mysql">9. Migrar un proyecto SQLite existente a MySQL</h2>
+<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tienda
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"fleting[mysql]"</span>
+fleting<span class="w"> </span>db<span class="w"> </span>init<span class="w"> </span>--mysql
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Backup: core/database.py → database.py.bak
+Backup: core/migrations.py → migrations.py.bak
+Engine switched: sqlite → mysql
+</code></pre></div></p>
+<p>Luego, con las variables <code>FLETING_DB_*</code> definidas:</p>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>db<span class="w"> </span>migrate
+fleting<span class="w"> </span>db<span class="w"> </span>seed
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Datos</p>
+<p>El cambio de motor <strong>no copia datos</strong> de SQLite a MySQL; solo reconfigura el proyecto y vuelve a aplicar las migraciones en la base nueva. Sus migraciones con sintaxis exclusiva de SQLite deben ajustarse (vea el ejemplo 5).</p>
+</div>
+<p>Para volver: <code>fleting db init --sqlite</code>.</p>
+<hr />
+<h2 id="10-diagnostico-y-depuracion">10. Diagnóstico y depuración</h2>
+<div class="highlight"><pre><span></span><code>fleting<span class="w"> </span>doctor<span class="w">               </span><span class="c1"># estructura, rutas, driver, seed</span>
+fleting<span class="w"> </span>info<span class="w">                 </span><span class="c1"># versiones y entorno</span>
+</code></pre></div>
+<p>Los errores de la CLI muestran solo el mensaje. Para ver el traceback completo:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">PowerShell</label><label for="__tabbed_4_2">Linux / macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">$env:FLETING_DEBUG</span> <span class="p">=</span> <span class="s2">"1"</span><span class="p">;</span> <span class="n">fleting</span> <span class="n">db</span> <span class="n">migrate</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">FLETING_DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>fleting<span class="w"> </span>db<span class="w"> </span>migrate
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Códigos de salida: <code>0</code> éxito, <code>1</code> error (incluido <code>doctor</code> con errores), <code>2</code> comando desconocido.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "content.code.copy", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
