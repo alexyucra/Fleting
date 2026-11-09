@@ -89,8 +89,11 @@ def handle_shell_mysql(project_root: Path):
         if not table_exists(table_name):
             console.print("[error]Table not found[/error]")
             return
-
-        cursor.execute(f"SELECT * FROM {table_name}")
+        import re
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", table_name):
+            console.print("[error]Invalid table name[/error]")
+            return
+        cursor.execute(f"SELECT * FROM `{table_name}`")
         rows = cursor.fetchall()
 
         if not rows:

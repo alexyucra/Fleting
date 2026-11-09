@@ -158,8 +158,12 @@ def handle_shell_sqlite():
         if not table_exists(cursor, table_name):
             console.print("[error]Table not found[/error]")
             return
+        import re
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", table_name):
+            console.print("[error]Invalid table name[/error]")
+            return
         
-        cursor.execute(f"SELECT * FROM {table_name}")
+        cursor.execute(f'SELECT * FROM "{table_name}"') 
         rows = cursor.fetchall()
 
         if not rows:

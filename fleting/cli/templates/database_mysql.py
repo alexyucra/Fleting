@@ -126,7 +126,7 @@ def run(db):
     cursor = db.cursor()
     cursor.execute('''
         INSERT IGNORE INTO users (username, password)
-        VALUES ('admin', 'fleting')
+        VALUES VALUES (%s, %s), ("admin", hash_password(raw)),
     ''')
     db.commit()
 """)
@@ -135,45 +135,63 @@ def run(db):
     create_file(BASE / "core/migrations.py", """
 # Core migrations MySQL
 from pathlib import Path
-from core.database import get_connection
+from core.database import get_connection, placeholder, dict_cursor
 
 MIGRATIONS_TABLE = "_fleting_migrations"
 
 def ensure_migrations_table():
     db = get_connection()
-    db.execute(f'''
-        CREATE TABLE IF NOT EXISTS {MIGRATIONS_TABLE} (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) UNIQUE
-        )
-    ''')
-    db.commit()
+    cur = db.cursor()
+    try:
+        cur.execute(f'''
+            CREATE TABLE IF NOT EXISTS {MIGRATIONS_TABLE} (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(255) UNIQUE
+            )
+        ''')
+        db.commit()
+    finally:
+        cur.close()
 
 def applied_migrations():
     db = get_connection()
-    ensure_migrations_table()
-    rows = db.execute(
-        f"SELECT name FROM {MIGRATIONS_TABLE} ORDER BY id"
-    ).fetchall()
-    return [r[0] for r in rows]
+    cur = dict_cursor(db)
+    try:
+        ensure_migrations_table()
+        cur.execute(
+            f"SELECT name FROM {MIGRATIONS_TABLE} ORDER BY id"
+        )
+        rows = cur.fetchall()
+    finally:
+        cur.close()
+    return [r["name"] for r in rows]
 
 def apply_migration(name, up):
     db = get_connection()
     up(db)
-    db.execute(
-        f"INSERT INTO {MIGRATIONS_TABLE} (name) VALUES (%s)",
-        (name,)
-    )
-    db.commit()
+    cur = db.cursor()
+    try:
+        cur.execute(
+            f"INSERT INTO {MIGRATIONS_TABLE} (name) VALUES ({placeholder()})",
+            (name,),
+        )
+        db.commit()
+    finally:
+        cur.close()
 
 def rollback_migration(name, down):
     db = get_connection()
     down(db)
-    db.execute(
-        f"DELETE FROM {MIGRATIONS_TABLE} WHERE name = %s",
-        (name,)
-    )
-    db.commit()
+    cur = db.cursor()
+    try:
+        cur.execute(
+            f"DELETE FROM {MIGRATIONS_TABLE} WHERE name = {placeholder()}",
+            (name,),
+        )
+        db.commit()
+    finally:
+        cur.close()
+
 """)
 
     print("✅ Database structure initialized with MySQL")

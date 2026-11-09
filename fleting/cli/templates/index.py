@@ -320,6 +320,13 @@ def _connect_sqlite():
 from core.database import get_connection, placeholder, dict_cursor
 from core.orm import ForeignKey, HasMany
 from typing import Any
+import re
+_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+
+def _ident(name: str) -> str:
+    if not _IDENT.fullmatch(name):
+        raise ValueError(f"Invalid SQL identifier: {name!r}")
+    return name
 
 class QuerySet:
 
@@ -335,7 +342,7 @@ class QuerySet:
         conn, cursor = self._cursor()
 
         cursor.execute(
-            f"SELECT * FROM {self.model.table_name}"
+            f"SELECT * FROM {_ident(self.model.table_name)}"
         )
         rows = cursor.fetchall()
 
@@ -344,7 +351,7 @@ class QuerySet:
     def first(self):
         conn, cursor = self._cursor()
         cursor.execute(
-            f"SELECT * FROM {self.model.table_name} LIMIT 1"
+            f"SELECT * FROM {_ident(self.model.table_name)} LIMIT 1"
         )
         row = cursor.fetchone()
         if not row:
@@ -355,7 +362,7 @@ class QuerySet:
         conn, cursor = self._cursor()
 
         cursor.execute(
-            f"SELECT * FROM {self.model.table_name} WHERE id = {placeholder()}",
+            f"SELECT * FROM {_ident(self.model.table_name)} WHERE id = {placeholder()}",
             (id,)
         )
         row = cursor.fetchone()
@@ -370,10 +377,10 @@ class QuerySet:
 
         keys = filters.keys()
         values = tuple(filters.values())
-        cond = " AND ".join(f"{k}={placeholder()}" for k in keys)
+        cond = " AND ".join(f"{_ident(k)}={placeholder()}" for k in keys)
 
         cursor.execute(
-            f"SELECT * FROM {self.model.table_name} WHERE {cond}",
+            f"SELECT * FROM {_ident(self.model.table_name_ident)} WHERE {cond}",
             values
         )
 
@@ -383,7 +390,7 @@ class QuerySet:
     def count(self):
         conn, cursor = self._cursor()
         cursor.execute(
-            f"SELECT COUNT(*) as total FROM {self.model.table_name}"
+            f"SELECT COUNT(*) as total FROM {_ident(self.model.table_name)}"
         )
         return cursor.fetchone()["total"]
     
@@ -449,12 +456,12 @@ class BaseModel:
         conn = get_connection()
         cursor = conn.cursor()
 
-        keys = ", ".join(data.keys())
+        keys = ", ".join(_ident(k) for k in data.keys())
         placeholders = ", ".join(placeholder() for _ in data)
         values = tuple(data.values())
 
         cursor.execute(
-            f"INSERT INTO {cls.table_name} ({keys}) VALUES ({placeholders})",
+            f"INSERT INTO {_ident(cls.table_name)} ({keys}) VALUES ({placeholders})",
             values
         )
         conn.commit()
@@ -486,11 +493,11 @@ class BaseModel:
             raise ValueError("Update requires id")
 
         id = data.pop("id")
-        assigns = ", ".join(f"{k}={placeholder()}" for k in data)
+        assigns = ", ".join(f"{_ident(k)}={placeholder()}" for k in data)
         values = tuple(data.values()) + (id,)
 
         cursor.execute(
-            f"UPDATE {self.table_name} SET {assigns} WHERE id = {placeholder()}",
+            f"UPDATE {_ident(self.table_name)} SET {assigns} WHERE id = {placeholder()}",
             values
         )
         conn.commit()
@@ -504,7 +511,7 @@ class BaseModel:
         cursor = conn.cursor()
 
         cursor.execute(
-            f"DELETE FROM {self.table_name} WHERE id = {placeholder()}",
+            f"DELETE FROM {_ident(self.table_name)} WHERE id = {placeholder()}",
             (self.id,)
         )
         conn.commit()
@@ -512,6 +519,8 @@ class BaseModel:
 
     create_file(BASE / "core/orm.py", """
 # core/orm.py
+from core.base_model import _ident
+
 class ForeignKey:
     def __init__(self, table: str, local: str, remote: str = "id"):
         self.table = table
@@ -520,7 +529,7 @@ class ForeignKey:
 
     def resolve(self, cursor, value):
         cursor.execute(
-            f"SELECT * FROM {self.table} WHERE {self.remote} = {placeholder()}",
+            f"SELECT * FROM {_ident(self.table)} WHERE {_ident(self.remote)} = {placeholder()}",
             (value,)
         )
         row = cursor.fetchone()
@@ -536,7 +545,7 @@ class HasMany:
 
     def resolve(self, cursor, value):
         cursor.execute(
-            f"SELECT * FROM {self.table} WHERE {self.foreign_key} = {placeholder()}",
+            f"SELECT * FROM {_ident(self.table)} WHERE {_ident(self.foreign_key)} = {placeholder()}",
             (value,)
         )
         return [dict(r) for r in cursor.fetchall()]
@@ -677,6 +686,7 @@ def has_view(route: str) -> bool:
 """)
     
     create_file(BASE / "configs/database.py", f"""
+import os
 # ENGINE: "sqlite" | "mysql"
 DATABASE = {{
     "ENGINE": "{engine}", 
@@ -686,11 +696,11 @@ DATABASE = {{
     }},
 
     "MYSQL": {{
-        "HOST": "localhost",
-        "PORT": 3306,
-        "USER": "root",
-        "PASSWORD": "",
-        "NAME": "fleting",
+        "HOST": os.environ.get("FLETING_DB_HOST", "localhost"),
+        "PORT": int(os.environ.get("FLETING_DB_PORT", "3306")),
+        "USER": os.environ.get("FLETING_DB_USER", "root"),
+        "PASSWORD": os.environ.get("FLETING_DB_PASSWORD", ""),
+        "NAME": os.environ.get("FLETING_DB_NAME", "fleting"),
         "OPTIONS": {{
             "charset": "utf8mb4"
         }}

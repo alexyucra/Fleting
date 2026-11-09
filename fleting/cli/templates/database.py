@@ -48,16 +48,25 @@ def down(db):
     print(f"✅ migrations/001_initial.py successfully created")
     
     create_file(BASE / "seeds/initial.py", """
+def hash_password(raw: str) -> str:
+    salt = secrets.token_hex(16)
+    digest = hashlib.pbkdf2_hmac("sha256", raw.encode(), salt.encode(), 200_000).hex()
+    return f"pbkdf2_sha256$200000${salt}${digest}"
+
 def run(db):
-    db.execute('''
-        INSERT OR IGNORE INTO users (username, password)
-        VALUES ('admin', 'fleting')
-    ''')
+    raw = os.environ.get("FLETING_ADMIN_PASSWORD")
+    if not raw:
+        print("⚠️  FLETING_ADMIN_PASSWORD not set; admin user not created.")
+        return
+    db.execute(
+        "INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)",
+        ("admin", hash_password(raw)),
+    )
 """)
     print(f"✅ seeds/initial.py successfully created")
 
     create_file(BASE / "core/migrations.py", """
-# Core migrations MySQL
+# Core migrations SQLite
 from pathlib import Path
 from core.database import get_connection
 

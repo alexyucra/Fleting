@@ -390,6 +390,64 @@ fleting db seed
 Saída esperada
 > 🌱 Seed executada: initial.py
 
+
+#### FLETING_ADMIN_PASSWORD
+
+#### **O que é**
+Uma variável de ambiente lida por `seeds/initial.py`. Ela contém a senha em texto puro usada para criar o usuário admin inicial no primeiro `fleting db seed`. O seed aplica hash PBKDF2-SHA256 e grava apenas o hash na coluna `users.password` — a senha em texto puro nunca vai para o banco.
+
+#### O que faz
+|Estado	|Resultado|
+|-------|---------|
+Não definida	O seed imprime ⚠️ FLETING_ADMIN_PASSWORD not set; admin user not created. e encerra. Nenhum admin é criado.
+Definida (ex.: FLETING_ADMIN_PASSWORD=minhasenha)	Cria admin com password = pbkdf2_sha256$200000$<salt>$<digest>.
+Seed rodado de novo	INSERT IGNORE evita duplicação; o admin existente é mantido.
+
+Em resumo: a variável é o interruptor que decide se o admin é criado. Sem ela → sem admin. Com ela → admin criado com aquela senha, armazenada como hash.
+
+Isso substitui o antigo seed com ('admin', 'fleting') hardcoded, para que nenhuma instalação nasça com credencial default conhecida.
+
+Como criar a variável
+A variável vale apenas para o processo atual (ou para a sessão do shell, se exportada).
+
+Windows — PowerShell
+Para um único comando (recomendado — não persiste):
+
+powershell
+$env:FLETING_ADMIN_PASSWORD = "MinhaSenhaForte123"
+fleting db seed
+Remove-Item Env:\FLETING_ADMIN_PASSWORD
+Para a sessão inteira:
+
+powershell
+$env:FLETING_ADMIN_PASSWORD = "MinhaSenhaForte123"
+fleting db seed
+Windows — CMD
+cmd
+set FLETING_ADMIN_PASSWORD=MinhaSenhaForte123
+fleting db seed
+set FLETING_ADMIN_PASSWORD=
+Linux / macOS — bash/zsh
+Um único comando:
+
+bash
+FLETING_ADMIN_PASSWORD='MinhaSenhaForte123' fleting db seed
+Sessão:
+
+bash
+export FLETING_ADMIN_PASSWORD='MinhaSenhaForte123'
+fleting db seed
+Arquivo .env (desenvolvimento)
+Crie .env na raiz do projeto e adicione ao .gitignore:
+
+env
+FLETING_ADMIN_PASSWORD=MinhaSenhaForte123
+Carregue antes de rodar (ex.: com python-dotenv ou lendo o arquivo manualmente).
+
+
+
+---
+
 ## 📌 fleting db make <nome>
 
 **Descrição**

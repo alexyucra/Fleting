@@ -24,7 +24,7 @@ def get_tables(cursor):
     return [row[0] for row in cursor.fetchall()]
 
 def get_columns(cursor, table):
-    cursor.execute(f"PRAGMA table_info({table})")
+    cursor.execute(f"PRAGMA table_info(?)", (table,))
     return cursor.fetchall()
 
 def get_foreign_keys(cursor, table: str):
